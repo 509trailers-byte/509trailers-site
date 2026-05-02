@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — 509 Trailer Rentals</title>
+<meta name="description" content="Dump run services in Vancouver, WA. We drop it, you fill it, we haul it. $380 flat — 3 days, 1 ton included.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red:#D72B2B;--red-dark:#A81E1E;--red-light:#F03A3A;
+    --black:#0E0E0E;--gray-900:#1A1A1A;--gray-800:#242424;--gray-700:#333333;
+    --gray-400:#888888;--gray-200:#CCCCCC;--white:#FFFFFF;
+    --font-display:'Barlow Condensed',sans-serif;--font-body:'Barlow',sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font-body);background:var(--black);color:var(--white);overflow-x:hidden}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px;background:rgba(14,14,14,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,0.06)}
+  .nav-logo{font-family:var(--font-display);font-size:22px;font-weight:800;letter-spacing:0.02em;color:var(--white);text-decoration:none}
+  .nav-logo span{color:var(--red)}
+  .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+  .nav-links a{font-size:14px;font-weight:500;color:var(--gray-200);text-decoration:none;letter-spacing:0.03em;transition:color 0.2s}
+  .nav-links a:hover,.nav-links a.active{color:var(--white)}
+  .nav-links a.active{color:var(--red)}
+  .nav-phone{font-family:var(--font-display);font-size:17px;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:0.04em;display:flex;align-items:center;gap:6px}
+  .nav-phone::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:#2ECC71;box-shadow:0 0 0 2px rgba(46,204,113,0.25)}
+  .nav-cta{background:var(--red);color:var(--white);font-family:var(--font-display);font-size:15px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:8px 20px;border-radius:4px;text-decoration:none;transition:background 0.2s}
+  .nav-cta:hover{background:var(--red-light)}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+  .hamburger span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px}
+  .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--black);border-bottom:1px solid rgba(255,255,255,0.08);padding:1.5rem 2rem;z-index:99;flex-direction:column;gap:1.25rem}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{font-size:16px;color:var(--gray-200);text-decoration:none;font-weight:500}
+  .mobile-menu a.btn-primary{text-align:center}
+
+  /* PAGE HERO */
+  .page-hero{padding:140px 2rem 80px;text-align:center;position:relative;overflow:hidden;background:var(--gray-900);border-bottom:1px solid rgba(255,255,255,0.06)}
+  .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 80%,rgba(215,43,43,0.12) 0%,transparent 70%);pointer-events:none}
+  .page-hero-inner{position:relative;z-index:2;max-width:800px;margin:0 auto}
+  .section-label{font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--red);margin-bottom:0.75rem}
+  .page-hero h1{font-family:var(--font-display);font-size:clamp(48px,8vw,80px);font-weight:800;text-transform:uppercase;letter-spacing:0.01em;line-height:0.95;margin-bottom:1.25rem;animation:fadeUp 0.5s ease both}
+  .page-hero h1 em{font-style:normal;color:var(--red)}
+  .page-hero p{font-size:17px;color:var(--gray-200);line-height:1.6;max-width:560px;margin:0 auto;animation:fadeUp 0.5s 0.1s ease both}
+
+  /* LAYOUT */
+  .services-wrap{max-width:1100px;margin:0 auto;padding:80px 2rem 100px}
+
+  /* SERVICE CARD — DUMP RUN */
+  .service-card{background:var(--gray-900);border:1px solid rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;margin-bottom:3px}
+  .service-card-header{display:grid;grid-template-columns:1fr auto;align-items:start;gap:2rem;padding:2.5rem 2.5rem 0}
+  .service-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#2ECC71;background:rgba(46,204,113,0.1);border:1px solid rgba(46,204,113,0.2);padding:4px 10px;border-radius:2px;margin-bottom:0.75rem}
+  .service-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:#2ECC71}
+  .service-name{font-family:var(--font-display);font-size:clamp(36px,5vw,52px);font-weight:800;text-transform:uppercase;letter-spacing:0.02em;line-height:1;margin-bottom:0.5rem}
+  .service-tagline{font-size:16px;color:var(--gray-200);line-height:1.5;max-width:500px}
+  .service-price-hero{text-align:right;flex-shrink:0}
+  .price-big{font-family:var(--font-display);font-size:clamp(48px,6vw,72px);font-weight:800;color:var(--white);line-height:1}
+  .price-big sup{font-size:0.45em;vertical-align:top;margin-top:0.3em;color:var(--gray-400)}
+  .price-desc{font-size:13px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.06em;margin-top:4px;text-align:right}
+  .price-sub{font-size:12px;color:rgba(46,204,113,0.8);margin-top:6px;text-align:right;font-weight:500}
+
+  .service-divider{height:1px;background:rgba(255,255,255,0.06);margin:2rem 2.5rem}
+
+  .service-body{padding:0 2.5rem 2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+
+  /* Includes list */
+  .includes-title{font-family:var(--font-display);font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-400);margin-bottom:1rem}
+  .includes-list{list-style:none;display:flex;flex-direction:column;gap:0.75rem}
+  .includes-list li{display:flex;align-items:flex-start;gap:10px;font-size:15px;color:var(--gray-200);line-height:1.4}
+  .includes-list li::before{content:'';flex-shrink:0;width:16px;height:16px;border-radius:50%;background:rgba(215,43,43,0.15);border:1px solid rgba(215,43,43,0.35);margin-top:2px;position:relative}
+  .includes-list li::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8l3.5 3.5L13 5' stroke='%23D72B2B' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-size:contain}
+  .includes-list li strong{color:var(--white)}
+
+  /* How it works — service */
+  .how-title{font-family:var(--font-display);font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-400);margin-bottom:1rem}
+  .how-steps{display:flex;flex-direction:column;gap:0}
+  .how-step{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid rgba(255,255,255,0.05)}
+  .how-step:last-child{border-bottom:none}
+  .how-step-num{font-family:var(--font-display);font-size:28px;font-weight:800;color:rgba(215,43,43,0.25);line-height:1;flex-shrink:0;width:32px}
+  .how-step-text strong{display:block;font-family:var(--font-display);font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;color:var(--white);margin-bottom:2px}
+  .how-step-text span{font-size:13px;color:var(--gray-400);line-height:1.5}
+
+  /* Trailer rental card — smaller */
+  .rental-section{margin-top:2px}
+  .rental-header{padding:2rem 2.5rem 1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+  .rental-title-block .section-label{margin-bottom:0.35rem}
+  .rental-title{font-family:var(--font-display);font-size:clamp(28px,4vw,40px);font-weight:800;text-transform:uppercase;letter-spacing:0.02em;line-height:1}
+  .rental-pricing{display:flex;gap:1.5rem;padding:1rem 1.25rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:4px}
+  .price-amount{font-family:var(--font-display);font-size:28px;font-weight:800;color:var(--white);line-height:1}
+  .price-period{font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.05em;margin-top:3px}
+  .price-divider{width:1px;background:rgba(255,255,255,0.08)}
+  .rental-body{padding:0 2.5rem 2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+  .specs-grid{display:flex;flex-wrap:wrap;gap:0.5rem}
+  .spec-tag{font-size:12px;font-weight:500;color:var(--gray-400);background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);padding:3px 10px;border-radius:2px;letter-spacing:0.04em}
+  .rental-note{font-size:14px;color:var(--gray-400);line-height:1.6}
+  .rental-note strong{color:var(--gray-200)}
+
+  /* Warning box */
+  .weight-warning{background:rgba(215,43,43,0.06);border:1px solid rgba(215,43,43,0.2);border-radius:4px;padding:1rem 1.25rem;display:flex;gap:0.75rem;align-items:flex-start;margin-top:1.25rem}
+  .weight-warning-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+  .weight-warning p{font-size:13px;color:var(--gray-200);line-height:1.5}
+  .weight-warning p strong{color:var(--red);display:block;margin-bottom:2px;font-family:var(--font-display);font-size:14px;letter-spacing:0.04em;text-transform:uppercase}
+
+  /* CTA */
+  .cta-section{padding:100px 2rem;text-align:center;position:relative;overflow:hidden}
+  .cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(215,43,43,0.1) 0%,transparent 70%);pointer-events:none}
+  .cta-section h2{font-family:var(--font-display);font-size:clamp(40px,6vw,64px);font-weight:800;text-transform:uppercase;margin-bottom:1rem;position:relative}
+  .cta-section p{font-size:17px;color:var(--gray-200);margin-bottom:2.5rem;position:relative}
+  .cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative}
+  .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:var(--white);font-family:var(--font-display);font-size:17px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:14px 32px;border-radius:4px;text-decoration:none;transition:background 0.2s,transform 0.15s}
+  .btn-primary:hover{background:var(--red-light);transform:translateY(-1px)}
+  .btn-secondary{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--white);font-family:var(--font-display);font-size:17px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:14px 32px;border-radius:4px;border:1px solid rgba(255,255,255,0.2);text-decoration:none;transition:border-color 0.2s,background 0.2s}
+  .btn-secondary:hover{border-color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.05)}
+
+  /* FOOTER */
+  footer{background:var(--gray-900);border-top:1px solid rgba(255,255,255,0.06);padding:3rem 2rem}
+  .footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:2rem}
+  .footer-brand .nav-logo{font-size:24px;display:block;margin-bottom:0.5rem}
+  .footer-brand p{font-size:13px;color:var(--gray-400);line-height:1.6;max-width:260px}
+  .footer-links h4{font-family:var(--font-display);font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-400);margin-bottom:0.75rem}
+  .footer-links ul{list-style:none}
+  .footer-links li{margin-bottom:0.5rem}
+  .footer-links a{font-size:14px;color:var(--gray-200);text-decoration:none;transition:color 0.2s}
+  .footer-links a:hover{color:var(--white)}
+  .footer-bottom{max-width:1200px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem}
+  .footer-bottom p{font-size:13px;color:var(--gray-400)}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+  @media(max-width:768px){
+    .nav-links,.nav-phone{display:none}
+    .nav-cta{display:none}
+    .hamburger{display:flex}
+    .service-card-header{grid-template-columns:1fr;gap:1rem}
+    .service-price-hero{text-align:left}
+    .price-desc,.price-sub{text-align:left}
+    .service-body{grid-template-columns:1fr;gap:2rem}
+    .rental-body{grid-template-columns:1fr}
+    .rental-header{flex-direction:column;align-items:flex-start}
+    .footer-inner{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">509 <span>TRAILERS</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#trailers">Trailers</a></li>
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:1.25rem">
+    <a href="tel:3605620477" class="nav-phone">(360) 562-0477</a>
+    <a href="book.html" class="nav-cta">Book Now</a>
+  </div>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#trailers" onclick="toggleMenu()">Trailers</a>
+  <a href="services.html" onclick="toggleMenu()">Services</a>
+  <a href="faq.html" onclick="toggleMenu()">FAQ</a>
+  <a href="index.html#contact" onclick="toggleMenu()">Contact</a>
+  <a href="tel:3605620477" onclick="toggleMenu()">(360) 562-0477</a>
+  <a href="book.html" class="btn-primary" onclick="toggleMenu()">Book Now</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="section-label">What We Offer</div>
+    <h1>Our <em>Services</em></h1>
+    <p>Beyond trailer rental — we handle the whole haul. Drop-off, pickup, and disposal, done.</p>
+  </div>
+</div>
+
+<div class="services-wrap">
+
+  <!-- DUMP RUN SERVICE -->
+  <div class="service-card" id="dump-run">
+    <div class="service-card-header">
+      <div>
+        <div class="service-badge">Available Now</div>
+        <div class="service-name">Dump Run<br>Service</div>
+        <p class="service-tagline">We drop it, you fill it, we haul it.<br>No truck needed. No dump site trip. Just load and go.</p>
+      </div>
+      <div class="service-price-hero">
+        <div class="price-big"><sup>$</sup>380</div>
+        <div class="price-desc">Flat Rate</div>
+        <div class="price-sub">✓ 1 ton included &nbsp;·&nbsp; ✓ 15 mi delivery</div>
+      </div>
+    </div>
+
+    <div class="service-divider"></div>
+
+    <div class="service-body">
+      <div>
+        <div class="includes-title">What's Included</div>
+        <ul class="includes-list">
+          <li><div><strong>3-day window</strong> — fill at your own pace, no rush</div></li>
+          <li><div><strong>Trailer delivery & pickup</strong> — we bring it to you and haul it away</div></li>
+          <li><div><strong>1 ton of dump fees</strong> — covered in the flat rate</div></li>
+          <li><div><strong>Extra tonnage</strong> — you pay only what the dump charges, passed through at cost</div></li>
+          <li><div><strong>No dump site trip</strong> — we handle the drop-off for you</div></li>
+          <li><div><strong>Free delivery up to 15 miles</strong> — $2/mile each way beyond that</div></li>
+        </ul>
+      </div>
+      <div>
+        <div class="how-title">How It Works</div>
+        <div class="how-steps">
+          <div class="how-step">
+            <div class="how-step-num">01</div>
+            <div class="how-step-text"><strong>Book Online or Call</strong><span>Schedule your drop-off date. We confirm and coordinate delivery.</span></div>
+          </div>
+          <div class="how-step">
+            <div class="how-step-num">02</div>
+            <div class="how-step-text"><strong>We Drop the Trailer</strong><span>Trailer arrives at your location. You load it on your schedule within 3 days.</span></div>
+          </div>
+          <div class="how-step">
+            <div class="how-step-num">03</div>
+            <div class="how-step-text"><strong>You Fill It</strong><span>Load debris, yard waste, junk — whatever needs to go. Max 2.5 yards for dense material.</span></div>
+          </div>
+          <div class="how-step">
+            <div class="how-step-num">04</div>
+            <div class="how-step-text"><strong>We Haul It Away</strong><span>We pick up the trailer and handle the dump run. You're done.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DUMP TRAILER RENTAL -->
+  <div class="service-card rental-section" id="trailer-rental">
+    <div class="rental-header">
+      <div class="rental-title-block">
+        <div class="section-label">Self-Serve Option</div>
+        <div class="rental-title">14ft Dump Trailer Rental</div>
+      </div>
+      <div class="rental-pricing">
+        <div><div class="price-amount">$125</div><div class="price-period">Per Day</div></div>
+        <div class="price-divider"></div>
+        <div><div class="price-amount">$600</div><div class="price-period">Per Week</div></div>
+        <div class="price-divider"></div>
+        <div><div class="price-amount">$2,400</div><div class="price-period">Per Month</div></div>
+      </div>
+    </div>
+    <div class="service-divider" style="margin-top:0"></div>
+    <div class="rental-body">
+      <div>
+        <div class="specs-grid">
+          <span class="spec-tag">7x14 Bed</span>
+          <span class="spec-tag">14,000 lb GVWR</span>
+          <span class="spec-tag">10,500 lb Payload</span>
+          <span class="spec-tag">Hydraulic Scissor Lift</span>
+          <span class="spec-tag">Dual Axle</span>
+          <span class="spec-tag">Tarp Included</span>
+        </div>
+        <div class="weight-warning" style="margin-top:1.25rem">
+          <div class="weight-warning-icon">⚠️</div>
+          <p><strong>Max Fill — Dense Material</strong>Asphalt, gravel, and concrete must not exceed the 8.5" max fill line — approximately 2.5 cubic yards. Do not fill level full.</p>
+        </div>
+      </div>
+      <div>
+        <div class="rental-note">Prefer to handle the haul yourself? Rent the dump trailer directly and keep full control of your schedule. Contactless pickup — book online, get your lock code by text, and go.<br><br><strong>Need help loading or dumping?</strong> Upgrade to the Dump Run Service and we handle everything.</div>
+        <div style="margin-top:1.5rem;display:flex;gap:0.75rem;flex-wrap:wrap">
+          <a href="book.html?trailer=dump-trailer" class="btn-primary" style="font-size:15px;padding:11px 24px">Book the Trailer</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Need a Hand?</h2>
+  <p>Call or text to book a dump run or ask any questions.</p>
+  <div class="cta-actions">
+    <a href="book.html" class="btn-primary">Book Online</a>
+    <a href="tel:3605620477" class="btn-secondary">(360) 562-0477</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">509 <span style="color:var(--red)">TRAILERS</span></a>
+      <p>Contactless trailer rentals in Vancouver, WA. Book online, pick up the same day.</p>
+      <p style="margin-top:0.75rem;color:var(--gray-400);font-size:13px">11616 NE 79th St<br>Vancouver, WA 98662</p>
+    </div>
+    <div class="footer-links">
+      <h4>Rentals</h4>
+      <ul>
+        <li><a href="index.html#trailers">20ft Car Hauler</a></li>
+        <li><a href="index.html#trailers">14ft Dump Trailer</a></li>
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="tel:3605620477">(360) 562-0477</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 509 Trailer Rentals LLC. All rights reserved.</p>
+    <p>Vancouver, WA</p>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+  document.addEventListener('click',function(e){
+    const menu=document.getElementById('mobileMenu');
+    const hamburger=document.querySelector('.hamburger');
+    if(!menu.contains(e.target)&&!hamburger.contains(e.target))menu.classList.remove('open');
+  });
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.opacity='1';entry.target.style.transform='translateY(0)'}});
+  },{threshold:0.1});
+  document.querySelectorAll('.service-card,.how-step').forEach(el=>{
+    el.style.opacity='0';el.style.transform='translateY(24px)';el.style.transition='opacity 0.5s ease,transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
