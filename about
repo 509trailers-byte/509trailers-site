@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--red:#D72B2B;--red-light:#F03A3A;--black:#0E0E0E;--gray-900:#1A1A1A;--gray-400:#888888;--gray-200:#CCCCCC;--white:#FFFFFF;--font-display:'Barlow Condensed',sans-serif;--font-body:'Barlow',sans-serif;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font-body);background:var(--black);color:var(--white)}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px;background:rgba(14,14,14,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,0.06)}
+  .nav-logo{font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--white);text-decoration:none}
+  .nav-logo span{color:var(--red)}
+  .nav-cta{background:var(--red);color:var(--white);font-family:var(--font-display);font-size:15px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:8px 20px;border-radius:4px;text-decoration:none}
+  .placeholder{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:100px 2rem}
+  .placeholder-inner{max-width:500px}
+  .section-label{font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--red);margin-bottom:0.75rem}
+  h1{font-family:var(--font-display);font-size:clamp(40px,7vw,72px);font-weight:800;text-transform:uppercase;line-height:0.95;margin-bottom:1.25rem}
+  p{font-size:16px;color:var(--gray-400);line-height:1.6;margin-bottom:2rem}
+  .btn{display:inline-flex;background:var(--red);color:var(--white);font-family:var(--font-display);font-size:16px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:12px 28px;border-radius:4px;text-decoration:none}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">509 <span>TRAILERS</span></a>
+  <a href="book.html" class="nav-cta">Book Now</a>
+</nav>
+<div class="placeholder">
+  <div class="placeholder-inner">
+    <div class="section-label">Coming Soon</div>
+    <h1>Page Under<br>Construction</h1>
+    <p>This page is being built. Check back soon or head back to the homepage.</p>
+    <a href="index.html" class="btn">Back to Home</a>
+  </div>
+</div>
+</body>
+</html>
