@@ -69,9 +69,14 @@
   .section-header{margin-bottom:3rem}
 
   /* TRAILERS */
-  .trailers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(480px,1fr));gap:2px}
+  .trailers-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px}
   .trailer-card{background:var(--gray-900);border:1px solid rgba(255,255,255,0.06);overflow:hidden;transition:border-color 0.3s}
   .trailer-card:hover{border-color:rgba(215,43,43,0.35)}
+  .trailer-card.coming-soon{opacity:0.7}
+  .status-coming{background:rgba(136,136,136,0.1);color:var(--gray-400);border:1px solid rgba(136,136,136,0.2)}
+  .status-coming::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gray-400)}
+  .gallery-placeholder{width:100%;height:300px;background:var(--gray-800);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem}
+  .gallery-placeholder span{font-family:var(--font-display);font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray-400)}
 
   /* GALLERY */
   .gallery{position:relative;width:100%;height:300px;overflow:hidden;background:var(--gray-800)}
@@ -386,6 +391,128 @@
         </div>
       </div>
 
+      <!-- 24FT ENCLOSED -->
+      <div class="trailer-card">
+        <div class="gallery" id="gallery-enclosed">
+          <div class="gallery-track" id="track-enclosed">
+            <img src="enclosed-1.jpg" alt="24ft Enclosed Trailer" class="gallery-img">
+            <img src="enclosed-2.jpg" alt="24ft Enclosed Trailer" class="gallery-img">
+            <img src="enclosed-3.jpg" alt="24ft Enclosed Trailer" class="gallery-img">
+          </div>
+          <button class="gallery-btn gallery-prev" onclick="slide('enclosed',-1)">&#8249;</button>
+          <button class="gallery-btn gallery-next" onclick="slide('enclosed',1)">&#8250;</button>
+          <div class="gallery-dots" id="dots-enclosed">
+            <span class="dot active" onclick="goTo('enclosed',0)"></span>
+            <span class="dot" onclick="goTo('enclosed',1)"></span>
+            <span class="dot" onclick="goTo('enclosed',2)"></span>
+          </div>
+        </div>
+        <div class="trailer-body">
+          <div class="trailer-status status-available">Available Now</div>
+          <div class="trailer-name">24ft Enclosed Trailer</div>
+          <div class="trailer-tags">
+            <span class="spec-tag">24ft Floor</span>
+            <span class="spec-tag">10,000 lb GVWR</span>
+            <span class="spec-tag">V-Nose</span>
+            <span class="spec-tag">7ft Interior Height</span>
+          </div>
+          <p class="trailer-desc">2025 Cynergy enclosed trailer — ideal for protected hauling, moving, race cars, and equipment. Full interior lighting, overhead and rear.</p>
+          <div class="trailer-highlights">
+            <div class="highlight-item"><div class="highlight-val">6,390<span>lb</span></div><div class="highlight-label">Max Payload</div></div>
+            <div class="highlight-item"><div class="highlight-val">7<span>ft</span></div><div class="highlight-label">Interior Height</div></div>
+            <div class="highlight-item"><div class="highlight-val">64<span>ft+</span></div><div class="highlight-label">E-Track</div></div>
+          </div>
+          <div class="specs-block">
+            <div class="specs-block-title">Specifications</div>
+            <ul class="specs-list">
+              <li>GVWR: 10,000 lbs</li>
+              <li>Max payload: ~6,320–6,390 lbs</li>
+              <li>Empty weight: ~3,600–3,670 lbs</li>
+              <li>Floor length: 24 ft</li>
+              <li>Overall width: 8 ft 6 in (102")</li>
+              <li>Interior width: 8 ft</li>
+              <li>Interior height: 84 in (7 ft)</li>
+              <li>V-Nose front, white exterior</li>
+            </ul>
+          </div>
+          <div class="included-wrap">
+            <button class="included-toggle" onclick="toggleIncluded(this)">What's Included <span class="included-arrow">↓</span></button>
+            <div class="included-panel">
+              <ul class="included-list">
+                <li>12,000 lb winch</li>
+                <li>Moving dolly</li>
+                <li>Race ramps</li>
+                <li>64+ ft E-track</li>
+                <li>Car straps (4)</li>
+                <li>Light duty straps (8)</li>
+                <li>Heavy duty straps (8)</li>
+                <li>E-track anchor hooks (16)</li>
+                <li>Strap E-track hooks (16)</li>
+                <li>Overhead &amp; rear lighting</li>
+              </ul>
+            </div>
+          </div>
+          <div class="trailer-pricing">
+            <div><div class="price-amount">$150</div><div class="price-period">Per Day</div></div>
+            <div class="price-divider"></div>
+            <div><div class="price-amount">$900</div><div class="price-period">Per Week</div></div>
+          </div>
+          <a href="book.html?trailer=enclosed" class="btn-book">Book Now</a>
+        </div>
+      </div>
+
+      <!-- CAR HAULER TEMPLATE -->
+      <div class="trailer-card coming-soon">
+        <div class="gallery-placeholder">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="14" width="40" height="24" rx="2" stroke="rgba(255,255,255,0.15)" stroke-width="2"/><path d="M4 20h40" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/><circle cx="12" cy="40" r="3" stroke="rgba(255,255,255,0.15)" stroke-width="2"/><circle cx="36" cy="40" r="3" stroke="rgba(255,255,255,0.15)" stroke-width="2"/></svg>
+          <span>Coming Soon</span>
+        </div>
+        <div class="trailer-body">
+          <div class="trailer-status status-coming">Coming Soon</div>
+          <div class="trailer-name">Car Hauler Template</div>
+          <div class="trailer-tags">
+            <span class="spec-tag">Open Deck</span>
+            <span class="spec-tag">Placeholder</span>
+          </div>
+          <p class="trailer-desc">Details for this trailer are being finalized. Check back soon or give us a call for availability and pricing.</p>
+          <div class="trailer-highlights">
+            <div class="highlight-item"><div class="highlight-val">—</div><div class="highlight-label">Payload</div></div>
+            <div class="highlight-item"><div class="highlight-val">—</div><div class="highlight-label">Length</div></div>
+            <div class="highlight-item"><div class="highlight-val">—</div><div class="highlight-label">GVWR</div></div>
+          </div>
+          <div class="trailer-pricing">
+            <div><div class="price-amount" style="font-size:20px;color:var(--gray-400)">Coming Soon</div><div class="price-period">Pricing TBD</div></div>
+          </div>
+          <a href="tel:3605620477" class="btn-book" style="background:var(--gray-700)">Call for Info</a>
+        </div>
+      </div>
+
+      <!-- DECK OVER TEMPLATE -->
+      <div class="trailer-card coming-soon">
+        <div class="gallery-placeholder">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="14" width="40" height="24" rx="2" stroke="rgba(255,255,255,0.15)" stroke-width="2"/><path d="M4 20h40" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/><circle cx="12" cy="40" r="3" stroke="rgba(255,255,255,0.15)" stroke-width="2"/><circle cx="36" cy="40" r="3" stroke="rgba(255,255,255,0.15)" stroke-width="2"/></svg>
+          <span>Coming Soon</span>
+        </div>
+        <div class="trailer-body">
+          <div class="trailer-status status-coming">Coming Soon</div>
+          <div class="trailer-name">Deck Over Template</div>
+          <div class="trailer-tags">
+            <span class="spec-tag">Deck Over</span>
+            <span class="spec-tag">Placeholder</span>
+          </div>
+          <p class="trailer-desc">Details for this trailer are being finalized. Check back soon or give us a call for availability and pricing.</p>
+          <div class="trailer-highlights">
+            <div class="highlight-item"><div class="highlight-val">—</div><div class="highlight-label">Payload</div></div>
+            <div class="highlight-item"><div class="highlight-val">—</div><div class="highlight-label">Length</div></div>
+            <div class="highlight-item"><div class="highlight-val">—</div><div class="highlight-label">GVWR</div></div>
+          </div>
+          <div class="trailer-pricing">
+            <div><div class="price-amount" style="font-size:20px;color:var(--gray-400)">Coming Soon</div><div class="price-period">Pricing TBD</div></div>
+          </div>
+          <a href="tel:3605620477" class="btn-book" style="background:var(--gray-700)">Call for Info</a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -481,7 +608,7 @@
 </footer>
 
 <script>
-  const galleryState={car:0,dump:0};
+  const galleryState={car:0,dump:0,enclosed:0};
   function goTo(id,index){
     galleryState[id]=index;
     document.getElementById('track-'+id).style.transform='translateX(-'+(index*100)+'%)';
@@ -491,7 +618,7 @@
     const total=document.querySelectorAll('#track-'+id+' .gallery-img').length;
     goTo(id,(galleryState[id]+dir+total)%total);
   }
-  ['car','dump'].forEach(id=>{
+  ['car','dump','enclosed'].forEach(id=>{
     const el=document.getElementById('gallery-'+id);
     let startX=0;
     el.addEventListener('touchstart',e=>{startX=e.touches[0].clientX},{passive:true});
