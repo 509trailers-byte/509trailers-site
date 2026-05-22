@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>509 Finance — Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0A0A0A; --surface:#141414; --surface-2:#1C1C1C;
+  --border:#222; --border-2:#333; --red:#E53535;
+  --green:#22C55E; --yellow:#F59E0B;
+  --text:#F0F0F0; --text-2:#888; --text-3:#444;
+  --mono:'JetBrains Mono',monospace; --sans:'Barlow Condensed',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;min-height:100vh;}
+
+/* AUTH */
+#auth-gate{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:1000;}
+.auth-box{width:300px;text-align:center;}
+.auth-logo{font-size:80px;font-weight:700;color:var(--red);line-height:1;letter-spacing:-3px;}
+.auth-sub{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--text-3);margin:6px 0 32px;}
+.auth-box input{width:100%;background:var(--surface);border:1px solid var(--border-2);color:var(--text);font-family:var(--mono);font-size:14px;padding:11px 14px;outline:none;margin-bottom:10px;letter-spacing:3px;}
+.auth-box input:focus{border-color:var(--red);}
+.auth-btn{width:100%;background:var(--red);border:none;color:#fff;font-family:var(--sans);font-size:14px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:12px;cursor:pointer;}
+.auth-btn:hover{background:#c42e2e;}
+#auth-error{color:var(--red);font-size:12px;margin-top:10px;min-height:18px;}
+
+/* HEADER */
+header{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:54px;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:100;}
+.hbrand{display:flex;align-items:baseline;gap:8px;}
+.hlogo{font-size:20px;font-weight:700;color:var(--red);letter-spacing:-1px;}
+.htitle{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--text-3);}
+.hright{display:flex;align-items:center;gap:12px;}
+.month-nav{display:flex;align-items:center;border:1px solid var(--border-2);}
+.month-nav button{background:none;border:none;color:var(--text-2);padding:5px 10px;cursor:pointer;font-size:16px;line-height:1;}
+.month-nav button:hover{color:var(--text);background:var(--surface-2);}
+#month-display{font-family:var(--mono);font-size:12px;padding:0 10px;min-width:108px;text-align:center;}
+.btn-ghost{background:none;border:1px solid var(--border-2);color:var(--text-2);font-family:var(--sans);font-size:12px;letter-spacing:1px;padding:5px 12px;cursor:pointer;}
+.btn-ghost:hover{color:var(--text);border-color:var(--text-2);}
+
+/* TABS */
+.tab-nav{display:flex;border-bottom:1px solid var(--border);background:var(--surface);padding:0 24px;overflow-x:auto;}
+.tab{background:none;border:none;border-bottom:2px solid transparent;color:var(--text-3);font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:13px 18px;cursor:pointer;white-space:nowrap;transition:color .15s,border-color .15s;}
+.tab:hover{color:var(--text-2);}
+.tab.active{color:var(--red);border-bottom-color:var(--red);}
+
+/* MAIN */
+main{padding:24px;max-width:1100px;margin:0 auto;}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+/* CARDS */
+.card{background:var(--surface);border:1px solid var(--border);padding:20px;}
+.card-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;}
+.card-val{font-family:var(--mono);font-size:26px;font-weight:600;}
+.card-val.g{color:var(--green);}
+.card-val.r{color:var(--red);}
+
+/* GRID */
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+
+/* SECTION */
+.sec-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.sec-title{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--text-2);}
+
+/* BUTTONS */
+.btn{background:var(--red);border:none;color:#fff;font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:8px 16px;cursor:pointer;}
+.btn:hover{background:#c42e2e;}
+.btn.sm{padding:5px 12px;font-size:11px;}
+.btn-out{background:none;border:1px solid var(--border-2);color:var(--text-2);font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:8px 16px;cursor:pointer;}
+.btn-out:hover{border-color:var(--text-2);color:var(--text);}
+.btn-out.sm{padding:5px 12px;font-size:11px;}
+
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;font-size:14px;}
+.tbl th{text-align:left;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-3);padding:8px 12px;border-bottom:1px solid var(--border);}
+.tbl td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl tr:hover td{background:var(--surface-2);}
+.mono{font-family:var(--mono);}
+.t2{color:var(--text-2);}
+.t3{color:var(--text-3);}
+.g{color:var(--green);}
+.r{color:var(--red);}
+
+/* BADGE */
+.badge{display:inline-block;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;font-family:var(--sans);font-weight:700;}
+.b-auto{background:#0d2010;color:#4ADE80;}
+.b-verified{background:#0d2010;color:var(--green);}
+.b-unverified{background:#2e1a00;color:var(--yellow);}
+.b-manual{background:#101828;color:#818CF8;}
+.b-active{background:#0d2010;color:var(--green);}
+.b-inactive{background:#1a1a1a;color:var(--text-3);}
+
+/* FORM */
+.form-panel{background:var(--surface-2);border:1px solid var(--border-2);padding:20px;margin-bottom:18px;display:none;}
+.form-panel.open{display:block;}
+.frow{display:grid;gap:12px;margin-bottom:12px;}
+.frow.c2{grid-template-columns:1fr 1fr;}
+.frow.c3{grid-template-columns:1fr 1fr 1fr;}
+.frow.c4{grid-template-columns:1fr 1fr 1fr 1fr;}
+.fg label{display:block;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-3);margin-bottom:5px;}
+.fg input,.fg select{width:100%;background:var(--bg);border:1px solid var(--border-2);color:var(--text);font-family:var(--sans);font-size:14px;padding:8px 11px;outline:none;}
+.fg input:focus,.fg select:focus{border-color:var(--red);}
+.fg select option{background:var(--surface);}
+
+/* FILTER */
+.filter-bar{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;}
+.filter-bar select{background:var(--surface);border:1px solid var(--border-2);color:var(--text);font-family:var(--sans);font-size:13px;padding:6px 11px;outline:none;}
+
+/* STAT ROW */
+.srow{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font-size:14px;}
+.srow:last-child{border-bottom:none;}
+.srow .lbl{color:var(--text-2);}
+.srow .val{font-family:var(--mono);}
+
+/* PROGRESS */
+.pbar{height:5px;background:var(--border);margin:10px 0;}
+.pfill{height:100%;background:var(--red);transition:width .5s;}
+.pfill.g{background:var(--green);}
+
+/* ACTION */
+.alink{background:none;border:none;color:var(--text-3);font-family:var(--sans);font-size:11px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;padding:2px 5px;}
+.alink:hover{color:var(--red);}
+
+/* EMPTY */
+.empty{text-align:center;padding:40px;color:var(--text-3);font-size:13px;letter-spacing:1px;}
+
+/* QUEUE BADGE */
+.qbadge{display:inline-flex;align-items:center;justify-content:center;background:var(--red);color:#fff;font-family:var(--mono);font-size:10px;width:18px;height:18px;margin-left:6px;}
+
+/* LOAN CARD */
+.loan-card{background:var(--surface);border:1px solid var(--border);padding:24px;margin-bottom:12px;}
+.loan-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:16px;}
+
+/* UTIL */
+.util-card{background:var(--surface);border:1px solid var(--border);padding:22px;}
+.util-pct{font-family:var(--mono);font-size:44px;font-weight:600;line-height:1;}
+.util-input{width:60px;background:var(--bg);border:1px solid var(--border-2);color:var(--text);font-family:var(--mono);font-size:14px;padding:4px 8px;text-align:center;outline:none;}
+.util-input:focus{border-color:var(--red);}
+
+/* TOAST */
+#toast{position:fixed;bottom:24px;right:24px;background:var(--surface-2);border:1px solid var(--border-2);color:var(--text);padding:11px 18px;font-size:13px;z-index:9999;opacity:0;transform:translateY(8px);transition:all .2s;pointer-events:none;}
+#toast.show{opacity:1;transform:translateY(0);}
+#toast.success{border-left:3px solid var(--green);}
+#toast.error{border-left:3px solid var(--red);}
+
+/* MODAL */
+#modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:500;align-items:center;justify-content:center;}
+#modal.open{display:flex;}
+.modal-box{background:var(--surface);border:1px solid var(--border-2);padding:28px;width:380px;max-width:92vw;}
+
+/* INFO BANNER */
+.info-banner{background:var(--surface-2);border:1px solid var(--border-2);border-left:3px solid var(--yellow);padding:10px 16px;font-size:13px;color:var(--text-2);margin-bottom:16px;letter-spacing:.5px;}
+
+@media(max-width:768px){
+  .g3,.g2{grid-template-columns:1fr;}
+  .frow.c2,.frow.c3,.frow.c4{grid-template-columns:1fr;}
+  .loan-stats{grid-template-columns:1fr 1fr;}
+  main{padding:14px;}
+  .tab{padding:11px 12px;font-size:11px;}
+}
+</style>
+</head>
+<body>
+
+<!-- AUTH -->
+<div id="auth-gate">
+  <div class="auth-box">
+    <div class="auth-logo">509</div>
+    <div class="auth-sub">Finance Dashboard</div>
+    <input type="password" id="auth-input" placeholder="Password" onkeydown="if(event.key==='Enter')checkAuth()">
+    <button class="auth-btn" onclick="checkAuth()">Enter</button>
+    <div id="auth-error"></div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<!-- ASSIGN MODAL -->
+<div id="modal">
+  <div class="modal-box">
+    <div style="font-size:15px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">Assign Charge</div>
+    <div id="modal-amt" class="mono" style="font-size:22px;color:var(--yellow);margin-bottom:18px"></div>
+    <div class="fg" style="margin-bottom:12px">
+      <label>Trailer</label>
+      <select id="modal-trailer"><option value="Car Hauler">Car Hauler</option><option value="Dump Trailer">Dump Trailer</option></select>
+    </div>
+    <div class="fg" style="margin-bottom:18px">
+      <label>Days</label>
+      <input type="number" id="modal-days" min="1" max="7" placeholder="Number of days">
+    </div>
+    <div style="display:flex;gap:10px">
+      <button class="btn" onclick="confirmAssign()">Confirm</button>
+      <button class="btn-out" onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app" style="display:none">
+  <header>
+    <div class="hbrand"><span class="hlogo">509</span><span class="htitle">Finance</span></div>
+    <div class="hright">
+      <div class="month-nav">
+        <button onclick="shiftMonth(-1)">‹</button>
+        <span id="month-display"></span>
+        <button onclick="shiftMonth(1)">›</button>
+      </div>
+      <button class="btn-ghost" onclick="logout()">Logout</button>
+    </div>
+  </header>
+
+  <nav class="tab-nav">
+    <button class="tab active" onclick="switchTab('pnl')">P&L</button>
+    <button class="tab" onclick="switchTab('expenses')">Expenses</button>
+    <button class="tab" onclick="switchTab('fixed')">Fixed Costs</button>
+    <button class="tab" onclick="switchTab('revenue')">Revenue <span id="q-badge" style="display:none" class="qbadge">0</span></button>
+    <button class="tab" onclick="switchTab('util')">Utilization</button>
+    <button class="tab" onclick="switchTab('loans')">Loans</button>
+    <button class="tab" onclick="switchTab('tax')">Tax Prep</button>
+  </nav>
+
+  <main>
+
+    <!-- P&L -->
+    <div id="tab-pnl" class="tab-panel active">
+      <div class="g3">
+        <div class="card"><div class="card-label">Revenue</div><div class="card-val g" id="pnl-rev">—</div></div>
+        <div class="card"><div class="card-label">Expenses</div><div class="card-val r" id="pnl-exp">—</div></div>
+        <div class="card"><div class="card-label">Net Profit</div><div class="card-val" id="pnl-net">—</div></div>
+      </div>
+      <div class="g2">
+        <div class="card">
+          <div class="card-label" style="margin-bottom:14px">Revenue Breakdown</div>
+          <div class="srow"><span class="lbl">Car Hauler</span><span class="val" id="pnl-ch">—</span></div>
+          <div class="srow"><span class="lbl">Dump Trailer</span><span class="val" id="pnl-dt">—</span></div>
+          <div class="srow"><span class="lbl">Unassigned</span><span class="val" id="pnl-ua">—</span></div>
+        </div>
+        <div class="card">
+          <div class="card-label" style="margin-bottom:14px">Expense Breakdown</div>
+          <div class="srow"><span class="lbl">Fixed Costs</span><span class="val" id="pnl-fixed">—</span></div>
+          <div class="srow"><span class="lbl">Variable Expenses</span><span class="val" id="pnl-var">—</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPENSES -->
+    <div id="tab-expenses" class="tab-panel">
+      <div class="sec-hdr">
+        <span class="sec-title">Expenses</span>
+        <button class="btn sm" onclick="toggleForm('exp-form')">+ Add Expense</button>
+      </div>
+      <div id="exp-form" class="form-panel">
+        <div class="frow c4">
+          <div class="fg"><label>Date</label><input type="date" id="exp-date"></div>
+          <div class="fg"><label>Amount ($)</label><input type="number" id="exp-amount" placeholder="0.00" step="0.01" min="0"></div>
+          <div class="fg"><label>Category</label>
+            <select id="exp-cat">
+              <option value="">Select...</option>
+              <option>Insurance</option><option>Storage</option><option>GPS Trackers</option>
+              <option>Website / Tech</option><option>Maintenance</option><option>Fuel</option>
+              <option>Supplies</option><option>Loan Payment</option><option>Misc</option>
+            </select>
+          </div>
+          <div class="fg"><label>Trailer</label>
+            <select id="exp-trailer">
+              <option value="General">General</option>
+              <option value="Car Hauler">Car Hauler</option>
+              <option value="Dump Trailer">Dump Trailer</option>
+            </select>
+          </div>
+        </div>
+        <div class="frow c2">
+          <div class="fg"><label>Description (optional)</label><input type="text" id="exp-desc" placeholder="Notes"></div>
+          <div class="fg" style="display:flex;align-items:flex-end;gap:10px">
+            <button class="btn" onclick="saveExpense()">Save</button>
+            <button class="btn-out" onclick="toggleForm('exp-form')">Cancel</button>
+          </div>
+        </div>
+      </div>
+      <div class="filter-bar">
+        <select id="f-cat" onchange="loadExpenses()">
+          <option value="">All Categories</option>
+          <option>Insurance</option><option>Storage</option><option>GPS Trackers</option>
+          <option>Website / Tech</option><option>Maintenance</option><option>Fuel</option>
+          <option>Supplies</option><option>Loan Payment</option><option>Misc</option>
+        </select>
+        <select id="f-trailer" onchange="loadExpenses()">
+          <option value="">All Trailers</option>
+          <option>Car Hauler</option><option>Dump Trailer</option><option>General</option>
+        </select>
+      </div>
+      <div class="card" style="padding:0;overflow:hidden">
+        <table class="tbl">
+          <thead><tr><th>Date</th><th>Description</th><th>Category</th><th>Trailer</th><th>Amount</th><th></th></tr></thead>
+          <tbody id="exp-tbody"><tr><td colspan="6"><div class="empty">No expenses this month</div></td></tr></tbody>
+        </table>
+      </div>
+      <div style="text-align:right;margin-top:10px">
+        <span class="t3" style="font-size:11px;letter-spacing:2px;text-transform:uppercase">Total</span>
+        <span class="mono" style="font-size:17px;margin-left:10px" id="exp-total">$0.00</span>
+      </div>
+    </div>
+
+    <!-- FIXED COSTS -->
+    <div id="tab-fixed" class="tab-panel">
+      <div class="sec-hdr">
+        <span class="sec-title">Fixed Monthly Costs</span>
+        <button class="btn sm" onclick="toggleForm('fc-form')">+ Add</button>
+      </div>
+      <div id="fc-form" class="form-panel">
+        <div class="frow c3">
+          <div class="fg"><label>Name</label><input type="text" id="fc-name" placeholder="e.g. Storage Unit"></div>
+          <div class="fg"><label>Monthly Amount ($)</label><input type="number" id="fc-amount" placeholder="0.00" step="0.01" min="0"></div>
+          <div class="fg"><label>Category</label>
+            <select id="fc-cat">
+              <option>Insurance</option><option>Storage</option><option>GPS Trackers</option>
+              <option>Website / Tech</option><option>Loan Payment</option><option>Misc</option>
+            </select>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px">
+          <button class="btn" onclick="saveFixed()">Save</button>
+          <button class="btn-out" onclick="toggleForm('fc-form')">Cancel</button>
+        </div>
+      </div>
+      <div class="card" style="padding:0;overflow:hidden">
+        <table class="tbl">
+          <thead><tr><th>Name</th><th>Category</th><th>Monthly Amount</th><th>Status</th><th></th></tr></thead>
+          <tbody id="fc-tbody"><tr><td colspan="5"><div class="empty">No fixed costs added</div></td></tr></tbody>
+        </table>
+      </div>
+      <div style="text-align:right;margin-top:10px">
+        <span class="t3" style="font-size:11px;letter-spacing:2px;text-transform:uppercase">Monthly Total</span>
+        <span class="mono" style="font-size:17px;margin-left:10px" id="fc-total">$0.00</span>
+      </div>
+    </div>
+
+    <!-- REVENUE -->
+    <div id="tab-revenue" class="tab-panel">
+      <div class="info-banner">⟳ Stripe auto-sync will be enabled once backend is connected. Use manual entry for now.</div>
+      <div class="sec-hdr">
+        <span class="sec-title">Revenue</span>
+        <button class="btn sm" onclick="toggleForm('rev-form')">+ Add Entry</button>
+      </div>
+      <div id="rev-form" class="form-panel">
+        <div class="frow c4">
+          <div class="fg"><label>Date</label><input type="date" id="rev-date"></div>
+          <div class="fg"><label>Amount ($)</label><input type="number" id="rev-amount" placeholder="0.00" step="0.01"></div>
+          <div class="fg"><label>Trailer</label>
+            <select id="rev-trailer">
+              <option value="Car Hauler">Car Hauler</option>
+              <option value="Dump Trailer">Dump Trailer</option>
+            </select>
+          </div>
+          <div class="fg"><label>Days</label><input type="number" id="rev-days" min="1" max="7" placeholder="1–7"></div>
+        </div>
+        <div style="display:flex;gap:10px">
+          <button class="btn" onclick="saveRevenue()">Save</button>
+          <button class="btn-out" onclick="toggleForm('rev-form')">Cancel</button>
+        </div>
+      </div>
+
+      <div id="unverified-section" style="display:none;margin-bottom:18px">
+        <div class="sec-hdr"><span class="sec-title" style="color:var(--yellow)">⚠ Needs Review</span></div>
+        <div class="card" style="padding:0;overflow:hidden;border-color:var(--yellow)">
+          <table class="tbl">
+            <thead><tr><th>Date</th><th>Amount</th><th>Possible Matches</th><th></th></tr></thead>
+            <tbody id="uv-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card" style="padding:0;overflow:hidden">
+        <table class="tbl">
+          <thead><tr><th>Date</th><th>Amount</th><th>Trailer</th><th>Days</th><th>Status</th><th></th></tr></thead>
+          <tbody id="rev-tbody"><tr><td colspan="6"><div class="empty">No revenue entries yet — add manually above</div></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- UTILIZATION -->
+    <div id="tab-util" class="tab-panel">
+      <div class="sec-hdr">
+        <span class="sec-title">Trailer Utilization</span>
+        <span class="t3" style="font-size:12px" id="util-month"></span>
+      </div>
+      <div class="g2" style="margin-bottom:22px">
+        <div class="util-card">
+          <div class="card-label">Car Hauler</div>
+          <div style="display:flex;align-items:baseline;gap:10px;margin:10px 0 4px">
+            <div class="util-pct" id="ch-pct">0%</div>
+            <div class="t2" style="font-size:13px" id="ch-label">0 / 0 days</div>
+          </div>
+          <div class="pbar"><div class="pfill" id="ch-bar" style="width:0%"></div></div>
+          <div class="srow" style="margin-top:6px">
+            <span class="lbl">Days Rented</span>
+            <input type="number" class="util-input" id="ch-input" min="0" max="31" placeholder="0" oninput="updateUtilCard('ch',this.value,111.80)">
+          </div>
+          <div class="srow">
+            <span class="lbl">Est. Gross Revenue</span>
+            <span class="val g" id="ch-rev">$0.00</span>
+          </div>
+          <div style="margin-top:12px"><button class="btn sm" onclick="saveUtil('Car Hauler','ch')">Save</button></div>
+        </div>
+        <div class="util-card">
+          <div class="card-label">Dump Trailer</div>
+          <div style="display:flex;align-items:baseline;gap:10px;margin:10px 0 4px">
+            <div class="util-pct" id="dt-pct">0%</div>
+            <div class="t2" style="font-size:13px" id="dt-label">0 / 0 days</div>
+          </div>
+          <div class="pbar"><div class="pfill" id="dt-bar" style="width:0%"></div></div>
+          <div class="srow" style="margin-top:6px">
+            <span class="lbl">Days Rented</span>
+            <input type="number" class="util-input" id="dt-input" min="0" max="31" placeholder="0" oninput="updateUtilCard('dt',this.value,139.75)">
+          </div>
+          <div class="srow">
+            <span class="lbl">Est. Gross Revenue</span>
+            <span class="val g" id="dt-rev">$0.00</span>
+          </div>
+          <div style="margin-top:12px"><button class="btn sm" onclick="saveUtil('Dump Trailer','dt')">Save</button></div>
+        </div>
+      </div>
+      <div class="sec-hdr"><span class="sec-title">History</span></div>
+      <div class="card" style="padding:0;overflow:hidden">
+        <table class="tbl">
+          <thead><tr><th>Month</th><th>CH Days</th><th>CH Util%</th><th>CH Revenue</th><th>Dump Days</th><th>Dump Util%</th><th>Dump Revenue</th></tr></thead>
+          <tbody id="util-hist"><tr><td colspan="7"><div class="empty">No history yet</div></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- LOANS -->
+    <div id="tab-loans" class="tab-panel">
+      <div class="sec-hdr">
+        <span class="sec-title">Loan Payoff Tracker</span>
+        <button class="btn sm" onclick="toggleForm('loan-form')">+ Add Loan</button>
+      </div>
+      <div id="loan-form" class="form-panel">
+        <div class="frow c3">
+          <div class="fg"><label>Loan Name</label><input type="text" id="ln-name" placeholder="e.g. Dump Trailer Loan"></div>
+          <div class="fg"><label>Original Principal ($)</label><input type="number" id="ln-principal" placeholder="0.00" step="0.01"></div>
+          <div class="fg"><label>Current Balance ($)</label><input type="number" id="ln-balance" placeholder="0.00" step="0.01"></div>
+        </div>
+        <div class="frow c3">
+          <div class="fg"><label>Annual Interest Rate (%)</label><input type="number" id="ln-rate" placeholder="e.g. 6.99" step="0.01"></div>
+          <div class="fg"><label>Monthly Payment ($)</label><input type="number" id="ln-payment" placeholder="0.00" step="0.01"></div>
+          <div class="fg"><label>Start Date</label><input type="date" id="ln-start"></div>
+        </div>
+        <div style="display:flex;gap:10px">
+          <button class="btn" onclick="saveLoan()">Save Loan</button>
+          <button class="btn-out" onclick="toggleForm('loan-form')">Cancel</button>
+        </div>
+      </div>
+      <div id="loans-list"><div class="empty">No loans added yet</div></div>
+    </div>
+
+    <!-- TAX PREP -->
+    <div id="tab-tax" class="tab-panel">
+      <div class="sec-hdr">
+        <span class="sec-title">Tax Prep</span>
+        <div style="display:flex;gap:10px;align-items:center">
+          <select id="tax-year" onchange="loadTax()" style="background:var(--surface);border:1px solid var(--border-2);color:var(--text);font-family:var(--sans);font-size:12px;padding:6px 10px;outline:none"></select>
+          <button class="btn sm" onclick="exportCSV()">Export CSV</button>
+        </div>
+      </div>
+      <div class="g3">
+        <div class="card"><div class="card-label">Total Revenue</div><div class="card-val g" id="tax-rev">—</div></div>
+        <div class="card"><div class="card-label">Total Expenses</div><div class="card-val r" id="tax-exp">—</div></div>
+        <div class="card"><div class="card-label">Net Profit</div><div class="card-val" id="tax-net">—</div></div>
+      </div>
+      <div class="g2">
+        <div class="card">
+          <div class="card-label" style="margin-bottom:14px">Revenue by Trailer</div>
+          <div id="tax-rev-detail"></div>
+        </div>
+        <div class="card">
+          <div class="card-label" style="margin-bottom:14px">Expenses by Category</div>
+          <div id="tax-exp-detail"></div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+// ============================================================
+// CONFIG
+// ============================================================
+const ADMIN_PASS = 'Trailers509!';
+
+const COLLISIONS = new Map([
+  [559.00, [{trailer:'Car Hauler',days:5},{trailer:'Dump Trailer',days:4}]],
+  [670.80, [{trailer:'Car Hauler',days:6},{trailer:'Dump Trailer',days:7}]],
+]);
+
+// ============================================================
+// LOCALSTORAGE STORE
+// ============================================================
+const DB = {
+  get: k => JSON.parse(localStorage.getItem('509_'+k) || '[]'),
+  set: (k,v) => localStorage.setItem('509_'+k, JSON.stringify(v)),
+  id: () => Date.now().toString(36) + Math.random().toString(36).slice(2)
+};
+
+// ============================================================
+// STATE
+// ============================================================
+let selM = new Date().getMonth() + 1;
+let selY = new Date().getFullYear();
+let curTab = 'pnl';
+let assignId = null;
+
+// ============================================================
+// INIT
+// ============================================================
+function init() {
+  if (sessionStorage.getItem('509fin') === '1') showApp();
+  const today = new Date().toISOString().split('T')[0];
+  ['exp-date','rev-date','ln-start'].forEach(id => { const el=document.getElementById(id); if(el) el.value=today; });
+  const yr = document.getElementById('tax-year');
+  for (let y = new Date().getFullYear(); y >= 2024; y--) yr.innerHTML += `<option value="${y}">${y}</option>`;
+  updateMonthDisplay();
+}
+
+// ============================================================
+// AUTH
+// ============================================================
+function checkAuth() {
+  if (document.getElementById('auth-input').value === ADMIN_PASS) {
+    sessionStorage.setItem('509fin','1'); showApp();
+  } else {
+    document.getElementById('auth-error').textContent = 'Incorrect password';
+    document.getElementById('auth-input').value = '';
+  }
+}
+function showApp() {
+  document.getElementById('auth-gate').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  loadTab();
+}
+function logout() { sessionStorage.removeItem('509fin'); location.reload(); }
+
+// ============================================================
+// NAV
+// ============================================================
+function switchTab(tab) {
+  const tabs = ['pnl','expenses','fixed','revenue','util','loans','tax'];
+  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', tabs[i]===tab));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  curTab = tab; loadTab();
+}
+function loadTab() {
+  ({pnl:loadPnL, expenses:loadExpenses, fixed:loadFixed, revenue:loadRevenue, util:loadUtil, loans:loadLoans, tax:loadTax})[curTab]?.();
+}
+function toggleForm(id) { document.getElementById(id).classList.toggle('open'); }
+
+// ============================================================
+// MONTH NAV
+// ============================================================
+function shiftMonth(d) {
+  selM += d;
+  if (selM>12){selM=1;selY++;} if (selM<1){selM=12;selY--;}
+  updateMonthDisplay(); loadTab();
+}
+function updateMonthDisplay() {
+  const lbl = new Date(selY,selM-1,1).toLocaleString('en-US',{month:'long',year:'numeric'});
+  document.getElementById('month-display').textContent = lbl;
+  const u = document.getElementById('util-month'); if(u) u.textContent = lbl;
+}
+function daysIn(m,y) { return new Date(y,m,0).getDate(); }
+
+// ============================================================
+// P&L
+// ============================================================
+function loadPnL() {
+  const charges = DB.get('revenue').filter(c=>c.month===selM&&c.year===selY&&c.status!=='unverified');
+  const exps    = DB.get('expenses').filter(e=>e.month===selM&&e.year===selY);
+  const fixed   = DB.get('fixed').filter(f=>f.active);
+
+  const sum = (arr,fn) => arr.filter(fn).reduce((s,c)=>s+parseFloat(c.amount),0);
+  const chR=sum(charges,c=>c.trailer==='Car Hauler');
+  const dtR=sum(charges,c=>c.trailer==='Dump Trailer');
+  const uaR=sum(charges,c=>!c.trailer);
+  const totRev=chR+dtR+uaR;
+  const varExp=sum(exps,()=>true);
+  const fixExp=sum(fixed,()=>true);
+  const totExp=varExp+fixExp;
+  const net=totRev-totExp;
+
+  document.getElementById('pnl-rev').textContent=fmt(totRev);
+  document.getElementById('pnl-exp').textContent=fmt(totExp);
+  const nel=document.getElementById('pnl-net');
+  nel.textContent=fmt(net); nel.className='card-val '+(net>=0?'g':'r');
+  document.getElementById('pnl-ch').textContent=fmt(chR);
+  document.getElementById('pnl-dt').textContent=fmt(dtR);
+  document.getElementById('pnl-ua').textContent=fmt(uaR);
+  document.getElementById('pnl-fixed').textContent=fmt(fixExp);
+  document.getElementById('pnl-var').textContent=fmt(varExp);
+}
+
+// ============================================================
+// EXPENSES
+// ============================================================
+function loadExpenses() {
+  let data = DB.get('expenses').filter(e=>e.month===selM&&e.year===selY);
+  const cat=document.getElementById('f-cat').value;
+  const tr=document.getElementById('f-trailer').value;
+  if(cat) data=data.filter(e=>e.category===cat);
+  if(tr)  data=data.filter(e=>e.trailer===tr);
+  data.sort((a,b)=>b.date.localeCompare(a.date));
+
+  const tbody=document.getElementById('exp-tbody');
+  if(!data.length){
+    tbody.innerHTML=`<tr><td colspan="6"><div class="empty">No expenses this month</div></td></tr>`;
+    document.getElementById('exp-total').textContent='$0.00'; return;
+  }
+  const total=data.reduce((s,e)=>s+parseFloat(e.amount),0);
+  tbody.innerHTML=data.map(e=>`<tr>
+    <td class="mono t2">${fmtDate(e.date)}</td>
+    <td>${e.description||'—'}</td>
+    <td>${e.category}</td>
+    <td class="t2">${e.trailer||'General'}</td>
+    <td class="mono">${fmt(e.amount)}</td>
+    <td><button class="alink" onclick="delExpense('${e.id}')">Delete</button></td>
+  </tr>`).join('');
+  document.getElementById('exp-total').textContent=fmt(total);
+}
+
+function saveExpense() {
+  const date=document.getElementById('exp-date').value;
+  const amount=parseFloat(document.getElementById('exp-amount').value);
+  const cat=document.getElementById('exp-cat').value;
+  const desc=document.getElementById('exp-desc').value;
+  const trailer=document.getElementById('exp-trailer').value;
+  if(!date||!amount||!cat){toast('Fill in date, amount and category','error');return;}
+  const d=new Date(date+'T00:00:00');
+  const all=DB.get('expenses');
+  all.push({id:DB.id(),date,amount,category:cat,description:desc,trailer,month:d.getMonth()+1,year:d.getFullYear()});
+  DB.set('expenses',all);
+  toast('Expense saved','success');
+  toggleForm('exp-form');
+  document.getElementById('exp-amount').value='';
+  document.getElementById('exp-desc').value='';
+  loadExpenses();
+}
+
+function delExpense(id) {
+  DB.set('expenses',DB.get('expenses').filter(e=>e.id!==id));
+  loadExpenses(); toast('Deleted','success');
+}
+
+// ============================================================
+// FIXED COSTS
+// ============================================================
+function loadFixed() {
+  const data=DB.get('fixed');
+  const tbody=document.getElementById('fc-tbody');
+  if(!data.length){
+    tbody.innerHTML=`<tr><td colspan="5"><div class="empty">No fixed costs added</div></td></tr>`;
+    document.getElementById('fc-total').textContent='$0.00'; return;
+  }
+  const total=data.filter(f=>f.active).reduce((s,f)=>s+parseFloat(f.amount),0);
+  tbody.innerHTML=data.map(f=>`<tr>
+    <td>${f.name}</td>
+    <td class="t2">${f.category||'—'}</td>
+    <td class="mono">${fmt(f.amount)}</td>
+    <td><span class="badge ${f.active?'b-active':'b-inactive'}">${f.active?'Active':'Inactive'}</span></td>
+    <td style="display:flex;gap:4px">
+      <button class="alink" onclick="toggleFixed('${f.id}',${f.active})">${f.active?'Disable':'Enable'}</button>
+      <button class="alink" onclick="delFixed('${f.id}')">Delete</button>
+    </td>
+  </tr>`).join('');
+  document.getElementById('fc-total').textContent=fmt(total);
+}
+
+function saveFixed() {
+  const name=document.getElementById('fc-name').value;
+  const amount=parseFloat(document.getElementById('fc-amount').value);
+  const cat=document.getElementById('fc-cat').value;
+  if(!name||!amount){toast('Fill in name and amount','error');return;}
+  const all=DB.get('fixed');
+  all.push({id:DB.id(),name,amount,category:cat,active:true});
+  DB.set('fixed',all);
+  toast('Fixed cost saved','success');
+  toggleForm('fc-form');
+  document.getElementById('fc-name').value='';
+  document.getElementById('fc-amount').value='';
+  loadFixed();
+}
+
+function toggleFixed(id,curr) {
+  const all=DB.get('fixed').map(f=>f.id===id?{...f,active:!curr}:f);
+  DB.set('fixed',all); loadFixed();
+}
+
+function delFixed(id) {
+  DB.set('fixed',DB.get('fixed').filter(f=>f.id!==id));
+  loadFixed(); toast('Deleted','success');
+}
+
+// ============================================================
+// REVENUE
+// ============================================================
+function loadRevenue() {
+  const data=DB.get('revenue').filter(c=>c.month===selM&&c.year===selY);
+  data.sort((a,b)=>b.date.localeCompare(a.date));
+
+  const unverified=data.filter(c=>c.status==='unverified');
+  const rest=data.filter(c=>c.status!=='unverified');
+
+  const badge=document.getElementById('q-badge');
+  badge.style.display=unverified.length?'inline-flex':'none';
+  badge.textContent=unverified.length;
+
+  const uvSec=document.getElementById('unverified-section');
+  uvSec.style.display=unverified.length?'block':'none';
+  if(unverified.length){
+    document.getElementById('uv-tbody').innerHTML=unverified.map(c=>{
+      const matches=COLLISIONS.get(parseFloat(c.amount))||[];
+      const mtxt=matches.map(m=>`${m.trailer} (${m.days}d)`).join(' or ');
+      return `<tr>
+        <td class="mono t2">${fmtDate(c.date)}</td>
+        <td class="mono">${fmt(c.amount)}</td>
+        <td class="t2">${mtxt}</td>
+        <td><button class="btn sm" onclick="openModal('${c.id}',${c.amount})">Assign</button></td>
+      </tr>`;
+    }).join('');
+  }
+
+  const tbody=document.getElementById('rev-tbody');
+  if(!rest.length){
+    tbody.innerHTML=`<tr><td colspan="6"><div class="empty">No revenue entries yet — add manually above</div></td></tr>`;
+    return;
+  }
+  tbody.innerHTML=rest.map(c=>`<tr>
+    <td class="mono t2">${fmtDate(c.date)}</td>
+    <td class="mono">${fmt(c.amount)}</td>
+    <td>${c.trailer||'—'}</td>
+    <td class="t2">${c.days?c.days+'d':'—'}</td>
+    <td><span class="badge b-${c.status}">${c.status}</span></td>
+    <td><button class="alink" onclick="delRevenue('${c.id}')">Delete</button></td>
+  </tr>`).join('');
+}
+
+function saveRevenue() {
+  const date=document.getElementById('rev-date').value;
+  const amount=parseFloat(document.getElementById('rev-amount').value);
+  const trailer=document.getElementById('rev-trailer').value;
+  const days=parseInt(document.getElementById('rev-days').value);
+  if(!date||!amount||!days){toast('Fill in all fields','error');return;}
+  const d=new Date(date+'T00:00:00');
+
+  let status='manual';
+  if(COLLISIONS.has(amount)) status='unverified';
+
+  const all=DB.get('revenue');
+  all.push({id:DB.id(),date,amount,trailer,days,status,month:d.getMonth()+1,year:d.getFullYear()});
+  DB.set('revenue',all);
+  toast('Revenue entry saved','success');
+  toggleForm('rev-form');
+  document.getElementById('rev-amount').value='';
+  document.getElementById('rev-days').value='';
+  loadRevenue();
+}
+
+function delRevenue(id) {
+  DB.set('revenue',DB.get('revenue').filter(c=>c.id!==id));
+  loadRevenue(); toast('Deleted','success');
+}
+
+function openModal(id,amount) {
+  assignId=id;
+  document.getElementById('modal-amt').textContent=fmt(amount);
+  const col=COLLISIONS.get(parseFloat(amount));
+  if(col?.length){document.getElementById('modal-trailer').value=col[0].trailer;document.getElementById('modal-days').value=col[0].days;}
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal(){document.getElementById('modal').classList.remove('open');assignId=null;}
+function confirmAssign(){
+  const trailer=document.getElementById('modal-trailer').value;
+  const days=parseInt(document.getElementById('modal-days').value);
+  if(!trailer||!days){toast('Select trailer and days','error');return;}
+  const all=DB.get('revenue').map(c=>c.id===assignId?{...c,trailer,days,status:'verified'}:c);
+  DB.set('revenue',all);
+  closeModal(); toast('Charge assigned','success'); loadRevenue();
+}
+document.getElementById('modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
+
+// ============================================================
+// UTILIZATION
+// ============================================================
+function loadUtil() {
+  const dim=daysIn(selM,selY);
+  document.getElementById('util-month').textContent=new Date(selY,selM-1,1).toLocaleString('en-US',{month:'long',year:'numeric'});
+
+  const data=DB.get('util').filter(u=>u.month===selM&&u.year===selY);
+  const ch=data.find(d=>d.trailer==='Car Hauler');
+  const dt=data.find(d=>d.trailer==='Dump Trailer');
+  const chD=ch?.days||0, dtD=dt?.days||0;
+  document.getElementById('ch-input').value=chD||'';
+  document.getElementById('dt-input').value=dtD||'';
+  setUtilCard('ch',chD,dim,111.80);
+  setUtilCard('dt',dtD,dim,139.75);
+
+  const hist=DB.get('util');
+  const keys=[...new Set(hist.map(h=>`${h.year}-${String(h.month).padStart(2,'0')}`))].sort().reverse();
+  const tbody=document.getElementById('util-hist');
+  if(!keys.length){tbody.innerHTML=`<tr><td colspan="7"><div class="empty">No history yet</div></td></tr>`;return;}
+  tbody.innerHTML=keys.map(k=>{
+    const [y,mo]=k.split('-').map(Number);
+    const dim2=daysIn(mo,y);
+    const chH=hist.find(h=>h.trailer==='Car Hauler'&&h.month===mo&&h.year===y);
+    const dtH=hist.find(h=>h.trailer==='Dump Trailer'&&h.month===mo&&h.year===y);
+    const cD=chH?.days||0, dD=dtH?.days||0;
+    const lbl=new Date(y,mo-1).toLocaleString('en-US',{month:'short',year:'numeric'});
+    return `<tr>
+      <td class="t2">${lbl}</td>
+      <td class="mono">${cD}</td><td class="mono">${pct(cD,dim2)}</td><td class="mono g">${fmt(cD*111.80)}</td>
+      <td class="mono">${dD}</td><td class="mono">${pct(dD,dim2)}</td><td class="mono g">${fmt(dD*139.75)}</td>
+    </tr>`;
+  }).join('');
+}
+
+function updateUtilCard(pfx,val,rate){setUtilCard(pfx,parseInt(val)||0,daysIn(selM,selY),parseFloat(rate));}
+function setUtilCard(pfx,rented,avail,rate){
+  const p=avail>0?Math.round((rented/avail)*100):0;
+  document.getElementById(pfx+'-pct').textContent=p+'%';
+  document.getElementById(pfx+'-label').textContent=`${rented} / ${avail} days`;
+  document.getElementById(pfx+'-bar').style.width=p+'%';
+  document.getElementById(pfx+'-rev').textContent=fmt(rented*rate);
+}
+
+function saveUtil(trailer,pfx){
+  const days=parseInt(document.getElementById(pfx+'-input').value)||0;
+  const all=DB.get('util');
+  const idx=all.findIndex(u=>u.trailer===trailer&&u.month===selM&&u.year===selY);
+  if(idx>=0) all[idx].days=days;
+  else all.push({id:DB.id(),trailer,days,month:selM,year:selY});
+  DB.set('util',all);
+  toast(`${trailer} saved`,'success');
+  loadUtil();
+}
+
+// ============================================================
+// LOANS
+// ============================================================
+function loadLoans(){
+  const data=DB.get('loans');
+  const el=document.getElementById('loans-list');
+  if(!data.length){el.innerHTML=`<div class="empty">No loans added yet</div>`;return;}
+  el.innerHTML=data.map(loan=>{
+    const bal=parseFloat(loan.balance);
+    const prin=parseFloat(loan.principal);
+    const rate=parseFloat(loan.rate);
+    const pmt=parseFloat(loan.payment);
+    const paid=prin-bal;
+    const paidPct=prin>0?Math.min(100,Math.round((paid/prin)*100)):0;
+    const {months}=amortize(bal,rate,pmt);
+    const payoff=addMonths(new Date(),months);
+    return `<div class="loan-card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
+        <div>
+          <div style="font-size:18px;font-weight:700;letter-spacing:1px;text-transform:uppercase">${loan.name}</div>
+          <div class="t3" style="font-size:12px;margin-top:3px">${(rate*100).toFixed(2)}% APR · $${pmt.toFixed(2)}/mo</div>
+        </div>
+        <div style="text-align:right">
+          <div class="mono r" style="font-size:22px">${fmt(bal)}</div>
+          <div class="t3" style="font-size:11px">remaining</div>
+        </div>
+      </div>
+      <div class="pbar" style="margin:14px 0 6px"><div class="pfill ${paidPct>=50?'g':''}" style="width:${paidPct}%"></div></div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-3);margin-bottom:16px;letter-spacing:1px">
+        <span>${paidPct}% PAID OFF</span>
+        <span>PAYOFF ~${payoff.toLocaleString('en-US',{month:'short',year:'numeric'}).toUpperCase()}</span>
+      </div>
+      <div class="loan-stats">
+        <div><div class="card-label">Original</div><div class="mono" style="font-size:15px">${fmt(prin)}</div></div>
+        <div><div class="card-label">Paid</div><div class="mono g" style="font-size:15px">${fmt(paid)}</div></div>
+        <div><div class="card-label">Balance</div><div class="mono r" style="font-size:15px">${fmt(bal)}</div></div>
+        <div><div class="card-label">Months Left</div><div class="mono" style="font-size:15px">${months}</div></div>
+      </div>
+      <div style="margin-top:16px;display:flex;gap:10px">
+        <button class="btn sm" onclick="logPayment('${loan.id}',${bal},${rate},${pmt})">Log Payment</button>
+        <button class="btn-out sm" onclick="delLoan('${loan.id}')">Delete</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function saveLoan(){
+  const name=document.getElementById('ln-name').value;
+  const prin=parseFloat(document.getElementById('ln-principal').value);
+  const bal=parseFloat(document.getElementById('ln-balance').value);
+  const rate=parseFloat(document.getElementById('ln-rate').value)/100;
+  const pmt=parseFloat(document.getElementById('ln-payment').value);
+  const start=document.getElementById('ln-start').value;
+  if(!name||!prin||!bal||!rate||!pmt||!start){toast('Fill in all fields','error');return;}
+  const all=DB.get('loans');
+  all.push({id:DB.id(),name,principal:prin,balance:bal,rate,payment:pmt,start});
+  DB.set('loans',all);
+  toast('Loan saved','success');
+  toggleForm('loan-form');
+  ['ln-name','ln-principal','ln-balance','ln-rate','ln-payment'].forEach(id=>document.getElementById(id).value='');
+  loadLoans();
+}
+
+function logPayment(id,bal,rate,pmt){
+  const mRate=rate/12;
+  const interest=bal*mRate;
+  const principal=pmt-interest;
+  const newBal=Math.max(0,bal-principal);
+  if(!confirm(`Log payment of $${pmt.toFixed(2)}?\n\nInterest:   $${interest.toFixed(2)}\nPrincipal:  $${principal.toFixed(2)}\nNew Balance: $${newBal.toFixed(2)}`))return;
+  const all=DB.get('loans').map(l=>l.id===id?{...l,balance:newBal}:l);
+  DB.set('loans',all);
+  toast('Payment logged','success');
+  loadLoans();
+}
+
+function delLoan(id){
+  if(!confirm('Delete this loan?'))return;
+  DB.set('loans',DB.get('loans').filter(l=>l.id!==id));
+  loadLoans(); toast('Loan deleted','success');
+}
+
+function amortize(bal,annualRate,pmt){
+  const r=annualRate/12; let b=bal,m=0;
+  while(b>0.01&&m<600){b-=(pmt-b*r);m++;}
+  return{months:m};
+}
+function addMonths(date,n){const d=new Date(date);d.setMonth(d.getMonth()+n);return d;}
+
+// ============================================================
+// TAX PREP
+// ============================================================
+function loadTax(){
+  const year=parseInt(document.getElementById('tax-year').value);
+  const charges=DB.get('revenue').filter(c=>c.year===year&&c.status!=='unverified');
+  const exps=DB.get('expenses').filter(e=>e.year===year);
+  const fixed=DB.get('fixed').filter(f=>f.active);
+
+  const trailers=['Car Hauler','Dump Trailer'];
+  const revByT={};
+  trailers.forEach(t=>{revByT[t]=charges.filter(c=>c.trailer===t).reduce((s,c)=>s+parseFloat(c.amount),0);});
+  const totRev=Object.values(revByT).reduce((s,v)=>s+v,0);
+
+  document.getElementById('tax-rev-detail').innerHTML=
+    trailers.map(t=>`<div class="srow"><span class="lbl">${t}</span><span class="val">${fmt(revByT[t])}</span></div>`).join('')+
+    `<div class="srow" style="padding-top:10px"><span class="lbl" style="font-weight:700">Total</span><span class="val g">${fmt(totRev)}</span></div>`;
+
+  const cats=['Insurance','Storage','GPS Trackers','Website / Tech','Maintenance','Fuel','Supplies','Loan Payment','Misc'];
+  const byCat={};
+  cats.forEach(c=>{byCat[c]=exps.filter(e=>e.category===c).reduce((s,e)=>s+parseFloat(e.amount),0);});
+  const varTotal=Object.values(byCat).reduce((s,v)=>s+v,0);
+  const fixedAnnual=fixed.reduce((s,f)=>s+parseFloat(f.amount),0)*12;
+  const totExp=varTotal+fixedAnnual;
+  const net=totRev-totExp;
+
+  document.getElementById('tax-exp-detail').innerHTML=
+    cats.filter(c=>byCat[c]>0).map(c=>`<div class="srow"><span class="lbl">${c}</span><span class="val">${fmt(byCat[c])}</span></div>`).join('')+
+    `<div class="srow"><span class="lbl">Fixed Costs (est. annual)</span><span class="val">${fmt(fixedAnnual)}</span></div>`+
+    `<div class="srow" style="padding-top:10px"><span class="lbl" style="font-weight:700">Total</span><span class="val r">${fmt(totExp)}</span></div>`;
+
+  document.getElementById('tax-rev').textContent=fmt(totRev);
+  document.getElementById('tax-exp').textContent=fmt(totExp);
+  const nel=document.getElementById('tax-net');
+  nel.textContent=fmt(net); nel.className='card-val '+(net>=0?'g':'r');
+}
+
+function exportCSV(){
+  const year=parseInt(document.getElementById('tax-year').value);
+  const exps=DB.get('expenses').filter(e=>e.year===year);
+  const rows=[['Date','Category','Trailer','Description','Amount'],...exps.map(e=>[e.date,e.category,e.trailer||'General',e.description||'',e.amount])];
+  const csv=rows.map(r=>r.join(',')).join('\n');
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+  a.download=`509-expenses-${year}.csv`;
+  a.click();
+  toast('CSV exported','success');
+}
+
+// ============================================================
+// UTILS
+// ============================================================
+function fmt(n){return '$'+parseFloat(n||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function fmtDate(d){if(!d)return'—';return new Date(d+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});}
+function pct(n,t){return t>0?Math.round((n/t)*100)+'%':'0%';}
+function toast(msg,type='success'){
+  const el=document.getElementById('toast');
+  el.textContent=msg; el.className='show '+type;
+  setTimeout(()=>{el.className='';},2600);
+}
+
+init();
+</script>
+</body>
+</html>
