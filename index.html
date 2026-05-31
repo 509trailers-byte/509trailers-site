@@ -465,9 +465,19 @@
 
       <!-- DECK OVER TILT -->
       <div class="trailer-card">
-        <div class="gallery-placeholder">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="14" width="40" height="24" rx="2" stroke="rgba(255,255,255,0.15)" stroke-width="2"/><path d="M4 20h40" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/><circle cx="12" cy="40" r="3" stroke="rgba(255,255,255,0.15)" stroke-width="2"/><circle cx="36" cy="40" r="3" stroke="rgba(255,255,255,0.15)" stroke-width="2"/></svg>
-          <span>Photos Coming Soon</span>
+        <div class="gallery" id="gallery-deckover">
+          <div class="gallery-track" id="track-deckover">
+            <img src="deck-over-1.jpg" alt="22ft Deck Over Tilt" class="gallery-img">
+            <img src="deck-over-2.jpg" alt="22ft Deck Over Tilt" class="gallery-img">
+            <img src="deck-over-3.jpg" alt="22ft Deck Over Tilt" class="gallery-img">
+          </div>
+          <button class="gallery-btn gallery-prev" onclick="slide('deckover',-1)">&#8249;</button>
+          <button class="gallery-btn gallery-next" onclick="slide('deckover',1)">&#8250;</button>
+          <div class="gallery-dots" id="dots-deckover">
+            <span class="dot active" onclick="goTo('deckover',0)"></span>
+            <span class="dot" onclick="goTo('deckover',1)"></span>
+            <span class="dot" onclick="goTo('deckover',2)"></span>
+          </div>
         </div>
         <div class="trailer-body">
           <div class="trailer-status status-available">Available Now</div>
@@ -665,7 +675,7 @@
 </footer>
 
 <script>
-  const galleryState={car:0,dump:0,enclosed:0};
+  const galleryState={car:0,dump:0,enclosed:0,deckover:0};
   function goTo(id,index){
     galleryState[id]=index;
     document.getElementById('track-'+id).style.transform='translateX(-'+(index*100)+'%)';
@@ -675,7 +685,7 @@
     const total=document.querySelectorAll('#track-'+id+' .gallery-img').length;
     goTo(id,(galleryState[id]+dir+total)%total);
   }
-  ['car','dump','enclosed'].forEach(id=>{
+  ['car','dump','enclosed','deckover'].forEach(id=>{
     const el=document.getElementById('gallery-'+id);
     let startX=0;
     el.addEventListener('touchstart',e=>{startX=e.touches[0].clientX},{passive:true});
