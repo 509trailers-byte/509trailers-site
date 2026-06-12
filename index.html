@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>509 Trailer Rentals — Vancouver, WA</title>
-<meta name="description" content="Contactless trailer rentals in Vancouver, WA. 20ft Car Hauler and 14ft Dump Trailer available. Book 24/7.">
+<title>Trailer Rentals in Vancouver, WA | 509 Trailer Rentals</title>
+<meta name="description" content="Trailer rentals in Vancouver, WA. Car Hauler, Dump Trailer, Enclosed Trailer &amp; Deck Over Tilt. Book online 24/7 — fully contactless. Serving Vancouver, Camas, Washougal &amp; Battle Ground.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -69,7 +69,7 @@
   .section-header{margin-bottom:3rem}
 
   /* TRAILERS */
-  .trailers-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px}
+  .trailers-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
   .trailer-card{background:var(--gray-900);border:1px solid rgba(255,255,255,0.06);overflow:hidden;transition:border-color 0.3s}
   .trailer-card:hover{border-color:rgba(215,43,43,0.35)}
   .trailer-card.coming-soon{opacity:0.7}
@@ -176,42 +176,32 @@
 
   @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
+  /* Fleet overview strip */
+  .fleet-strip{background:var(--gray-900);border:1px solid rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;margin-bottom:2rem}
+  .fleet-strip-item{display:flex;align-items:center;justify-content:space-between;padding:0.9rem 1.25rem;border-bottom:1px solid rgba(255,255,255,0.05);gap:1rem}
+  .fleet-strip-item:last-child{border-bottom:none}
+  .fleet-strip-num{font-family:var(--font-display);font-size:13px;font-weight:700;color:rgba(215,43,43,0.5);flex-shrink:0;width:20px}
+  .fleet-strip-info{flex:1;min-width:0}
+  .fleet-strip-name{font-family:var(--font-display);font-size:17px;font-weight:800;text-transform:uppercase;letter-spacing:0.03em;color:var(--white);line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .fleet-strip-desc{font-size:12px;color:var(--gray-400);margin-top:2px}
+  .fleet-strip-price{font-family:var(--font-display);font-size:18px;font-weight:800;color:var(--white);flex-shrink:0}
+  .fleet-strip-price span{color:var(--red)}
+  .fleet-strip-btns{display:flex;gap:0.5rem;flex-shrink:0}
+  .fleet-strip-btn-info{font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:var(--gray-200);background:transparent;border:1px solid rgba(255,255,255,0.12);padding:6px 12px;border-radius:3px;text-decoration:none;white-space:nowrap;transition:border-color 0.2s}
+  .fleet-strip-btn-info:hover{border-color:rgba(255,255,255,0.3)}
+  .fleet-strip-btn-book{font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:var(--white);background:var(--red);border:1px solid var(--red);padding:6px 12px;border-radius:3px;text-decoration:none;white-space:nowrap;transition:background 0.2s}
+  .fleet-strip-btn-book:hover{background:var(--red-light)}
+  /* Hide strip on desktop */
+  .fleet-strip{display:none}
+
   @media(max-width:768px){
     .nav-links,.nav-phone{display:none}.nav-cta{display:none}.hamburger{display:flex}
-    .trailers-grid{grid-template-columns:1fr 1fr;gap:1px}
+    .trailers-grid{grid-template-columns:1fr}
     .steps-grid{grid-template-columns:1fr 1fr}
     .step{border-right:none;border-bottom:1px solid rgba(255,255,255,0.06)}
     .contact-grid{grid-template-columns:1fr}
     .footer-inner{flex-direction:column}
-
-    /* Compact mobile cards */
-    .gallery{height:160px}
-    .gallery-img{height:160px}
-    .gallery-btn{width:28px;height:28px;font-size:16px}
-    .trailer-body{padding:0.85rem}
-    .trailer-status{font-size:10px;padding:3px 7px;margin-bottom:0.5rem}
-    .trailer-name{font-size:20px;margin-bottom:0.4rem}
-    .trailer-tags{display:none}
-    .trailer-desc{display:none}
-    .trailer-highlights{display:none}
-    .specs-block{display:none}
-    .included-wrap{display:none}
-    .trailer-pricing{padding:0.6rem 0.75rem;margin-bottom:0.75rem;gap:0.75rem}
-    .price-amount{font-size:20px}
-    .price-period{font-size:10px}
-    .btn-book{font-size:13px;padding:10px 12px}
-
-    /* Mobile details toggle */
-    .mobile-details-btn{width:100%;background:none;border:1px solid rgba(255,255,255,0.1);color:var(--gray-400);font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:8px;border-radius:4px;cursor:pointer;margin-bottom:0.75rem;transition:border-color 0.2s,color 0.2s}
-    .mobile-details-btn:hover{border-color:rgba(215,43,43,0.4);color:var(--red)}
-    .mobile-expandable{display:none}
-    .mobile-expandable.open{display:block}
-  }
-  @media(max-width:400px){
-    .trailers-grid{grid-template-columns:1fr}
-  }
-  @media(min-width:769px){
-    .mobile-details-btn{display:none}
+    .fleet-strip{display:block}
   }
   @media(max-width:560px){
     .steps-grid{grid-template-columns:1fr}
@@ -227,7 +217,7 @@
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="#trailers">Trailers</a></li>
-    <li><a href="services.html">Services</a></li>
+    <li><a href="services.html">Junk Removal</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="faq.html">FAQ</a></li>
   </ul>
@@ -241,7 +231,7 @@
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html" onclick="toggleMenu()">Home</a>
   <a href="#trailers" onclick="toggleMenu()">Trailers</a>
-  <a href="services.html" onclick="toggleMenu()">Services</a>
+  <a href="services.html" onclick="toggleMenu()">Junk Removal</a>
   <a href="about.html" onclick="toggleMenu()">About</a>
   <a href="testimonials.html" onclick="toggleMenu()">Testimonials</a>
   <a href="faq.html" onclick="toggleMenu()">FAQ</a>
@@ -255,9 +245,9 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-inner">
-    <div class="hero-badge">Vancouver, WA — Contactless Rentals</div>
-    <h1>Rent a<em>Trailer.</em>Any Time.</h1>
-    <p>Book, pay, and pick up your trailer without a single phone call. Available 24/7 with automated checkout — fully contactless. Contact-assisted pickup available upon request with 12–24hr notice.</p>
+    <div class="hero-badge">Vancouver, WA — Car Hauler · Dump · Enclosed · Deck Over</div>
+    <h1>Trailer Rentals<em>Vancouver, WA</em></h1>
+    <p>Book online 24/7 — no phone call needed. Fully contactless self-serve pickup or contact-assisted with 12–24hr notice. The easiest trailer rental services in Vancouver.</p>
     <div class="hero-actions">
       <a href="#trailers" class="btn-primary">View Trailers</a>
       <a href="#how-it-works" class="btn-secondary">How It Works</a>
@@ -289,7 +279,58 @@
     </div>
     <div class="trailers-grid">
 
-      <!-- CAR HAULER -->
+      <!-- FLEET OVERVIEW STRIP — mobile only -->
+      <div class="fleet-strip" style="grid-column:1/-1">
+        <div class="fleet-strip-item">
+          <div class="fleet-strip-num">01</div>
+          <div class="fleet-strip-info">
+            <div class="fleet-strip-name">20ft Car Hauler</div>
+            <div class="fleet-strip-desc">10,000lb GVWR · 12K winch · (4) Cargo &amp; Tire Straps</div>
+          </div>
+          <div class="fleet-strip-price"><span>$100</span>/day</div>
+          <div class="fleet-strip-btns">
+            <a href="#car-hauler" class="fleet-strip-btn-info">Info</a>
+            <a href="book.html?trailer=car-hauler" class="fleet-strip-btn-book">Book</a>
+          </div>
+        </div>
+        <div class="fleet-strip-item">
+          <div class="fleet-strip-num">02</div>
+          <div class="fleet-strip-info">
+            <div class="fleet-strip-name">14ft Dump Trailer</div>
+            <div class="fleet-strip-desc">14,000lb GVWR · Hydraulic · 14ft · 3½ft walls</div>
+          </div>
+          <div class="fleet-strip-price"><span>$125</span>/day</div>
+          <div class="fleet-strip-btns">
+            <a href="#dump-trailer" class="fleet-strip-btn-info">Info</a>
+            <a href="book.html?trailer=dump-trailer" class="fleet-strip-btn-book">Book</a>
+          </div>
+        </div>
+        <div class="fleet-strip-item">
+          <div class="fleet-strip-num">03</div>
+          <div class="fleet-strip-info">
+            <div class="fleet-strip-name">22ft Deck Over</div>
+            <div class="fleet-strip-desc">14,000lb GVWR · Hydraulic tilt · Equipment ready · (6) Cargo &amp; (4) Tire Straps</div>
+          </div>
+          <div class="fleet-strip-price"><span>$145</span>/day</div>
+          <div class="fleet-strip-btns">
+            <a href="#deck-over" class="fleet-strip-btn-info">Info</a>
+            <a href="book.html?trailer=deck-over" class="fleet-strip-btn-book">Book</a>
+          </div>
+        </div>
+        <div class="fleet-strip-item">
+          <div class="fleet-strip-num">04</div>
+          <div class="fleet-strip-info">
+            <div class="fleet-strip-name">24ft Enclosed</div>
+            <div class="fleet-strip-desc">10,000lb GVWR · 12K winch · Race Ramps · E-Track · (10) Straps</div>
+          </div>
+          <div class="fleet-strip-price"><span>$150</span>/day</div>
+          <div class="fleet-strip-btns">
+            <a href="#enclosed" class="fleet-strip-btn-info">Info</a>
+            <a href="book.html?trailer=enclosed" class="fleet-strip-btn-book">Book</a>
+          </div>
+        </div>
+      </div>
+      <!-- END FLEET STRIP -->
       <div class="trailer-card" id="car-hauler">
         <div class="gallery" id="gallery-car">
           <div class="gallery-track" id="track-car">
@@ -308,8 +349,6 @@
         <div class="trailer-body">
           <div class="trailer-status status-available">Available Now</div>
           <div class="trailer-name">20ft Car Hauler</div>
-          <button class="mobile-details-btn" onclick="toggleMobileDetails(this)">Details ↓</button>
-          <div class="mobile-expandable">
           <div class="trailer-tags">
             <span class="spec-tag">20ft Deck</span>
             <span class="spec-tag">10,000 lb GVWR</span>
@@ -350,7 +389,6 @@
               </ul>
             </div>
           </div>
-          </div><!-- /mobile-expandable -->
           <div class="trailer-pricing">
             <div><div class="price-amount">$100</div><div class="price-period">Per Day</div></div>
             <div class="price-divider"></div>
@@ -379,8 +417,6 @@
         <div class="trailer-body">
           <div class="trailer-status status-available">Available Now</div>
           <div class="trailer-name">14ft Dump Trailer</div>
-          <button class="mobile-details-btn" onclick="toggleMobileDetails(this)">Details ↓</button>
-          <div class="mobile-expandable">
           <div class="trailer-tags">
             <span class="spec-tag">7x14 Bed</span>
             <span class="spec-tag">14,000 lb GVWR</span>
@@ -417,7 +453,6 @@
               </ul>
             </div>
           </div>
-          </div><!-- /mobile-expandable -->
           <div class="trailer-pricing">
             <div><div class="price-amount">$125</div><div class="price-period">Per Day</div></div>
             <div class="price-divider"></div>
@@ -446,8 +481,6 @@
         <div class="trailer-body">
           <div class="trailer-status status-available">Available Now</div>
           <div class="trailer-name">24ft Enclosed Trailer</div>
-          <button class="mobile-details-btn" onclick="toggleMobileDetails(this)">Details ↓</button>
-          <div class="mobile-expandable">
           <div class="trailer-tags">
             <span class="spec-tag">24ft Floor</span>
             <span class="spec-tag">10,000 lb GVWR</span>
@@ -490,7 +523,6 @@
               </ul>
             </div>
           </div>
-          </div><!-- /mobile-expandable -->
           <div class="trailer-pricing">
             <div><div class="price-amount">$150</div><div class="price-period">Per Day</div></div>
             <div class="price-divider"></div>
@@ -519,8 +551,6 @@
         <div class="trailer-body">
           <div class="trailer-status status-available">Available Now</div>
           <div class="trailer-name">22ft Deck Over Tilt</div>
-          <button class="mobile-details-btn" onclick="toggleMobileDetails(this)">Details ↓</button>
-          <div class="mobile-expandable">
           <div class="trailer-tags">
             <span class="spec-tag">8.5x22ft Deck</span>
             <span class="spec-tag">14,000 lb GVWR</span>
@@ -558,7 +588,6 @@
               </ul>
             </div>
           </div>
-          </div><!-- /mobile-expandable -->
           <div class="trailer-pricing">
             <div><div class="price-amount">$145</div><div class="price-period">Per Day</div></div>
             <div class="price-divider"></div>
@@ -577,8 +606,6 @@
         <div class="trailer-body">
           <div class="trailer-status status-coming">Coming Soon</div>
           <div class="trailer-name">Car Hauler Template</div>
-          <button class="mobile-details-btn" onclick="toggleMobileDetails(this)">Details ↓</button>
-          <div class="mobile-expandable">
           <div class="trailer-tags">
             <span class="spec-tag">Open Deck</span>
             <span class="spec-tag">Placeholder</span>
@@ -589,7 +616,6 @@
             <div class="highlight-item"><div class="highlight-val">—</div><div class="highlight-label">Length</div></div>
             <div class="highlight-item"><div class="highlight-val">—</div><div class="highlight-label">GVWR</div></div>
           </div>
-          </div><!-- /mobile-expandable -->
           <div class="trailer-pricing">
             <div><div class="price-amount" style="font-size:20px;color:var(--gray-400)">Coming Soon</div><div class="price-period">Pricing TBD</div></div>
           </div>
@@ -685,7 +711,7 @@
         <li><a href="testimonials.html">Testimonials</a></li>
         <li><a href="faq.html">FAQ</a></li>
         <li><a href="policies.html">Rental Policies</a></li>
-        <li><a href="services.html">Services</a></li>
+        <li><a href="services.html">Junk Removal</a></li>
         <li><a href="#contact-us">Contact</a></li>
       </ul>
     </div>
@@ -713,13 +739,6 @@
     el.addEventListener('touchstart',e=>{startX=e.touches[0].clientX},{passive:true});
     el.addEventListener('touchend',e=>{const diff=startX-e.changedTouches[0].clientX;if(Math.abs(diff)>40)slide(id,diff>0?1:-1)});
   });
-  function toggleMobileDetails(btn) {
-    const panel = btn.nextElementSibling;
-    const open = panel.classList.toggle('open');
-    btn.textContent = open ? 'Details ↑' : 'Details ↓';
-    btn.style.color = open ? 'var(--red)' : '';
-    btn.style.borderColor = open ? 'rgba(215,43,43,0.4)' : '';
-  }
   function toggleIncluded(btn){
     const panel=btn.nextElementSibling;
     const open=panel.classList.toggle('open');
