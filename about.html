@@ -3,46 +3,337 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — 509 Trailer Rentals</title>
+<meta name="description" content="509 Trailer Rentals was founded in Vancouver, WA by Joshua in 2025. Contactless, 24/7 trailer rentals built around the customer — not the clock.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{--red:#D72B2B;--red-light:#F03A3A;--black:#0E0E0E;--gray-900:#1A1A1A;--gray-400:#888888;--gray-200:#CCCCCC;--white:#FFFFFF;--font-display:'Barlow Condensed',sans-serif;--font-body:'Barlow',sans-serif;}
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:var(--font-body);background:var(--black);color:var(--white)}
+  :root{--red:#D72B2B;--red-dark:#A81E1E;--red-light:#F03A3A;--black:#0E0E0E;--gray-900:#1A1A1A;--gray-800:#242424;--gray-400:#888;--gray-200:#CCC;--white:#FFF;--font-display:'Barlow Condensed',sans-serif;--font-body:'Barlow',sans-serif;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font-body);background:var(--black);color:var(--white);overflow-x:hidden}
+
+  /* NAV */
   nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px;background:rgba(14,14,14,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,0.06)}
-  .nav-logo{font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--white);text-decoration:none}
+  .nav-logo{font-family:var(--font-display);font-size:22px;font-weight:800;letter-spacing:0.02em;color:var(--white);text-decoration:none}
   .nav-logo span{color:var(--red)}
-  .nav-cta{background:var(--red);color:var(--white);font-family:var(--font-display);font-size:15px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:8px 20px;border-radius:4px;text-decoration:none}
-  .placeholder{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:100px 2rem}
-  .placeholder-inner{max-width:500px}
+  .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+  .nav-links a{font-size:14px;font-weight:500;color:var(--gray-200);text-decoration:none;letter-spacing:0.03em;transition:color 0.2s}
+  .nav-links a:hover{color:var(--white)}
+  .nav-links a.active{color:var(--red)}
+  .nav-right{display:flex;align-items:center;gap:1.25rem}
+  .nav-phone{font-family:var(--font-display);font-size:17px;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:0.04em;display:flex;align-items:center;gap:6px}
+  .nav-phone::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:#2ECC71;box-shadow:0 0 0 2px rgba(46,204,113,0.25)}
+  .nav-cta{background:var(--red);color:var(--white);font-family:var(--font-display);font-size:15px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:8px 20px;border-radius:4px;text-decoration:none;transition:background 0.2s}
+  .nav-cta:hover{background:var(--red-light)}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+  .hamburger span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px}
+  .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--black);border-bottom:1px solid rgba(255,255,255,0.08);padding:1.5rem 2rem;z-index:99;flex-direction:column;gap:1.25rem}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{font-size:16px;color:var(--gray-200);text-decoration:none;font-weight:500}
+  .mobile-menu a.btn-primary{text-align:center;display:block;padding:12px;background:var(--red);color:var(--white);font-family:var(--font-display);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;border-radius:4px}
+
+  /* PAGE HERO */
+  .page-hero{padding:130px 2rem 80px;text-align:center;position:relative;overflow:hidden;background:var(--gray-900);border-bottom:1px solid rgba(255,255,255,0.06)}
+  .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 100%,rgba(215,43,43,0.1) 0%,transparent 70%)}
+  .page-hero-inner{position:relative;z-index:2;max-width:700px;margin:0 auto}
   .section-label{font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--red);margin-bottom:0.75rem}
-  h1{font-family:var(--font-display);font-size:clamp(40px,7vw,72px);font-weight:800;text-transform:uppercase;line-height:0.95;margin-bottom:1.25rem}
-  p{font-size:16px;color:var(--gray-400);line-height:1.6;margin-bottom:2rem}
-  .btn{display:inline-flex;background:var(--red);color:var(--white);font-family:var(--font-display);font-size:16px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:12px 28px;border-radius:4px;text-decoration:none}
+  .page-hero h1{font-family:var(--font-display);font-size:clamp(48px,8vw,80px);font-weight:800;text-transform:uppercase;letter-spacing:0.01em;line-height:0.95;margin-bottom:1.25rem}
+  .page-hero h1 em{font-style:normal;color:var(--red)}
+  .page-hero p{font-size:17px;color:var(--gray-200);line-height:1.7;max-width:560px;margin:0 auto}
+
+  /* CONTENT */
+  .about-wrap{max-width:900px;margin:0 auto;padding:80px 2rem 0}
+
+  /* ORIGIN STORY */
+  .origin{display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:start;margin-bottom:5rem;padding-bottom:5rem;border-bottom:1px solid rgba(255,255,255,0.06)}
+  .origin-year{font-family:var(--font-display);font-size:80px;font-weight:800;color:rgba(215,43,43,0.55);line-height:1;letter-spacing:-0.02em}
+  .origin-year-label{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray-400);margin-top:0.25rem}
+  .origin-text h2{font-family:var(--font-display);font-size:clamp(28px,4vw,40px);font-weight:800;text-transform:uppercase;letter-spacing:0.02em;line-height:1.05;margin-bottom:1.25rem;color:var(--white)}
+  .origin-text h2 em{font-style:normal;color:var(--red)}
+  .origin-text p{font-size:15px;color:var(--gray-200);line-height:1.8;margin-bottom:1rem}
+  .origin-text p:last-child{margin-bottom:0}
+
+  /* VALUES */
+  .values{margin-bottom:5rem;padding-bottom:5rem;border-bottom:1px solid rgba(255,255,255,0.06)}
+  .values-header{margin-bottom:2.5rem}
+  .section-title{font-family:var(--font-display);font-size:clamp(32px,5vw,48px);font-weight:800;text-transform:uppercase;letter-spacing:0.01em;line-height:1}
+  .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+  .value-card{background:var(--gray-900);border-top:3px solid var(--red);border-radius:0 0 4px 4px;padding:1.75rem;transition:border-top-color 0.2s}
+  .value-card:hover{border-top-color:var(--red-light)}
+  .value-icon{font-size:26px;margin-bottom:0.85rem;line-height:1;display:block}
+  .value-title{font-family:var(--font-display);font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:0.04em;color:var(--white);margin-bottom:0.5rem;line-height:1}
+  .value-desc{font-size:14px;color:#BBBBBB;line-height:1.7}
+  @media(max-width:768px){.values-grid{grid-template-columns:1fr}}
+
+  /* QUOTE */
+  .quote-block{background:rgba(215,43,43,0.06);border-left:3px solid var(--red);border-radius:0 4px 4px 0;padding:2rem 2.5rem;margin-bottom:5rem}
+  .quote-text{font-family:var(--font-display);font-size:clamp(22px,3.5vw,32px);font-weight:700;line-height:1.3;color:var(--white);margin-bottom:0.75rem;letter-spacing:0.01em}
+  .quote-attr{font-size:13px;color:var(--gray-400);letter-spacing:0.04em}
+  .quote-attr strong{color:var(--red)}
+
+  /* REVIEWS STRIP */
+  .reviews-strip{margin-bottom:5rem;padding-bottom:5rem;border-bottom:1px solid rgba(255,255,255,0.06)}
+  .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:2.5rem}
+  .review-card{background:var(--gray-900);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:1.5rem}
+  .review-stars{color:#F5C518;font-size:14px;letter-spacing:2px;margin-bottom:0.75rem}
+  .review-text{font-size:14px;color:var(--gray-200);line-height:1.65;margin-bottom:1rem;font-style:italic}
+  .review-author{font-family:var(--font-display);font-size:13px;font-weight:700;color:var(--white);text-transform:uppercase;letter-spacing:0.04em}
+  .review-source{font-size:11px;color:var(--gray-400);font-weight:400;text-transform:none;letter-spacing:0;margin-top:2px}
+
+  /* STATS */
+  .stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;margin-bottom:5rem}
+  .stat-item{background:var(--gray-900);padding:2rem 1.5rem;text-align:center}
+  .stat-num{font-family:var(--font-display);font-size:40px;font-weight:800;color:var(--white);line-height:1}
+  .stat-num span{color:var(--red)}
+  .stat-label{font-size:12px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.06em;margin-top:6px}
+
+  /* CTA */
+  .about-cta{background:var(--gray-900);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:3rem 2.5rem;text-align:center;margin-bottom:80px}
+  .about-cta h2{font-family:var(--font-display);font-size:clamp(32px,5vw,48px);font-weight:800;text-transform:uppercase;letter-spacing:0.02em;margin-bottom:0.75rem}
+  .about-cta p{font-size:15px;color:var(--gray-200);margin-bottom:2rem;line-height:1.6}
+  .cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:var(--white);font-family:var(--font-display);font-size:17px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:14px 32px;border-radius:4px;text-decoration:none;transition:background 0.2s}
+  .btn-primary:hover{background:var(--red-light)}
+  .btn-secondary{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--white);font-family:var(--font-display);font-size:17px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:14px 32px;border-radius:4px;border:1px solid rgba(255,255,255,0.2);text-decoration:none;transition:border-color 0.2s}
+  .btn-secondary:hover{border-color:rgba(255,255,255,0.5)}
+
+  /* FOOTER */
+  footer{background:var(--gray-900);border-top:1px solid rgba(255,255,255,0.06);padding:3rem 2rem}
+  .footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:2rem}
+  .footer-brand .nav-logo{font-size:24px;display:block;margin-bottom:0.5rem}
+  .footer-brand p{font-size:13px;color:var(--gray-400);line-height:1.6;max-width:260px}
+  .footer-links h4{font-family:var(--font-display);font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-400);margin-bottom:0.75rem}
+  .footer-links ul{list-style:none}
+  .footer-links li{margin-bottom:0.5rem}
+  .footer-links a{font-size:14px;color:var(--gray-200);text-decoration:none;transition:color 0.2s}
+  .footer-links a:hover{color:var(--white)}
+  .footer-bottom{max-width:1200px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem}
+  .footer-bottom p{font-size:13px;color:var(--gray-400)}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+  @media(max-width:768px){
+    .nav-links,.nav-phone{display:none}.nav-cta{display:none}.hamburger{display:flex}
+    .origin{grid-template-columns:1fr}
+    .values-grid{grid-template-columns:1fr}
+    .reviews-grid{grid-template-columns:1fr}
+    .stats-strip{grid-template-columns:1fr 1fr}
+    .footer-inner{flex-direction:column}
+  }
 </style>
 </head>
 <body>
+
 <nav>
   <a href="index.html" class="nav-logo">509 <span>TRAILERS</span></a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="index.html#trailers">Trailers</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Junk Removal</a></li>
+    <li><a href="about.html" class="active">About</a></li>
     <li><a href="faq.html">FAQ</a></li>
   </ul>
-  <div style="display:flex;align-items:center;gap:1.25rem">
-    <a href="tel:3605620477" style="font-family:var(--font-display);font-size:17px;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:0.04em;display:flex;align-items:center;gap:6px">(360) 562-0477</a>
-    <a href="book.html" style="background:var(--red);color:var(--white);font-family:var(--font-display);font-size:15px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:8px 20px;border-radius:4px;text-decoration:none">Book Now</a>
+  <div class="nav-right">
+    <a href="tel:3605620477" class="nav-phone">(360) 562-0477</a>
+    <a href="book.html" class="nav-cta">Book Now</a>
   </div>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
 </nav>
-<div class="placeholder">
-  <div class="placeholder-inner">
-    <div class="section-label">Coming Soon</div>
-    <h1>Page Under<br>Construction</h1>
-    <p>This page is being built. Check back soon or head back to the homepage.</p>
-    <a href="index.html" class="btn">Back to Home</a>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMenu()">Home</a>
+  <a href="index.html#trailers" onclick="toggleMenu()">Trailers</a>
+  <a href="services.html" onclick="toggleMenu()">Junk Removal</a>
+  <a href="about.html" onclick="toggleMenu()">About</a>
+  <a href="faq.html" onclick="toggleMenu()">FAQ</a>
+  <a href="testimonials.html" onclick="toggleMenu()">Testimonials</a>
+  <a href="policies.html" onclick="toggleMenu()">Policies</a>
+  <a href="tel:3605620477" onclick="toggleMenu()">(360) 562-0477</a>
+  <a href="book.html" class="btn-primary" onclick="toggleMenu()">Book Now</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="section-label">Our Story</div>
+    <h1>Built for the<br><em>Customer.</em></h1>
+    <p>509 Trailer Rentals was built by someone who's been on the other side of the counter — and decided to do it differently.</p>
   </div>
 </div>
+
+<div class="about-wrap">
+
+  <!-- ORIGIN STORY -->
+  <div class="origin">
+    <div>
+      <div class="origin-year">2023</div>
+      <div class="origin-year-label">The idea begins</div>
+    </div>
+    <div class="origin-text">
+      <h2>Two Years of Vision.<br><em>One Decision to Build It.</em></h2>
+      <p>It started in October 2023 — not with a business plan, but with frustration. Joshua needed to rent a trailer after hours. Every option required a phone call during business hours, a person on site, or a wait until the next morning. The job didn't wait. The question that followed was simple: <em style="color:var(--white);font-style:italic">why doesn't this exist yet?</em></p>
+      <p>Two years of planning, second-guessing, and coming back to the same idea. In November 2025, 509 Trailer Rentals launched in Vancouver, WA — a fully contactless, self-serve trailer rental operation built around one principle: your schedule, not ours.</p>
+      <p>No gatekeepers. No business hours. No one you have to call. Just book, get your code, hook up, and go — at 2pm or 2am.</p>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-strip">
+    <div class="stat-item">
+      <div class="stat-num">24<span>/7</span></div>
+      <div class="stat-label">Always Available</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">50<span>+</span></div>
+      <div class="stat-label">5-Star Reviews</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4</div>
+      <div class="stat-label">Trailers in Fleet</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">100<span>%</span></div>
+      <div class="stat-label">Contactless</div>
+    </div>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="quote-block">
+    <div class="quote-text">"Most places treat you like a wallet. We treat you like a person. That's not a tagline — it's the only way we know how to operate."</div>
+    <div class="quote-attr">— <strong>Joshua</strong>, Founder · 509 Trailer Rentals</div>
+  </div>
+
+  <!-- VALUES -->
+  <div class="values">
+    <div class="values-header">
+      <div class="section-label">What We Stand For</div>
+      <h2 class="section-title">The Standard We Hold Ourselves To</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card">
+        <span class="value-icon">🤝</span>
+        <div class="value-title">Respect</div>
+        <div class="value-desc">Every customer is treated as a person first. No upselling, no pressure, no attitude. You came to get something done — we're here to make that happen.</div>
+      </div>
+      <div class="value-card">
+        <span class="value-icon">🔒</span>
+        <div class="value-title">Reliability</div>
+        <div class="value-desc">Clean equipment. Accurate listings. A process that works the same way every time. When you book, you can count on everything being exactly as described.</div>
+      </div>
+      <div class="value-card">
+        <span class="value-icon">⚡</span>
+        <div class="value-title">Simplicity</div>
+        <div class="value-desc">Book in under 2 minutes. Get your code by text. Pick up on your own time. No paperwork headaches, no waiting around. It should be this easy everywhere.</div>
+      </div>
+      <div class="value-card">
+        <span class="value-icon">🕐</span>
+        <div class="value-title">Availability</div>
+        <div class="value-desc">The reason 509 exists is because after-hours rentals weren't available. We're open 24/7 because the job doesn't always happen at 9am on a Tuesday.</div>
+      </div>
+      <div class="value-card">
+        <span class="value-icon">❤️</span>
+        <div class="value-title">Compassion</div>
+        <div class="value-desc">Whether you're moving out of a tough situation, clearing a property, or hauling your pride and joy — we get it. We show up the same way every time.</div>
+      </div>
+      <div class="value-card">
+        <span class="value-icon">⭐</span>
+        <div class="value-title">Excellence</div>
+        <div class="value-desc">Trailers come equipped with everything you need — winches, straps, race ramps, E-track. We don't cut corners because our reputation depends on every single rental.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVIEWS -->
+  <div class="reviews-strip">
+    <div class="section-label">Don't Take Our Word For It</div>
+    <h2 class="section-title">What Customers Say</h2>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Josh was gracious enough to rent me the trailer on a Sunday. He was very kind and went over everything with me. Outstanding customer service and I encourage everyone to go through Josh for your trailer needs."</p>
+        <div class="review-author">David E.</div>
+        <div class="review-source">Google · Local Guide</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"BEST way to rent a trailer. Reserve online. Pickup was contactless. Just yourself and your phone. Follow the app. Take pics. Hook up and go. Trailer is equipped with everything needed. Tows great! HIGHLY RECOMMEND."</p>
+        <div class="review-author">Joe P.</div>
+        <div class="review-source">Google</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"I have rented from others over the years and they're hammered — this guy cares about his stuff and it shows. Rental process is incredibly straightforward and absolutely worth it. You will not be disappointed."</p>
+        <div class="review-author">Maxwell R.</div>
+        <div class="review-source">Google · Local Guide</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2rem">
+      <a href="https://share.google/PoIsy23Xxg1swpvlI" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--white);font-family:var(--font-display);font-size:15px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:12px 28px;border-radius:4px;border:1px solid rgba(255,255,255,0.15);text-decoration:none;transition:border-color 0.2s">
+        <span style="font-size:16px">⭐</span> View All Reviews on Google
+      </a>
+    </div>
+  </div>
+  <div class="about-cta">
+    <h2>Ready to Rent?</h2>
+    <p>Four trailers. Zero hassle. Available any time of day or night — Vancouver, WA & the Portland metro.</p>
+    <div class="cta-actions">
+      <a href="index.html#trailers" class="btn-primary">View Trailers</a>
+      <a href="tel:3605620477" class="btn-secondary">(360) 562-0477</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">509 <span style="color:var(--red)">TRAILERS</span></a>
+      <p>Contactless trailer rentals in Vancouver, WA. Book online, pick up the same day.</p>
+      <p style="margin-top:0.75rem;font-size:13px">11616 NE 79th St<br>Vancouver, WA 98662</p>
+    </div>
+    <div class="footer-links">
+      <h4>Our Fleet</h4>
+      <ul>
+        <li><a href="index.html#car-hauler">20ft Car Hauler</a></li>
+        <li><a href="index.html#dump-trailer">14ft Dump Trailer</a></li>
+        <li><a href="index.html#enclosed">24ft Enclosed Trailer</a></li>
+        <li><a href="index.html#deck-over">22ft Deck Over Tilt</a></li>
+        <li><a href="services.html">Junk Removal</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="policies.html">Rental Policies</a></li>
+        <li><a href="index.html#contact-us">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 509 Trailer Rentals LLC. All rights reserved.</p>
+    <p>Vancouver, WA</p>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+  document.addEventListener('click',function(e){
+    const menu=document.getElementById('mobileMenu');
+    const hamburger=document.querySelector('.hamburger');
+    if(!menu.contains(e.target)&&!hamburger.contains(e.target))menu.classList.remove('open');
+  });
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.opacity='1';entry.target.style.transform='translateY(0)'}});
+  },{threshold:0.1});
+  document.querySelectorAll('.value-card,.review-card,.stat-item').forEach(el=>{
+    el.style.opacity='0';el.style.transform='translateY(24px)';el.style.transition='opacity 0.5s ease,transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
 </body>
 </html>
