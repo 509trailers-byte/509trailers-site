@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — 509 Trailer Rentals</title>
+<meta name="description" content="Frequently asked questions about renting a trailer from 509 Trailer Rentals in Vancouver, WA. Hitch sizes, how contactless works, rental agreements, and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--red:#D72B2B;--red-dark:#A81E1E;--red-light:#F03A3A;--black:#0E0E0E;--gray-900:#1A1A1A;--gray-800:#242424;--gray-400:#888;--gray-200:#CCC;--white:#FFF;--font-display:'Barlow Condensed',sans-serif;--font-body:'Barlow',sans-serif;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font-body);background:var(--black);color:var(--white);overflow-x:hidden}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px;background:rgba(14,14,14,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,0.06)}
+  .nav-logo{font-family:var(--font-display);font-size:22px;font-weight:800;letter-spacing:0.02em;color:var(--white);text-decoration:none}
+  .nav-logo span{color:var(--red)}
+  .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+  .nav-links a{font-size:14px;font-weight:500;color:var(--gray-200);text-decoration:none;letter-spacing:0.03em;transition:color 0.2s}
+  .nav-links a:hover{color:var(--white)}
+  .nav-links a.active{color:var(--red)}
+  .nav-right{display:flex;align-items:center;gap:1.25rem}
+  .nav-phone{font-family:var(--font-display);font-size:17px;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:0.04em;display:flex;align-items:center;gap:6px}
+  .nav-phone::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:#2ECC71;box-shadow:0 0 0 2px rgba(46,204,113,0.25)}
+  .nav-cta{background:var(--red);color:var(--white);font-family:var(--font-display);font-size:15px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:8px 20px;border-radius:4px;text-decoration:none;transition:background 0.2s}
+  .nav-cta:hover{background:var(--red-light)}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+  .hamburger span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px}
+  .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--black);border-bottom:1px solid rgba(255,255,255,0.08);padding:1.5rem 2rem;z-index:99;flex-direction:column;gap:1.25rem}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{font-size:16px;color:var(--gray-200);text-decoration:none;font-weight:500}
+  .mobile-menu a.btn-primary{text-align:center;display:block;padding:12px;background:var(--red);color:var(--white);font-family:var(--font-display);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;border-radius:4px}
+
+  /* PAGE HERO */
+  .page-hero{padding:130px 2rem 70px;text-align:center;position:relative;overflow:hidden;background:var(--gray-900);border-bottom:1px solid rgba(255,255,255,0.06)}
+  .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 100%,rgba(215,43,43,0.1) 0%,transparent 70%)}
+  .page-hero-inner{position:relative;z-index:2;max-width:700px;margin:0 auto}
+  .section-label{font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--red);margin-bottom:0.75rem}
+  .page-hero h1{font-family:var(--font-display);font-size:clamp(48px,8vw,80px);font-weight:800;text-transform:uppercase;letter-spacing:0.01em;line-height:0.95;margin-bottom:1.25rem}
+  .page-hero h1 em{font-style:normal;color:var(--red)}
+  .page-hero p{font-size:16px;color:var(--gray-200);line-height:1.7;max-width:500px;margin:0 auto}
+
+  /* LAYOUT */
+  .faq-wrap{max-width:860px;margin:0 auto;padding:70px 2rem 0}
+
+  /* CATEGORY LABEL */
+  .faq-category{font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--red);margin:3rem 0 1rem;padding-bottom:0.5rem;border-bottom:1px solid rgba(215,43,43,0.2)}
+  .faq-category:first-of-type{margin-top:0}
+
+  /* ACCORDION */
+  .faq-item{border-bottom:1px solid rgba(255,255,255,0.06)}
+  .faq-question{width:100%;background:none;border:none;color:var(--white);font-family:var(--font-body);font-size:16px;font-weight:600;text-align:left;padding:1.25rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;transition:color 0.2s;line-height:1.4}
+  .faq-question:hover{color:rgba(255,255,255,0.8)}
+  .faq-question.open{color:var(--red)}
+  .faq-arrow{font-size:18px;flex-shrink:0;transition:transform 0.25s;color:var(--gray-400);line-height:1}
+  .faq-question.open .faq-arrow{transform:rotate(45deg);color:var(--red)}
+  .faq-answer{max-height:0;overflow:hidden;transition:max-height 0.35s ease,opacity 0.25s ease;opacity:0}
+  .faq-answer.open{max-height:600px;opacity:1}
+  .faq-answer-inner{padding:0 0 1.5rem;font-size:15px;color:#BBBBBB;line-height:1.8}
+  .faq-answer-inner p{margin-bottom:0.75rem}
+  .faq-answer-inner p:last-child{margin-bottom:0}
+  .faq-answer-inner strong{color:var(--white)}
+  .faq-answer-inner a{color:var(--red);text-decoration:none}
+  .faq-answer-inner a:hover{text-decoration:underline}
+
+  /* TRAILER SPEC TABLE */
+  .spec-table{width:100%;border-collapse:collapse;margin:0.75rem 0;font-size:14px}
+  .spec-table th{font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray-400);padding:0.5rem 0.75rem;text-align:left;border-bottom:1px solid rgba(255,255,255,0.08)}
+  .spec-table td{padding:0.6rem 0.75rem;color:#BBBBBB;border-bottom:1px solid rgba(255,255,255,0.04)}
+  .spec-table tr:last-child td{border-bottom:none}
+  .spec-table td:first-child{color:var(--white);font-weight:600}
+
+  /* RENTAL AGREEMENT SECTION */
+  .ra-section{background:var(--gray-900);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:2.5rem;margin:3rem 0}
+  .ra-header{margin-bottom:2rem}
+  .ra-title{font-family:var(--font-display);font-size:clamp(28px,4vw,40px);font-weight:800;text-transform:uppercase;letter-spacing:0.02em;line-height:1;margin-bottom:0.5rem}
+  .ra-title em{font-style:normal;color:var(--red)}
+  .ra-subtitle{font-size:15px;color:#BBBBBB;line-height:1.7}
+  .ra-steps{display:flex;flex-direction:column;gap:0}
+  .ra-step{display:flex;gap:1.5rem;padding:1.5rem 0;border-bottom:1px solid rgba(255,255,255,0.05)}
+  .ra-step:last-child{border-bottom:none;padding-bottom:0}
+  .ra-step-num{font-family:var(--font-display);font-size:36px;font-weight:800;color:rgba(215,43,43,0.55);line-height:1;flex-shrink:0;width:40px;padding-top:2px}
+  .ra-step-content h3{font-family:var(--font-display);font-size:19px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;color:var(--white);margin-bottom:0.4rem}
+  .ra-step-content p{font-size:14px;color:#BBBBBB;line-height:1.75}
+  .ra-why{background:rgba(215,43,43,0.06);border-left:3px solid var(--red);border-radius:0 4px 4px 0;padding:1.25rem 1.5rem;margin-top:2rem}
+  .ra-why-title{font-family:var(--font-display);font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--red);margin-bottom:0.5rem}
+  .ra-why p{font-size:14px;color:#BBBBBB;line-height:1.75}
+
+  /* CTA */
+  .faq-cta{background:var(--gray-900);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:2.5rem;text-align:center;margin:3rem 0 80px}
+  .faq-cta h2{font-family:var(--font-display);font-size:clamp(28px,4vw,40px);font-weight:800;text-transform:uppercase;letter-spacing:0.02em;margin-bottom:0.5rem}
+  .faq-cta p{font-size:15px;color:#BBBBBB;margin-bottom:1.75rem;line-height:1.6}
+  .cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:var(--white);font-family:var(--font-display);font-size:17px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:14px 32px;border-radius:4px;text-decoration:none;transition:background 0.2s}
+  .btn-primary:hover{background:var(--red-light)}
+  .btn-secondary{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--white);font-family:var(--font-display);font-size:17px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:14px 32px;border-radius:4px;border:1px solid rgba(255,255,255,0.2);text-decoration:none;transition:border-color 0.2s}
+  .btn-secondary:hover{border-color:rgba(255,255,255,0.5)}
+
+  /* FOOTER */
+  footer{background:var(--gray-900);border-top:1px solid rgba(255,255,255,0.06);padding:3rem 2rem}
+  .footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:2rem}
+  .footer-brand .nav-logo{font-size:24px;display:block;margin-bottom:0.5rem}
+  .footer-brand p{font-size:13px;color:var(--gray-400);line-height:1.6;max-width:260px}
+  .footer-links h4{font-family:var(--font-display);font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-400);margin-bottom:0.75rem}
+  .footer-links ul{list-style:none}
+  .footer-links li{margin-bottom:0.5rem}
+  .footer-links a{font-size:14px;color:var(--gray-200);text-decoration:none;transition:color 0.2s}
+  .footer-links a:hover{color:var(--white)}
+  .footer-bottom{max-width:1200px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem}
+  .footer-bottom p{font-size:13px;color:var(--gray-400)}
+
+  @media(max-width:768px){
+    .nav-links,.nav-phone{display:none}.nav-cta{display:none}.hamburger{display:flex}
+    .ra-section{padding:1.5rem}
+    .footer-inner{flex-direction:column}
+    .spec-table{font-size:13px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">509 <span>TRAILERS</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#trailers">Trailers</a></li>
+    <li><a href="services.html">Junk Removal</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="faq.html" class="active">FAQ</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="tel:3605620477" class="nav-phone">(360) 562-0477</a>
+    <a href="book.html" class="nav-cta">Book Now</a>
+  </div>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMenu()">Home</a>
+  <a href="index.html#trailers" onclick="toggleMenu()">Trailers</a>
+  <a href="services.html" onclick="toggleMenu()">Junk Removal</a>
+  <a href="about.html" onclick="toggleMenu()">About</a>
+  <a href="faq.html" onclick="toggleMenu()">FAQ</a>
+  <a href="testimonials.html" onclick="toggleMenu()">Testimonials</a>
+  <a href="policies.html" onclick="toggleMenu()">Policies</a>
+  <a href="tel:3605620477" onclick="toggleMenu()">(360) 562-0477</a>
+  <a href="book.html" class="btn-primary" onclick="toggleMenu()">Book Now</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="section-label">Got Questions?</div>
+    <h1>FAQ<em> Answered.</em></h1>
+    <p>Everything you need to know before, during, and after your rental. Still have questions? Call or text us at <a href="tel:3605620477" style="color:var(--red);text-decoration:none">(360) 562-0477</a>.</p>
+  </div>
+</div>
+
+<div class="faq-wrap">
+
+  <!-- EQUIPMENT -->
+  <div class="faq-category">Equipment & Specs</div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">What ball hitch size do I need? <span class="faq-arrow">+</span></button>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        <p>All of our trailers require a <strong>2 5/16" ball hitch</strong>. This is the most common size for heavy-duty trailers. Make sure your hitch is rated for the trailer's GVWR before towing.</p>
+        <p>If you're unsure whether your vehicle is compatible, give us a call before booking and we'll help you figure it out.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">What plug/connector size do I need? <span class="faq-arrow">+</span></button>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        <p>All trailers use a <strong>7-way RV-style plug</strong>. Most modern trucks and SUVs with a factory tow package have this connector. If your vehicle only has a 4-pin flat connector, you'll need a 7-way adapter before pickup.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">What are the trailer empty weights? <span class="faq-arrow">+</span></button>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        <table class="spec-table">
+          <tr><th>Trailer</th><th>Empty Weight</th><th>Max Payload</th><th>GVWR</th></tr>
+          <tr><td>20ft Car Hauler</td><td>~2,800 lbs</td><td>7,200 lbs</td><td>10,000 lbs</td></tr>
+          <tr><td>14ft Dump Trailer</td><td>~3,500 lbs</td><td>10,500 lbs</td><td>14,000 lbs</td></tr>
+          <tr><td>24ft Enclosed</td><td>~3,700 lbs</td><td>6,300 lbs</td><td>10,000 lbs</td></tr>
+          <tr><td>22ft Deck Over Tilt</td><td>~4,800 lbs</td><td>9,200 lbs</td><td>14,000 lbs</td></tr>
+        </table>
+        <p>Always factor in the weight of your load and confirm your vehicle's tow rating before heading out.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">What truck do I need to tow your trailers? <span class="faq-arrow">+</span></button>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        <p>It depends on what you're hauling. Most modern <strong>half-ton trucks (F-150, Silverado 1500, Ram 1500)</strong> can handle the car hauler and enclosed trailer with a light to moderate load. For the dump trailer and deck over, a <strong>3/4-ton or 1-ton truck</strong> is strongly recommended, especially when loaded near capacity.</p>
+        <p>Your vehicle's owner manual will list its maximum tow rating. When in doubt, call us — we'd rather help you figure it out beforehand than have you stuck on the side of the road.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOOKING -->
+  <div class="faq-category">Booking & Process</div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">How does the contactless process work? <span class="faq-arrow">+</span></button>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        <p>Simple — no one needs to be there. Here's what happens:</p>
+        <p><strong>1.</strong> You book and pay online.<br>
+        <strong>2.</strong> You receive a rental agreement link by text — sign it digitally from your phone.<br>
+        <strong>3.</strong> On pickup day, you get a unique lock code by text.<br>
+        <strong>4.</strong> You go to our location, enter the code, complete a walk-around inspection on your phone, hook up the trailer, and go.<br>
+        <strong>5.</strong> Return is just as easy — drop it back, complete the return inspection, lock up, and you're done.</p>
+        <p>No waiting. No phone calls. No one you need to meet. It works the same at 9am or 9pm.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">What are the steps to book? <span class="faq-arrow">+</span></button>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        <p><strong>1. Choose your trailer</strong> — Browse the fleet and pick the one that fits your job.<br>
+        <strong>2. Select your dates</strong> — Pick your pickup and return dates. Daily and weekly rates available.<br>
+        <strong>3. Pay online</strong> — Secure checkout. You'll get an instant confirmation by text and email.<br>
+        <strong>4. Sign your rental agreement</strong> — A link is texted to you. Takes under a minute to sign digitally.<br>
+        <strong>5. Get your lock code</strong> — Sent automatically before your pickup time.<br>
+        <strong>6. Pick up & go</strong> — Complete the inspection, hook up, and hit the road.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">Where do I pick up the trailer? <span class="faq-arrow">+</span></button>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        <p>All trailers are located at <strong>Padden Storage — 11616 NE 79th St, Vancouver, WA 98662</strong>.</p>
+        <p>You'll receive the exact location details and your lock code by text before your pickup. <strong>Do not show up without an active reservation</strong> — the lot is access-controlled and your code will only work on your confirmed rental day.</p>
+        <p><a href="https://maps.google.com/?q=11616+NE+79th+St+Vancouver+WA+98662" target="_blank">Get directions →</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">Can I cancel or modify my reservation? <span class="faq-arrow">+</span></button>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        <p>Yes. You can cancel or modify your reservation <strong>up to 24 hours before your scheduled pickup</strong> with no additional fees. Changes made within 24 hours may be subject to a fee. Contact us directly at <a href="tel:3605620477">(360) 562-0477</a> and we'll take care of it.</p>
+        <p>We offer one free reschedule per booking. A fee applies on subsequent reschedules.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">What is your late return policy? <span class="faq-arrow">+</span></button>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        <p>There is a <strong>2-hour grace window</strong> on all returns — unless another rental is scheduled immediately after yours, in which case the grace window may not apply. A <strong>$30/hour late fee</strong> applies after the grace period. Late fees and grace windows are ultimately at the operator's discretion based on scheduling.</p>
+        <p>If you know you're going to be late, text or call us as early as possible at <a href="tel:3605620477">(360) 562-0477</a>. We'll always work with you when we can.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <div class="faq-category">Services & Delivery</div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">Do you offer delivery? <span class="faq-arrow">+</span></button>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        <p>Yes — in two ways:</p><p><strong>Dump Run Service:</strong> We drop the trailer, you fill it, we haul it away. $380 flat rate includes a 3-day window and 1 ton of dump fees. Free within 15 miles, $2/mile each way beyond that. <a href="services.html">Learn more →</a></p><p><strong>Standard trailer delivery:</strong> We can deliver any trailer to your location with proper advance notice, at our discretion. Delivery is charged at <strong>$2/mile</strong> or <strong>$50/hour during rush hour traffic</strong>, stacked on top of your rental fee. Contact us to arrange.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">How does the Junk Removal / Dump Run service work? <span class="faq-arrow">+</span></button>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        <p>It's simple — <strong>we drop it, you fill it, we haul it.</strong> Here's how it goes:</p>
+        <p><strong>1.</strong> You book the service online or by calling us.<br>
+        <strong>2.</strong> We deliver the dump trailer to your location.<br>
+        <strong>3.</strong> You have a <strong>3-day window</strong> to load it at your own pace — no rushing.<br>
+        <strong>4.</strong> Once you're done, we pick it up and handle the dump run for you.<br>
+        <strong>5.</strong> You pay only what the dump charges for any extra tonnage beyond the 1 ton included.</p>
+        <p><strong>$380 flat rate</strong> — includes delivery, pickup, and 1 ton of dump fees. Free delivery within 15 miles of Vancouver, WA. $2/mile or $50/hr during rush hour beyond that. <a href="services.html">See full details →</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">What's allowed in the trailer? Any restrictions? <span class="faq-arrow">+</span></button>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        <p>General rules that apply to all trailers:</p>
+        <p>— <strong>No hazardous materials</strong> — chemicals, flammables, bio-waste, or anything that requires special disposal.<br>
+        — <strong>No illegal items</strong> of any kind.<br>
+        — Loads must be <strong>properly secured</strong> before moving. Unsecured loads are a safety hazard and your responsibility.<br>
+        — Do not exceed the trailer's <strong>GVWR or payload capacity</strong>.</p>
+        <p><strong>Dump trailer specific:</strong> Asphalt, gravel, and <strong>concrete bags</strong> (not large chunks or slabs) are allowed but <strong>must not exceed the 8.5" max fill line</strong> (approximately 2.5 cubic yards). Overloading will result in damage charges.</p>
+        <p>When in doubt, text us and ask — we'd rather answer a question upfront than deal with a problem later.</p>
+      </div>
+    </div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">Do you offer discounts? <span class="faq-arrow">+</span></button>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        <p>Yes — we offer a <strong>10% discount for active military, veterans, police, fire, and EMS personnel</strong>. Just mention it at booking and we'll apply it to your reservation.</p>
+        <p>Weekly rates are also automatically applied when you book 7 or more days, which is cheaper than paying the daily rate.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">Is there a mileage limit? <span class="faq-arrow">+</span></button>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        <p><strong>No mileage limit.</strong> Take the trailer wherever you need to go — in-state or out of state. Just make sure it's returned by your agreed return date and time.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">What happens if something breaks or I have an issue? <span class="faq-arrow">+</span></button>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        <p>Call or text us immediately at <a href="tel:3605620477">(360) 562-0477</a>. If it's a <strong>maintenance or mechanical issue</strong> on our end, we've got you covered — that's on us.</p><p>However, renters are responsible for all other damages including but not limited to: <strong>negligence, overloading, tire blowouts, accidents, and misuse of equipment</strong>. Any damage beyond normal wear and tear is the renter's financial responsibility.</p><p>Pre-existing damage is documented in your walk-around inspection photos at pickup, protecting you from being charged for something that was already there.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="faq-category">Insurance & Protection</div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">What are the insurance requirements? <span class="faq-arrow">+</span></button>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        <p>You are required to have <strong>valid auto insurance</strong> that covers towing a trailer before renting. Most standard auto insurance policies extend to trailers — check with your provider to confirm your coverage.</p>
+        <p>509 Trailer Rentals is insured through our commercial insurance provider, <strong>MBA Insurance</strong>. You are still responsible for the trailer while it is in your possession. Any damage caused by negligence, overloading, accidents, or misuse is the renter's financial responsibility regardless of insurance status.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">Do you offer damage protection / insurance? <span class="faq-arrow">+</span></button>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        <p>Yes — through our commercial insurance provider <strong>MBA Insurance</strong>, we offer optional damage protection you can add to your rental at the time of booking:</p>
+        <table class="spec-table">
+          <tr><th>Trailer</th><th>Daily Rate</th><th>Coverage</th></tr>
+          <tr><td>20ft Car Hauler</td><td>$13/day</td><td>Damage protection</td></tr>
+          <tr><td>14ft Dump Trailer</td><td>$13/day</td><td>Damage protection</td></tr>
+          <tr><td>22ft Deck Over Tilt</td><td>$21/day</td><td>Damage protection</td></tr>
+          <tr><td>24ft Enclosed Trailer</td><td>$21/day</td><td>Damage protection</td></tr>
+        </table>
+        <p>Adding protection gives you peace of mind against accidental damage during your rental. It does <strong>not</strong> cover negligence, overloading, or intentional misuse. Insurance can be added during the booking process.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- RENTAL AGREEMENT SECTION -->
+  <div class="ra-section" id="rental-agreement">
+    <div class="ra-header">
+      <div class="section-label">Know Before You Sign</div>
+      <div class="ra-title">The Rental <em>Agreement</em></div>
+      <p class="ra-subtitle">Every rental includes a digital rental agreement. Here's exactly what it is, why it exists, and what to expect — step by step.</p>
+    </div>
+    <div class="ra-steps">
+      <div class="ra-step">
+        <div class="ra-step-num">01</div>
+        <div class="ra-step-content">
+          <h3>You Book & Pay</h3>
+          <p>Once your booking is confirmed and payment is processed, the system automatically generates your rental agreement. You'll receive a text with a secure link to sign it — usually within a few minutes of booking.</p>
+        </div>
+      </div>
+      <div class="ra-step">
+        <div class="ra-step-num">02</div>
+        <div class="ra-step-content">
+          <h3>Open the Link & Review</h3>
+          <p>The link takes you to a digital document that outlines your rental details — trailer, dates, rates, and key policies. It takes about 60 seconds to read through. We keep it plain language — no legal jargon designed to confuse you.</p>
+        </div>
+      </div>
+      <div class="ra-step">
+        <div class="ra-step-num">03</div>
+        <div class="ra-step-content">
+          <h3>Sign Digitally From Your Phone</h3>
+          <p>Sign with your finger or a typed signature directly on your phone. No printing, no scanning, no email attachments. Once signed, you'll get a copy sent to your email for your records.</p>
+        </div>
+      </div>
+      <div class="ra-step">
+        <div class="ra-step-num">04</div>
+        <div class="ra-step-content">
+          <h3>Complete Your Walk-Around Inspection</h3>
+          <p>At pickup, you'll complete a brief photo inspection on your phone — documenting the trailer's condition before you leave. This protects <strong>you</strong>. Any pre-existing damage is on record so you can't be held responsible for something that was already there.</p>
+        </div>
+      </div>
+      <div class="ra-step">
+        <div class="ra-step-num">05</div>
+        <div class="ra-step-content">
+          <h3>Return Inspection</h3>
+          <p>When you bring the trailer back, you'll complete a second quick inspection confirming it's in the same condition as when you picked it up. Lock it up, drop the key in the lockbox, and you're done. No waiting around.</p>
+        </div>
+      </div>
+    </div>
+    <div class="ra-why">
+      <div class="ra-why-title">Why Does the Rental Agreement Exist?</div>
+      <p>The rental agreement protects both of us. For you — it clearly documents what you're renting, the rates, and the policies so there are no surprises. For us — it establishes accountability and confirms you've agreed to use the equipment responsibly. It's not about distrust. It's about making sure everyone is on the same page from the start so the whole experience stays simple and fair.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="faq-cta">
+    <h2>Still Have Questions?</h2>
+    
+    <div class="cta-actions">
+      <a href="tel:3605620477" class="btn-primary">(360) 562-0477</a>
+      <a href="book.html" class="btn-secondary">Book a Trailer</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">509 <span style="color:var(--red)">TRAILERS</span></a>
+      <p>Contactless trailer rentals in Vancouver, WA. Book online, pick up the same day.</p>
+      <p style="margin-top:0.75rem;font-size:13px">11616 NE 79th St<br>Vancouver, WA 98662</p>
+    </div>
+    <div class="footer-links">
+      <h4>Our Fleet</h4>
+      <ul>
+        <li><a href="index.html#car-hauler">20ft Car Hauler</a></li>
+        <li><a href="index.html#dump-trailer">14ft Dump Trailer</a></li>
+        <li><a href="index.html#enclosed">24ft Enclosed Trailer</a></li>
+        <li><a href="index.html#deck-over">22ft Deck Over Tilt</a></li>
+        <li><a href="services.html">Junk Removal</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="policies.html">Rental Policies</a></li>
+        <li><a href="index.html#contact-us">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 509 Trailer Rentals LLC. All rights reserved.</p>
+    <p>Vancouver, WA</p>
+  </div>
+</footer>
+
+<script>
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const isOpen = answer.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.faq-answer.open').forEach(a => a.classList.remove('open'));
+    document.querySelectorAll('.faq-question.open').forEach(q => q.classList.remove('open'));
+    // Open clicked if it was closed
+    if (!isOpen) {
+      answer.classList.add('open');
+      btn.classList.add('open');
+    }
+  }
+  function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+  document.addEventListener('click',function(e){
+    const menu=document.getElementById('mobileMenu');
+    const hamburger=document.querySelector('.hamburger');
+    if(!menu.contains(e.target)&&!hamburger.contains(e.target))menu.classList.remove('open');
+  });
+</script>
+</body>
+</html>
