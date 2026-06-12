@@ -197,6 +197,12 @@
   @media(max-width:768px){
     .nav-links,.nav-phone{display:none}.nav-cta{display:none}.hamburger{display:flex}
     .trailers-grid{grid-template-columns:1fr}
+    .fleet-strip-desc{display:none}
+    .fleet-strip-item{padding:0.75rem 1rem;gap:0.6rem}
+    .fleet-strip-name{font-size:15px}
+    .fleet-strip-price{font-size:16px}
+    .fleet-strip-btn-info,.fleet-strip-btn-book{padding:6px 10px;font-size:11px}
+    .fleet-strip-num{font-size:12px;width:16px}
     .steps-grid{grid-template-columns:1fr 1fr}
     .step{border-right:none;border-bottom:1px solid rgba(255,255,255,0.06)}
     .contact-grid{grid-template-columns:1fr}
@@ -208,6 +214,15 @@
     .specs-list{grid-template-columns:1fr}
     .included-list{grid-template-columns:1fr}
   }
+
+  /* Fleet type line */
+  .fleet-type-line{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:0;margin-bottom:1.1rem}
+  .fleet-type-item{font-family:var(--font-display);font-size:15px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:rgba(255,255,255,0.7);padding:0 0.75rem;border-right:1px solid rgba(255,255,255,0.2)}
+  .fleet-type-item:last-child{border-right:none}
+  .fleet-type-item:first-child{padding-left:0}
+  .hero-sub{font-size:16px;color:var(--gray-200);line-height:1.6;max-width:540px;margin:0 auto 0.6rem}
+  .starting-at{font-size:13px;color:var(--gray-400);margin-bottom:2rem;letter-spacing:0.03em}
+  .starting-at strong{color:var(--red);font-family:var(--font-display);font-size:16px}
 </style>
 </head>
 <body>
@@ -245,9 +260,16 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-inner">
-    <div class="hero-badge">Vancouver, WA — Car Hauler · Dump · Enclosed · Deck Over</div>
+    <div class="hero-badge">Vancouver, WA</div>
     <h1>24/7 Trailer Rentals<em>Vancouver, WA</em></h1>
-    <p>Book online 24/7 — no phone call needed. Fully contactless self-serve pickup or contact-assisted with 12–24hr notice. Trailer Rentals Made Easy — Vancouver, WA.</p>
+    <div class="fleet-type-line">
+      <span class="fleet-type-item">Car Hauler</span>
+      <span class="fleet-type-item">Dump Trailer</span>
+      <span class="fleet-type-item">Deck Over Tilt</span>
+      <span class="fleet-type-item">Enclosed</span>
+    </div>
+    <p class="hero-sub">Book, pay &amp; pick up with no one on site. Fully contactless 24/7 — contact-assisted pickup available with 12–24hr notice. Serving Vancouver, WA &amp; the Portland metro.</p>
+    <p class="starting-at">4 trailers available — starting at <strong>$100/day</strong></p>
     <div class="hero-actions">
       <a href="#trailers" class="btn-primary">View Trailers</a>
       <a href="#how-it-works" class="btn-secondary">How It Works</a>
@@ -278,59 +300,6 @@
       <h2 class="section-title">Available Trailers</h2>
     </div>
     <div class="trailers-grid">
-
-      <!-- FLEET OVERVIEW STRIP — mobile only -->
-      <div class="fleet-strip" style="grid-column:1/-1">
-        <div class="fleet-strip-item">
-          <div class="fleet-strip-num">01</div>
-          <div class="fleet-strip-info">
-            <div class="fleet-strip-name">20ft Car Hauler</div>
-            <div class="fleet-strip-desc">10,000lb GVWR · 12K winch · (4) Cargo &amp; Tire Straps</div>
-          </div>
-          <div class="fleet-strip-price"><span>$100</span>/day</div>
-          <div class="fleet-strip-btns">
-            <a href="#car-hauler" class="fleet-strip-btn-info">Info</a>
-            <a href="book.html?trailer=car-hauler" class="fleet-strip-btn-book">Book</a>
-          </div>
-        </div>
-        <div class="fleet-strip-item">
-          <div class="fleet-strip-num">02</div>
-          <div class="fleet-strip-info">
-            <div class="fleet-strip-name">14ft Dump Trailer</div>
-            <div class="fleet-strip-desc">14,000lb GVWR · Hydraulic · 14ft · 3½ft walls</div>
-          </div>
-          <div class="fleet-strip-price"><span>$125</span>/day</div>
-          <div class="fleet-strip-btns">
-            <a href="#dump-trailer" class="fleet-strip-btn-info">Info</a>
-            <a href="book.html?trailer=dump-trailer" class="fleet-strip-btn-book">Book</a>
-          </div>
-        </div>
-        <div class="fleet-strip-item">
-          <div class="fleet-strip-num">03</div>
-          <div class="fleet-strip-info">
-            <div class="fleet-strip-name">22ft Deck Over</div>
-            <div class="fleet-strip-desc">14,000lb GVWR · Hydraulic tilt · Equipment ready · (6) Cargo &amp; (4) Tire Straps</div>
-          </div>
-          <div class="fleet-strip-price"><span>$145</span>/day</div>
-          <div class="fleet-strip-btns">
-            <a href="#deck-over" class="fleet-strip-btn-info">Info</a>
-            <a href="book.html?trailer=deck-over" class="fleet-strip-btn-book">Book</a>
-          </div>
-        </div>
-        <div class="fleet-strip-item">
-          <div class="fleet-strip-num">04</div>
-          <div class="fleet-strip-info">
-            <div class="fleet-strip-name">24ft Enclosed</div>
-            <div class="fleet-strip-desc">10,000lb GVWR · 12K winch · Race Ramps · E-Track · (10) Straps</div>
-          </div>
-          <div class="fleet-strip-price"><span>$150</span>/day</div>
-          <div class="fleet-strip-btns">
-            <a href="#enclosed" class="fleet-strip-btn-info">Info</a>
-            <a href="book.html?trailer=enclosed" class="fleet-strip-btn-book">Book</a>
-          </div>
-        </div>
-      </div>
-      <!-- END FLEET STRIP -->
       <div class="trailer-card" id="car-hauler">
         <div class="gallery" id="gallery-car">
           <div class="gallery-track" id="track-car">
@@ -677,6 +646,7 @@
         <div class="contact-label">Pickup Location</div>
         <div class="contact-value">11616 NE 79th St</div>
         <div class="contact-sub">Vancouver, WA 98662 · Padden Storage</div>
+        <div class="contact-sub" style="color:rgba(215,43,43,0.8);margin-top:4px">— Do not show up without an active reservation</div>
       </a>
     </div>
   </div>
