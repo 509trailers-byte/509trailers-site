@@ -178,11 +178,40 @@
 
   @media(max-width:768px){
     .nav-links,.nav-phone{display:none}.nav-cta{display:none}.hamburger{display:flex}
-    .trailers-grid{grid-template-columns:1fr}
+    .trailers-grid{grid-template-columns:1fr 1fr;gap:1px}
     .steps-grid{grid-template-columns:1fr 1fr}
     .step{border-right:none;border-bottom:1px solid rgba(255,255,255,0.06)}
     .contact-grid{grid-template-columns:1fr}
     .footer-inner{flex-direction:column}
+
+    /* Compact mobile cards */
+    .gallery{height:160px}
+    .gallery-img{height:160px}
+    .gallery-btn{width:28px;height:28px;font-size:16px}
+    .trailer-body{padding:0.85rem}
+    .trailer-status{font-size:10px;padding:3px 7px;margin-bottom:0.5rem}
+    .trailer-name{font-size:20px;margin-bottom:0.4rem}
+    .trailer-tags{display:none}
+    .trailer-desc{display:none}
+    .trailer-highlights{display:none}
+    .specs-block{display:none}
+    .included-wrap{display:none}
+    .trailer-pricing{padding:0.6rem 0.75rem;margin-bottom:0.75rem;gap:0.75rem}
+    .price-amount{font-size:20px}
+    .price-period{font-size:10px}
+    .btn-book{font-size:13px;padding:10px 12px}
+
+    /* Mobile details toggle */
+    .mobile-details-btn{width:100%;background:none;border:1px solid rgba(255,255,255,0.1);color:var(--gray-400);font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:8px;border-radius:4px;cursor:pointer;margin-bottom:0.75rem;transition:border-color 0.2s,color 0.2s}
+    .mobile-details-btn:hover{border-color:rgba(215,43,43,0.4);color:var(--red)}
+    .mobile-expandable{display:none}
+    .mobile-expandable.open{display:block}
+  }
+  @media(max-width:400px){
+    .trailers-grid{grid-template-columns:1fr}
+  }
+  @media(min-width:769px){
+    .mobile-details-btn{display:none}
   }
   @media(max-width:560px){
     .steps-grid{grid-template-columns:1fr}
@@ -279,6 +308,8 @@
         <div class="trailer-body">
           <div class="trailer-status status-available">Available Now</div>
           <div class="trailer-name">20ft Car Hauler</div>
+          <button class="mobile-details-btn" onclick="toggleMobileDetails(this)">Details ↓</button>
+          <div class="mobile-expandable">
           <div class="trailer-tags">
             <span class="spec-tag">20ft Deck</span>
             <span class="spec-tag">10,000 lb GVWR</span>
@@ -319,6 +350,7 @@
               </ul>
             </div>
           </div>
+          </div><!-- /mobile-expandable -->
           <div class="trailer-pricing">
             <div><div class="price-amount">$100</div><div class="price-period">Per Day</div></div>
             <div class="price-divider"></div>
@@ -347,6 +379,8 @@
         <div class="trailer-body">
           <div class="trailer-status status-available">Available Now</div>
           <div class="trailer-name">14ft Dump Trailer</div>
+          <button class="mobile-details-btn" onclick="toggleMobileDetails(this)">Details ↓</button>
+          <div class="mobile-expandable">
           <div class="trailer-tags">
             <span class="spec-tag">7x14 Bed</span>
             <span class="spec-tag">14,000 lb GVWR</span>
@@ -383,6 +417,7 @@
               </ul>
             </div>
           </div>
+          </div><!-- /mobile-expandable -->
           <div class="trailer-pricing">
             <div><div class="price-amount">$125</div><div class="price-period">Per Day</div></div>
             <div class="price-divider"></div>
@@ -411,6 +446,8 @@
         <div class="trailer-body">
           <div class="trailer-status status-available">Available Now</div>
           <div class="trailer-name">24ft Enclosed Trailer</div>
+          <button class="mobile-details-btn" onclick="toggleMobileDetails(this)">Details ↓</button>
+          <div class="mobile-expandable">
           <div class="trailer-tags">
             <span class="spec-tag">24ft Floor</span>
             <span class="spec-tag">10,000 lb GVWR</span>
@@ -453,6 +490,7 @@
               </ul>
             </div>
           </div>
+          </div><!-- /mobile-expandable -->
           <div class="trailer-pricing">
             <div><div class="price-amount">$150</div><div class="price-period">Per Day</div></div>
             <div class="price-divider"></div>
@@ -481,6 +519,8 @@
         <div class="trailer-body">
           <div class="trailer-status status-available">Available Now</div>
           <div class="trailer-name">22ft Deck Over Tilt</div>
+          <button class="mobile-details-btn" onclick="toggleMobileDetails(this)">Details ↓</button>
+          <div class="mobile-expandable">
           <div class="trailer-tags">
             <span class="spec-tag">8.5x22ft Deck</span>
             <span class="spec-tag">14,000 lb GVWR</span>
@@ -518,6 +558,7 @@
               </ul>
             </div>
           </div>
+          </div><!-- /mobile-expandable -->
           <div class="trailer-pricing">
             <div><div class="price-amount">$145</div><div class="price-period">Per Day</div></div>
             <div class="price-divider"></div>
@@ -536,6 +577,8 @@
         <div class="trailer-body">
           <div class="trailer-status status-coming">Coming Soon</div>
           <div class="trailer-name">Car Hauler Template</div>
+          <button class="mobile-details-btn" onclick="toggleMobileDetails(this)">Details ↓</button>
+          <div class="mobile-expandable">
           <div class="trailer-tags">
             <span class="spec-tag">Open Deck</span>
             <span class="spec-tag">Placeholder</span>
@@ -546,6 +589,7 @@
             <div class="highlight-item"><div class="highlight-val">—</div><div class="highlight-label">Length</div></div>
             <div class="highlight-item"><div class="highlight-val">—</div><div class="highlight-label">GVWR</div></div>
           </div>
+          </div><!-- /mobile-expandable -->
           <div class="trailer-pricing">
             <div><div class="price-amount" style="font-size:20px;color:var(--gray-400)">Coming Soon</div><div class="price-period">Pricing TBD</div></div>
           </div>
@@ -669,6 +713,13 @@
     el.addEventListener('touchstart',e=>{startX=e.touches[0].clientX},{passive:true});
     el.addEventListener('touchend',e=>{const diff=startX-e.changedTouches[0].clientX;if(Math.abs(diff)>40)slide(id,diff>0?1:-1)});
   });
+  function toggleMobileDetails(btn) {
+    const panel = btn.nextElementSibling;
+    const open = panel.classList.toggle('open');
+    btn.textContent = open ? 'Details ↑' : 'Details ↓';
+    btn.style.color = open ? 'var(--red)' : '';
+    btn.style.borderColor = open ? 'rgba(215,43,43,0.4)' : '';
+  }
   function toggleIncluded(btn){
     const panel=btn.nextElementSibling;
     const open=panel.classList.toggle('open');
