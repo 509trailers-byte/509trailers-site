@@ -73,7 +73,8 @@
   .total-line{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;color:var(--gray-200);padding:0.35rem 0;border-bottom:1px solid rgba(255,255,255,0.04)}
   .total-line:last-child{border-bottom:none;padding-top:0.75rem;margin-top:0.25rem}
   .total-line.grand{font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--white)}
-  .total-line.grand span:last-child{color:var(--red)}
+  .total-line.grand span:last-child{color:var(--white)}
+  .total-line.fee{color:var(--gray-400);font-size:13px}
   .total-empty{font-size:13px;color:var(--gray-400);text-align:center;padding:0.5rem 0}
 
   /* PAYMENT PLACEHOLDER */
@@ -328,11 +329,21 @@
     if (remDays > 0) lines.push([`${remDays} day${remDays>1?'s':''}`, `$${(remDays*trailer.day).toLocaleString()}`]);
 
     let html = lines.map(([l,v])=>`<div class="total-line"><span>${l} × ${l.includes('week') ? '$'+trailer.week+'/wk' : '$'+trailer.day+'/day'}</span><span>${v}</span></div>`).join('');
-    html += `<div class="total-line grand"><span>Total</span><span>$${total.toLocaleString()}</span></div>`;
+
+    const tax = Math.round(total * 0.088 * 100) / 100;
+    const processing = Math.round(total * 0.03 * 100) / 100;
+    const grandTotal = Math.round((total + tax + processing) * 100) / 100;
+
+    html += `<div class="total-line fee"><span>WA Sales Tax (8.8%)</span><span>$${tax.toFixed(2)}</span></div>`;
+    html += `<div class="total-line fee"><span>Processing Fee (3%)</span><span>$${processing.toFixed(2)}</span></div>`;
+    html += `<div class="total-line grand"><span>Total</span><span>$${grandTotal.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</span></div>`;
     document.getElementById('total-content').innerHTML = html;
 
     // Store for payment page
-    window._bookingTotal = total;
+    window._bookingTotal = grandTotal;
+    window._bookingSubtotal = total;
+    window._bookingTax = tax;
+    window._bookingProcessing = processing;
     window._bookingDays = days;
   }
 
@@ -369,7 +380,10 @@
       <div class="conf-line"><span class="conf-label">Return</span><span class="conf-value">${fmt(r)}</span></div>
       <div class="conf-line"><span class="conf-label">Return Time</span><span class="conf-value">${fmtT(rt)}</span></div>
       <div class="conf-line"><span class="conf-label">Location</span><span class="conf-value">11616 NE 79th St, Vancouver WA</span></div>
-      <div class="conf-line"><span class="conf-label">Total</span><span class="conf-value" style="color:var(--red);font-family:var(--font-display);font-size:18px;font-weight:800">$${(window._bookingTotal||0).toLocaleString()}</span></div>
+      <div class="conf-line"><span class="conf-label">Subtotal</span><span class="conf-value">$${(window._bookingSubtotal||0).toFixed(2)}</span></div>
+      <div class="conf-line"><span class="conf-label">WA Sales Tax (8.8%)</span><span class="conf-value">$${(window._bookingTax||0).toFixed(2)}</span></div>
+      <div class="conf-line"><span class="conf-label">Processing Fee (3%)</span><span class="conf-value">$${(window._bookingProcessing||0).toFixed(2)}</span></div>
+      <div class="conf-line"><span class="conf-label">Total</span><span class="conf-value" style="color:var(--white);font-family:var(--font-display);font-size:18px;font-weight:800">$${(window._bookingTotal||0).toFixed(2)}</span></div>
     `;
   }
 
