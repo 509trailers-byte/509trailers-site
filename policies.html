@@ -3,46 +3,322 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rental Policies — 509 Trailer Rentals</title>
+<meta name="description" content="Rental policies for 509 Trailer Rentals in Vancouver, WA. Cancellation, damage, insurance, late returns, prohibited items, and more.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{--red:#D72B2B;--red-light:#F03A3A;--black:#0E0E0E;--gray-900:#1A1A1A;--gray-400:#888888;--gray-200:#CCCCCC;--white:#FFFFFF;--font-display:'Barlow Condensed',sans-serif;--font-body:'Barlow',sans-serif;}
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:var(--font-body);background:var(--black);color:var(--white)}
+  :root{--red:#D72B2B;--red-dark:#A81E1E;--red-light:#F03A3A;--black:#0E0E0E;--gray-900:#1A1A1A;--gray-800:#242424;--gray-400:#888;--gray-200:#CCC;--white:#FFF;--font-display:'Barlow Condensed',sans-serif;--font-body:'Barlow',sans-serif;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font-body);background:var(--black);color:var(--white);overflow-x:hidden}
+
   nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px;background:rgba(14,14,14,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,0.06)}
-  .nav-logo{font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--white);text-decoration:none}
+  .nav-logo{font-family:var(--font-display);font-size:22px;font-weight:800;letter-spacing:0.02em;color:var(--white);text-decoration:none}
   .nav-logo span{color:var(--red)}
-  .nav-cta{background:var(--red);color:var(--white);font-family:var(--font-display);font-size:15px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:8px 20px;border-radius:4px;text-decoration:none}
-  .placeholder{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:100px 2rem}
-  .placeholder-inner{max-width:500px}
+  .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+  .nav-links a{font-size:14px;font-weight:500;color:var(--gray-200);text-decoration:none;letter-spacing:0.03em;transition:color 0.2s}
+  .nav-links a:hover{color:var(--white)}
+  .nav-right{display:flex;align-items:center;gap:1.25rem}
+  .nav-phone{font-family:var(--font-display);font-size:17px;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:0.04em;display:flex;align-items:center;gap:6px}
+  .nav-phone::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:#2ECC71;box-shadow:0 0 0 2px rgba(46,204,113,0.25)}
+  .nav-cta{background:var(--red);color:var(--white);font-family:var(--font-display);font-size:15px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:8px 20px;border-radius:4px;text-decoration:none;transition:background 0.2s}
+  .nav-cta:hover{background:var(--red-light)}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+  .hamburger span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px}
+  .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--black);border-bottom:1px solid rgba(255,255,255,0.08);padding:1.5rem 2rem;z-index:99;flex-direction:column;gap:1.25rem}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{font-size:16px;color:var(--gray-200);text-decoration:none;font-weight:500}
+  .mobile-menu a.btn-primary{text-align:center;display:block;padding:12px;background:var(--red);color:var(--white);font-family:var(--font-display);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;border-radius:4px}
+
+  .page-hero{padding:130px 2rem 70px;text-align:center;position:relative;overflow:hidden;background:var(--gray-900);border-bottom:1px solid rgba(255,255,255,0.06)}
+  .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 100%,rgba(215,43,43,0.1) 0%,transparent 70%)}
+  .page-hero-inner{position:relative;z-index:2;max-width:700px;margin:0 auto}
   .section-label{font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--red);margin-bottom:0.75rem}
-  h1{font-family:var(--font-display);font-size:clamp(40px,7vw,72px);font-weight:800;text-transform:uppercase;line-height:0.95;margin-bottom:1.25rem}
-  p{font-size:16px;color:var(--gray-400);line-height:1.6;margin-bottom:2rem}
-  .btn{display:inline-flex;background:var(--red);color:var(--white);font-family:var(--font-display);font-size:16px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:12px 28px;border-radius:4px;text-decoration:none}
+  .page-hero h1{font-family:var(--font-display);font-size:clamp(48px,8vw,80px);font-weight:800;text-transform:uppercase;letter-spacing:0.01em;line-height:0.95;margin-bottom:1.25rem}
+  .page-hero h1 em{font-style:normal;color:var(--red)}
+  .page-hero p{font-size:16px;color:var(--gray-200);line-height:1.7;max-width:500px;margin:0 auto}
+
+  .policies-wrap{max-width:860px;margin:0 auto;padding:70px 2rem 80px}
+  .last-updated{font-size:12px;color:var(--gray-400);margin-bottom:3rem}
+
+  /* POLICY CARD */
+  .policy-card{background:var(--gray-900);border-top:3px solid var(--red);border-radius:0 0 4px 4px;padding:2rem;margin-bottom:1.25rem}
+  .policy-card-header{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem}
+  .policy-card-icon{font-size:22px;line-height:1;flex-shrink:0}
+  .policy-card-title{font-family:var(--font-display);font-size:24px;font-weight:800;text-transform:uppercase;letter-spacing:0.04em;color:var(--white);line-height:1}
+  .policy-list{list-style:none;display:flex;flex-direction:column;gap:0.6rem}
+  .policy-list li{font-size:14.5px;color:#BBBBBB;line-height:1.7;padding-left:1.25rem;position:relative}
+  .policy-list li::before{content:'—';color:rgba(215,43,43,0.6);position:absolute;left:0;font-size:11px;top:4px}
+  .policy-list li strong{color:var(--white)}
+  .policy-list li a{color:var(--red);text-decoration:none}
+  .policy-list li a:hover{text-decoration:underline}
+  .policy-note{margin-top:1rem;padding:0.85rem 1rem;background:rgba(215,43,43,0.06);border-left:3px solid rgba(215,43,43,0.35);border-radius:0 3px 3px 0;font-size:13px;color:#BBBBBB;line-height:1.65}
+  .policy-note strong{color:var(--white)}
+
+  /* FEE TABLE */
+  .fee-table{width:100%;border-collapse:collapse;margin-top:0.85rem;font-size:14px}
+  .fee-table th{font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray-400);padding:0.5rem 0.75rem;text-align:left;border-bottom:1px solid rgba(255,255,255,0.08)}
+  .fee-table td{padding:0.55rem 0.75rem;color:#BBBBBB;border-bottom:1px solid rgba(255,255,255,0.04)}
+  .fee-table tr:last-child td{border-bottom:none}
+  .fee-table td:first-child{color:var(--white);font-weight:500}
+
+  /* CTA */
+  .policies-cta{background:var(--gray-900);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:2.5rem;text-align:center;margin-top:3rem}
+  .policies-cta h2{font-family:var(--font-display);font-size:clamp(28px,4vw,40px);font-weight:800;text-transform:uppercase;letter-spacing:0.02em;margin-bottom:0.5rem}
+  .policies-cta p{font-size:15px;color:#BBBBBB;margin-bottom:1.75rem;line-height:1.6}
+  .cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:var(--white);font-family:var(--font-display);font-size:17px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:14px 32px;border-radius:4px;text-decoration:none;transition:background 0.2s}
+  .btn-primary:hover{background:var(--red-light)}
+  .btn-secondary{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--white);font-family:var(--font-display);font-size:17px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:14px 32px;border-radius:4px;border:1px solid rgba(255,255,255,0.2);text-decoration:none;transition:border-color 0.2s}
+  .btn-secondary:hover{border-color:rgba(255,255,255,0.5)}
+
+  footer{background:var(--gray-900);border-top:1px solid rgba(255,255,255,0.06);padding:3rem 2rem}
+  .footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:2rem}
+  .footer-brand .nav-logo{font-size:24px;display:block;margin-bottom:0.5rem}
+  .footer-brand p{font-size:13px;color:var(--gray-400);line-height:1.6;max-width:260px}
+  .footer-links h4{font-family:var(--font-display);font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-400);margin-bottom:0.75rem}
+  .footer-links ul{list-style:none}
+  .footer-links li{margin-bottom:0.5rem}
+  .footer-links a{font-size:14px;color:var(--gray-200);text-decoration:none;transition:color 0.2s}
+  .footer-links a:hover{color:var(--white)}
+  .footer-bottom{max-width:1200px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem}
+  .footer-bottom p{font-size:13px;color:var(--gray-400)}
+
+  @media(max-width:768px){
+    .nav-links,.nav-phone{display:none}.nav-cta{display:none}.hamburger{display:flex}
+    .footer-inner{flex-direction:column}
+    .policy-card{padding:1.5rem}
+  }
 </style>
 </head>
 <body>
+
 <nav>
   <a href="index.html" class="nav-logo">509 <span>TRAILERS</span></a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="index.html#trailers">Trailers</a></li>
-    <li><a href="services.html">Services</a></li>
+    <li><a href="services.html">Junk Removal</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="faq.html">FAQ</a></li>
   </ul>
-  <div style="display:flex;align-items:center;gap:1.25rem">
-    <a href="tel:3605620477" style="font-family:var(--font-display);font-size:17px;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:0.04em;display:flex;align-items:center;gap:6px">(360) 562-0477</a>
-    <a href="book.html" style="background:var(--red);color:var(--white);font-family:var(--font-display);font-size:15px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:8px 20px;border-radius:4px;text-decoration:none">Book Now</a>
+  <div class="nav-right">
+    <a href="tel:3605620477" class="nav-phone">(360) 562-0477</a>
+    <a href="book.html" class="nav-cta">Book Now</a>
   </div>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
 </nav>
-<div class="placeholder">
-  <div class="placeholder-inner">
-    <div class="section-label">Coming Soon</div>
-    <h1>Page Under<br>Construction</h1>
-    <p>This page is being built. Check back soon or head back to the homepage.</p>
-    <a href="index.html" class="btn">Back to Home</a>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMenu()">Home</a>
+  <a href="index.html#trailers" onclick="toggleMenu()">Trailers</a>
+  <a href="services.html" onclick="toggleMenu()">Junk Removal</a>
+  <a href="about.html" onclick="toggleMenu()">About</a>
+  <a href="faq.html" onclick="toggleMenu()">FAQ</a>
+  <a href="testimonials.html" onclick="toggleMenu()">Testimonials</a>
+  <a href="policies.html" onclick="toggleMenu()">Policies</a>
+  <a href="tel:3605620477" onclick="toggleMenu()">(360) 562-0477</a>
+  <a href="book.html" class="btn-primary" onclick="toggleMenu()">Book Now</a>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="section-label">Know Before You Rent</div>
+    <h1>Rental <em>Policies</em></h1>
+    <p>Clear and straightforward. No surprises — just everything you need to know before, during, and after your rental.</p>
   </div>
 </div>
+
+<div class="policies-wrap">
+
+  <div class="last-updated">Last updated June 2026 &nbsp;·&nbsp; Questions? <a href="tel:3605620477" style="color:var(--red);text-decoration:none">(360) 562-0477</a></div>
+
+  <!-- BOOKING & CANCELLATION -->
+  <div class="policy-card">
+    <div class="policy-card-header">
+      <span class="policy-card-icon">📅</span>
+      <div class="policy-card-title">Booking & Cancellation</div>
+    </div>
+    <ul class="policy-list">
+      <li>Cancel or modify your reservation <strong>up to 24 hours before pickup</strong> — no fee.</li>
+      <li>Each booking includes <strong>one free reschedule</strong>. A fee applies on any subsequent reschedule.</li>
+      <li>Longer bookings get better rates — <strong>weekly rates auto-apply at 7+ days</strong>.</li>
+    </ul>
+  </div>
+
+  <!-- LATE RETURNS -->
+  <div class="policy-card">
+    <div class="policy-card-header">
+      <span class="policy-card-icon">⏱️</span>
+      <div class="policy-card-title">Late Returns</div>
+    </div>
+    <ul class="policy-list">
+      <li>A <strong>2-hour grace window</strong> applies to all returns — unless another rental is scheduled immediately after, in which case the grace window may not apply.</li>
+      <li><strong>$30/hour</strong> late fee applies after the grace period.</li>
+      <li>Grace window and late fees are at <strong>operator's discretion</strong> based on scheduling. Text or call us early if you're running late — <a href="tel:3605620477">(360) 562-0477</a>.</li>
+    </ul>
+  </div>
+
+  <!-- PICKUP & ACCESS -->
+  <div class="policy-card">
+    <div class="policy-card-header">
+      <span class="policy-card-icon">🔑</span>
+      <div class="policy-card-title">Pickup & Access</div>
+    </div>
+    <ul class="policy-list">
+      <li><strong>An active reservation is required.</strong> Do not show up without one — the lot is access-controlled and your code only works on your confirmed rental day.</li>
+      <li>Pickup is <strong>fully contactless and available 24/7</strong>.</li>
+      <li><strong>Contact-assisted pickup</strong> is available with 12–24 hours advance notice.</li>
+      <li>A <strong>$50 fee</strong> applies for improper parking or failure to return the trailer to its designated spot.</li>
+    </ul>
+  </div>
+
+  <!-- DAMAGE & LIABILITY -->
+  <div class="policy-card">
+    <div class="policy-card-header">
+      <span class="policy-card-icon">⚠️</span>
+      <div class="policy-card-title">Damage & Liability</div>
+    </div>
+    <ul class="policy-list">
+      <li><strong>Maintenance and mechanical failures</strong> through normal use are on us.</li>
+      <li>Renters are financially responsible for all damage caused by <strong>negligence, overloading, tire blowouts, accidents, or misuse</strong> of equipment.</li>
+      <li>Pre-existing damage is <strong>documented via walk-around inspection photos</strong> at pickup — you won't be charged for something that was already there.</li>
+    </ul>
+    <div class="policy-note"><strong>Note:</strong> Contact us immediately in the event of any accident or damage at <a href="tel:3605620477" style="color:var(--red)">(360) 562-0477</a>.</div>
+  </div>
+
+  <!-- INSURANCE -->
+  <div class="policy-card">
+    <div class="policy-card-header">
+      <span class="policy-card-icon">🛡️</span>
+      <div class="policy-card-title">Insurance</div>
+    </div>
+    <ul class="policy-list">
+      <li><strong>Valid auto insurance</strong> that covers towing a trailer is required. Confirm your coverage with your provider before pickup.</li>
+      <li>Optional <strong>damage protection through MBA Insurance</strong> is available to add at booking:</li>
+    </ul>
+    <table class="fee-table">
+      <tr><th>Trailer</th><th>Protection Rate</th></tr>
+      <tr><td>20ft Car Hauler</td><td>$13/day</td></tr>
+      <tr><td>14ft Dump Trailer</td><td>$13/day</td></tr>
+      <tr><td>22ft Deck Over Tilt</td><td>$21/day</td></tr>
+      <tr><td>24ft Enclosed Trailer</td><td>$21/day</td></tr>
+    </table>
+    <div class="policy-note">Damage protection does <strong>not</strong> cover negligence, overloading, or intentional misuse.</div>
+  </div>
+
+  <!-- PROHIBITED -->
+  <div class="policy-card">
+    <div class="policy-card-header">
+      <span class="policy-card-icon">🚫</span>
+      <div class="policy-card-title">Prohibited</div>
+    </div>
+    <ul class="policy-list">
+      <li><strong>No hazardous materials</strong> — chemicals, flammables, bio-waste, or anything requiring special disposal.</li>
+      <li><strong>No illegal items</strong> of any kind.</li>
+      <li>No large <strong>concrete chunks or slabs</strong> in the dump trailer. Concrete bags are permitted.</li>
+      <li>Dump trailer must <strong>not exceed the 8.5" max fill line</strong> (~2.5 cubic yards) for dense material such as asphalt, gravel, or concrete bags.</li>
+      <li><strong>Do not exceed</strong> the trailer's GVWR or payload capacity. Overloading is the renter's liability.</li>
+    </ul>
+  </div>
+
+  <!-- DELIVERY -->
+  <div class="policy-card">
+    <div class="policy-card-header">
+      <span class="policy-card-icon">🚛</span>
+      <div class="policy-card-title">Delivery</div>
+    </div>
+    <ul class="policy-list">
+      <li><strong>Standard trailer delivery</strong> available within 100 miles of Vancouver, WA with advance notice and at operator's discretion. Charged at <strong>$2/mile</strong> or <strong>$50/hour during rush hour</strong> traffic, on top of the rental fee.</li>
+      <li><strong>Junk Removal / Dump Run:</strong> Free delivery within 15 miles of Vancouver, WA. <strong>$2/mile each way</strong> beyond that. <a href="services.html">See full details →</a></li>
+    </ul>
+  </div>
+
+  <!-- DISCOUNTS -->
+  <div class="policy-card">
+    <div class="policy-card-header">
+      <span class="policy-card-icon">🎖️</span>
+      <div class="policy-card-title">Discounts</div>
+    </div>
+    <ul class="policy-list">
+      <li><strong>10% discount</strong> for active duty military, veterans, police, fire, and EMS personnel. Mention it at booking.</li>
+    </ul>
+  </div>
+
+  <!-- EQUIPMENT REQUIREMENTS -->
+  <div class="policy-card">
+    <div class="policy-card-header">
+      <span class="policy-card-icon">🔧</span>
+      <div class="policy-card-title">Equipment Requirements</div>
+    </div>
+    <ul class="policy-list">
+      <li>All trailers require a <strong>2 5/16" ball hitch</strong> rated for the trailer's GVWR.</li>
+      <li>All trailers require a <strong>7-way RV-style plug</strong>. A 7-way adapter is required if your vehicle only has a 4-pin connector.</li>
+      <li>It is the renter's responsibility to confirm their vehicle's <strong>tow rating</strong> before booking.</li>
+    </ul>
+  </div>
+
+  <!-- CTA -->
+  <div class="policies-cta">
+    <h2>Questions About Our Policies?</h2>
+    <p>We keep it simple. If something isn't clear, just reach out.</p>
+    <div class="cta-actions">
+      <a href="tel:3605620477" class="btn-primary">(360) 562-0477</a>
+      <a href="faq.html" class="btn-secondary">View FAQ</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">509 <span style="color:var(--red)">TRAILERS</span></a>
+      <p>Contactless trailer rentals in Vancouver, WA. Book online, pick up the same day.</p>
+      <p style="margin-top:0.75rem;font-size:13px">11616 NE 79th St<br>Vancouver, WA 98662</p>
+    </div>
+    <div class="footer-links">
+      <h4>Our Fleet</h4>
+      <ul>
+        <li><a href="index.html#car-hauler">20ft Car Hauler</a></li>
+        <li><a href="index.html#dump-trailer">14ft Dump Trailer</a></li>
+        <li><a href="index.html#enclosed">24ft Enclosed Trailer</a></li>
+        <li><a href="index.html#deck-over">22ft Deck Over Tilt</a></li>
+        <li><a href="services.html">Junk Removal</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="policies.html">Rental Policies</a></li>
+        <li><a href="index.html#contact-us">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 509 Trailer Rentals LLC. All rights reserved.</p>
+    <p>Vancouver, WA</p>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+  document.addEventListener('click',function(e){
+    const menu=document.getElementById('mobileMenu');
+    const hamburger=document.querySelector('.hamburger');
+    if(!menu.contains(e.target)&&!hamburger.contains(e.target))menu.classList.remove('open');
+  });
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.opacity='1';entry.target.style.transform='translateY(0)'}});
+  },{threshold:0.1});
+  document.querySelectorAll('.policy-card').forEach(el=>{
+    el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='opacity 0.5s ease,transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
 </body>
 </html>
