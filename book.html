@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book a Trailer — 509 Trailer Rentals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--red:#D72B2B;--red-dark:#A81E1E;--red-light:#F03A3A;--black:#0E0E0E;--gray-900:#1A1A1A;--gray-800:#242424;--gray-700:#333;--gray-400:#888;--gray-200:#CCC;--white:#FFF;--font-display:'Barlow Condensed',sans-serif;--font-body:'Barlow',sans-serif;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font-body);background:var(--black);color:var(--white);min-height:100vh}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px;background:rgba(14,14,14,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,0.06)}
+  .nav-logo{font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--white);text-decoration:none;letter-spacing:0.02em}
+  .nav-logo span{color:var(--red)}
+  .nav-back{font-size:13px;font-weight:500;color:var(--gray-400);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color 0.2s}
+  .nav-back:hover{color:var(--white)}
+
+  /* LAYOUT */
+  .book-wrap{max-width:680px;margin:0 auto;padding:100px 2rem 60px}
+
+  /* PROGRESS */
+  .progress{display:flex;align-items:center;gap:0;margin-bottom:3rem}
+  .progress-step{display:flex;align-items:center;gap:0.6rem;flex:1}
+  .progress-step:last-child{flex:none}
+  .step-circle{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:15px;font-weight:800;flex-shrink:0;transition:all 0.3s;border:2px solid rgba(255,255,255,0.1);color:var(--gray-400)}
+  .step-circle.active{background:var(--red);border-color:var(--red);color:var(--white)}
+  .step-circle.done{background:rgba(46,204,113,0.15);border-color:rgba(46,204,113,0.4);color:#2ECC71}
+  .step-circle.done::after{content:'✓'}
+  .step-circle.done span{display:none}
+  .step-label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--gray-400);white-space:nowrap}
+  .step-label.active{color:var(--white)}
+  .step-label.done{color:#2ECC71}
+  .progress-line{flex:1;height:1px;background:rgba(255,255,255,0.08);margin:0 0.5rem}
+  .progress-line.done{background:rgba(46,204,113,0.3)}
+
+  /* TRAILER BADGE */
+  .trailer-badge{display:flex;align-items:center;gap:1rem;background:var(--gray-900);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:1rem 1.25rem;margin-bottom:2rem}
+  .trailer-badge-icon{width:40px;height:40px;background:rgba(215,43,43,0.12);border:1px solid rgba(215,43,43,0.25);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+  .trailer-badge-name{font-family:var(--font-display);font-size:20px;font-weight:800;text-transform:uppercase;letter-spacing:0.04em;color:var(--white);line-height:1}
+  .trailer-badge-rate{font-size:13px;color:var(--gray-400);margin-top:3px}
+  .trailer-badge-rate strong{color:var(--red)}
+
+  /* STEP PANELS */
+  .step-panel{display:none;animation:fadeUp 0.3s ease both}
+  .step-panel.active{display:block}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+  .step-title{font-family:var(--font-display);font-size:clamp(28px,5vw,40px);font-weight:800;text-transform:uppercase;letter-spacing:0.02em;margin-bottom:0.4rem;line-height:1}
+  .step-sub{font-size:14px;color:var(--gray-400);margin-bottom:2rem;line-height:1.5}
+
+  /* FORM */
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .form-grid.single{grid-template-columns:1fr}
+  .form-group{display:flex;flex-direction:column;gap:0.4rem}
+  .form-group.full{grid-column:1/-1}
+  label{font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray-400)}
+  input,select{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:0.8rem 1rem;font-size:15px;color:var(--white);font-family:var(--font-body);outline:none;transition:border-color 0.2s;width:100%;-webkit-appearance:none;color-scheme:dark}
+  input:focus,select:focus{border-color:rgba(215,43,43,0.5)}
+  input::placeholder{color:var(--gray-400)}
+  select option{background:var(--gray-900)}
+
+  /* DATE ROW */
+  .date-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+  .time-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+
+  /* TOTAL CARD */
+  .total-card{background:var(--gray-900);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:1.25rem;margin-bottom:1.5rem}
+  .total-card-title{font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray-400);margin-bottom:1rem}
+  .total-line{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;color:var(--gray-200);padding:0.35rem 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+  .total-line:last-child{border-bottom:none;padding-top:0.75rem;margin-top:0.25rem}
+  .total-line.grand{font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--white)}
+  .total-line.grand span:last-child{color:var(--red)}
+  .total-empty{font-size:13px;color:var(--gray-400);text-align:center;padding:0.5rem 0}
+
+  /* PAYMENT PLACEHOLDER */
+  .payment-placeholder{background:var(--gray-900);border:1px dashed rgba(255,255,255,0.12);border-radius:4px;padding:2.5rem;text-align:center;margin-bottom:1.5rem}
+  .payment-placeholder-icon{font-size:32px;margin-bottom:0.75rem}
+  .payment-placeholder h3{font-family:var(--font-display);font-size:20px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;color:var(--white);margin-bottom:0.4rem}
+  .payment-placeholder p{font-size:13px;color:var(--gray-400);line-height:1.6}
+
+  /* CONFIRMATION */
+  .confirmation{text-align:center;padding:2rem 0}
+  .confirmation-icon{font-size:52px;margin-bottom:1rem}
+  .confirmation h2{font-family:var(--font-display);font-size:clamp(32px,6vw,52px);font-weight:800;text-transform:uppercase;letter-spacing:0.02em;margin-bottom:0.75rem}
+  .confirmation p{font-size:15px;color:var(--gray-200);line-height:1.6;max-width:460px;margin:0 auto 0.5rem}
+  .confirmation-details{background:var(--gray-900);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:1.25rem;margin:2rem 0;text-align:left}
+  .conf-line{display:flex;justify-content:space-between;font-size:14px;padding:0.4rem 0;border-bottom:1px solid rgba(255,255,255,0.05)}
+  .conf-line:last-child{border-bottom:none}
+  .conf-label{color:var(--gray-400)}
+  .conf-value{color:var(--white);font-weight:500}
+
+  /* BUTTONS */
+  .btn-next{width:100%;background:var(--red);color:var(--white);font-family:var(--font-display);font-size:17px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:14px 32px;border-radius:4px;border:none;cursor:pointer;transition:background 0.2s,transform 0.15s;margin-top:0.5rem}
+  .btn-next:hover{background:var(--red-light);transform:translateY(-1px)}
+  .btn-next:disabled{background:var(--gray-700);cursor:not-allowed;transform:none}
+  .btn-back{background:none;border:1px solid rgba(255,255,255,0.12);color:var(--gray-200);font-family:var(--font-display);font-size:15px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:11px 24px;border-radius:4px;cursor:pointer;transition:border-color 0.2s;margin-right:0.75rem}
+  .btn-back:hover{border-color:rgba(255,255,255,0.3)}
+  .btn-row{display:flex;align-items:center;margin-top:1rem}
+  .btn-home{display:inline-flex;align-items:center;gap:6px;background:transparent;color:var(--gray-200);font-family:var(--font-display);font-size:15px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:11px 24px;border-radius:4px;border:1px solid rgba(255,255,255,0.12);text-decoration:none;transition:border-color 0.2s;margin-top:1rem}
+  .btn-home:hover{border-color:rgba(255,255,255,0.3)}
+
+  /* ERROR */
+  .field-error{font-size:12px;color:#FF6B6B;margin-top:3px}
+  input.error,select.error{border-color:rgba(215,43,43,0.6)}
+
+  @media(max-width:560px){
+    .form-grid{grid-template-columns:1fr}
+    .date-row,.time-row{grid-template-columns:1fr}
+    .progress-step .step-label{display:none}
+    .book-wrap{padding:88px 1.25rem 40px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">509 <span>TRAILERS</span></a>
+  <a href="index.html#trailers" class="nav-back">← Back to Trailers</a>
+</nav>
+
+<div class="book-wrap">
+
+  <!-- PROGRESS -->
+  <div class="progress">
+    <div class="progress-step">
+      <div class="step-circle active" id="circle-1"><span>1</span></div>
+      <div class="step-label active" id="label-1">Your Info</div>
+    </div>
+    <div class="progress-line" id="line-1"></div>
+    <div class="progress-step">
+      <div class="step-circle" id="circle-2"><span>2</span></div>
+      <div class="step-label" id="label-2">Dates</div>
+    </div>
+    <div class="progress-line" id="line-2"></div>
+    <div class="progress-step">
+      <div class="step-circle" id="circle-3"><span>3</span></div>
+      <div class="step-label" id="label-3">Payment</div>
+    </div>
+    <div class="progress-line" id="line-3"></div>
+    <div class="progress-step">
+      <div class="step-circle" id="circle-4"><span>4</span></div>
+      <div class="step-label" id="label-4">Confirm</div>
+    </div>
+  </div>
+
+  <!-- TRAILER BADGE -->
+  <div class="trailer-badge" id="trailer-badge">
+    <div class="trailer-badge-icon" id="trailer-icon">🚛</div>
+    <div>
+      <div class="trailer-badge-name" id="trailer-badge-name">Loading...</div>
+      <div class="trailer-badge-rate" id="trailer-badge-rate"></div>
+    </div>
+  </div>
+
+  <!-- STEP 1: CONTACT -->
+  <div class="step-panel active" id="step-1">
+    <div class="step-title">Your Info</div>
+    <div class="step-sub">We'll send your confirmation and rental agreement to these details.</div>
+    <div class="form-grid">
+      <div class="form-group full">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="John Smith" autocomplete="name">
+        <div class="field-error" id="err-name"></div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="you@email.com" autocomplete="email">
+        <div class="field-error" id="err-email"></div>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="(360) 000-0000" autocomplete="tel">
+        <div class="field-error" id="err-phone"></div>
+      </div>
+    </div>
+    <button class="btn-next" onclick="goStep(2)">Continue →</button>
+  </div>
+
+  <!-- STEP 2: DATES -->
+  <div class="step-panel" id="step-2">
+    <div class="step-title">Pick Your Dates</div>
+    <div class="step-sub">Select your pickup and return dates. Times are in Pacific Time.</div>
+    <div class="date-row">
+      <div class="form-group">
+        <label for="pickup-date">Pickup Date</label>
+        <input type="date" id="pickup-date">
+        <div class="field-error" id="err-pickup"></div>
+      </div>
+      <div class="form-group">
+        <label for="return-date">Return Date</label>
+        <input type="date" id="return-date">
+        <div class="field-error" id="err-return"></div>
+      </div>
+    </div>
+    <div class="time-row">
+      <div class="form-group">
+        <label for="pickup-time">Pickup Time</label>
+        <select id="pickup-time"></select>
+      </div>
+      <div class="form-group">
+        <label for="return-time">Return Time</label>
+        <select id="return-time"></select>
+      </div>
+    </div>
+    <div class="total-card">
+      <div class="total-card-title">Booking Summary</div>
+      <div id="total-content"><div class="total-empty">Select dates to see your total</div></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-back" onclick="goStep(1)">← Back</button>
+      <button class="btn-next" style="margin-top:0;flex:1" onclick="goStep(3)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: PAYMENT -->
+  <div class="step-panel" id="step-3">
+    <div class="step-title">Payment</div>
+    <div class="step-sub">Secure payment powered by Stripe. Your card is never stored.</div>
+    <div class="total-card" id="payment-summary"></div>
+    <div class="payment-placeholder">
+      <div class="payment-placeholder-icon">💳</div>
+      <h3>Stripe Integration</h3>
+      <p>Payment processing will be connected here.<br>Stripe checkout will launch automatically.</p>
+    </div>
+    <div class="btn-row">
+      <button class="btn-back" onclick="goStep(2)">← Back</button>
+      <button class="btn-next" style="margin-top:0;flex:1" onclick="goStep(4)">Complete Booking →</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: CONFIRMATION -->
+  <div class="step-panel" id="step-4">
+    <div class="confirmation">
+      <div class="confirmation-icon">✅</div>
+      <h2>You're Booked!</h2>
+      <p>A confirmation email is on its way. You'll also receive a text with your rental agreement link — sign it before pickup.</p>
+      <div class="confirmation-details" id="conf-details"></div>
+      <p style="font-size:13px;color:var(--gray-400);margin-top:1rem">Questions? Call or text <strong style="color:var(--white)">(360) 562-0477</strong></p>
+      <a href="index.html" class="btn-home">← Back to Home</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // ── Trailer data ──
+  const TRAILERS = {
+    'car-hauler':   { name:'20ft Car Hauler',      icon:'🚗', day:100, week:550 },
+    'dump-trailer': { name:'14ft Dump Trailer',    icon:'🪣', day:125, week:650 },
+    'enclosed':     { name:'24ft Enclosed Trailer',icon:'📦', day:150, week:800 },
+    'deck-over':    { name:'22ft Deck Over Tilt',  icon:'🏗️', day:145, week:800 },
+  };
+
+  // ── Read URL param ──
+  const params = new URLSearchParams(window.location.search);
+  const trailerKey = params.get('trailer') || 'car-hauler';
+  const trailer = TRAILERS[trailerKey] || TRAILERS['car-hauler'];
+
+  // Set badge
+  document.getElementById('trailer-icon').textContent = trailer.icon;
+  document.getElementById('trailer-badge-name').textContent = trailer.name;
+  document.getElementById('trailer-badge-rate').innerHTML =
+    `<strong>$${trailer.day}</strong>/day &nbsp;·&nbsp; <strong>$${trailer.week}</strong>/week`;
+
+  // ── Time slots ──
+  function buildTimeSlots(selectId) {
+    const sel = document.getElementById(selectId);
+    const slots = [];
+    for (let h = 7; h <= 20; h++) {
+      const ampm = h < 12 ? 'AM' : 'PM';
+      const h12 = h > 12 ? h - 12 : h === 0 ? 12 : h;
+      slots.push(`${String(h).padStart(2,'0')}:00`);
+    }
+    slots.forEach(t => {
+      const h = parseInt(t);
+      const ampm = h < 12 ? 'AM' : 'PM';
+      const h12 = h > 12 ? h - 12 : h;
+      const opt = document.createElement('option');
+      opt.value = t;
+      opt.textContent = `${h12}:00 ${ampm}`;
+      sel.appendChild(opt);
+    });
+    // Default pickup 9am, return 5pm
+    if (selectId === 'pickup-time') sel.value = '09:00';
+    if (selectId === 'return-time') sel.value = '17:00';
+  }
+  buildTimeSlots('pickup-time');
+  buildTimeSlots('return-time');
+
+  // ── Set min dates ──
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth()+1).padStart(2,'0');
+  const dd = String(today.getDate()).padStart(2,'0');
+  const todayStr = `${yyyy}-${mm}-${dd}`;
+  document.getElementById('pickup-date').min = todayStr;
+  document.getElementById('return-date').min = todayStr;
+
+  document.getElementById('pickup-date').addEventListener('change', function() {
+    document.getElementById('return-date').min = this.value;
+    if (document.getElementById('return-date').value < this.value)
+      document.getElementById('return-date').value = this.value;
+    calcTotal();
+  });
+  document.getElementById('return-date').addEventListener('change', calcTotal);
+  document.getElementById('pickup-time').addEventListener('change', calcTotal);
+  document.getElementById('return-time').addEventListener('change', calcTotal);
+
+  // ── Total calc ──
+  function calcTotal() {
+    const p = document.getElementById('pickup-date').value;
+    const r = document.getElementById('return-date').value;
+    if (!p || !r) return;
+    const ms = new Date(r) - new Date(p);
+    let days = Math.round(ms / 86400000);
+    if (days < 1) days = 1;
+
+    const weeks = Math.floor(days / 7);
+    const remDays = days % 7;
+    let total = (weeks * trailer.week) + (remDays * trailer.day);
+
+    const lines = [];
+    if (weeks > 0) lines.push([`${weeks} week${weeks>1?'s':''}`, `$${(weeks*trailer.week).toLocaleString()}`]);
+    if (remDays > 0) lines.push([`${remDays} day${remDays>1?'s':''}`, `$${(remDays*trailer.day).toLocaleString()}`]);
+
+    let html = lines.map(([l,v])=>`<div class="total-line"><span>${l} × ${l.includes('week') ? '$'+trailer.week+'/wk' : '$'+trailer.day+'/day'}</span><span>${v}</span></div>`).join('');
+    html += `<div class="total-line grand"><span>Total</span><span>$${total.toLocaleString()}</span></div>`;
+    document.getElementById('total-content').innerHTML = html;
+
+    // Store for payment page
+    window._bookingTotal = total;
+    window._bookingDays = days;
+  }
+
+  // ── Payment summary ──
+  function buildPaymentSummary() {
+    const p = document.getElementById('pickup-date').value;
+    const r = document.getElementById('return-date').value;
+    const pt = document.getElementById('pickup-time').value;
+    const rt = document.getElementById('return-time').value;
+    const fmt = d => new Date(d+'T00:00:00').toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+    const fmtT = t => { const h=parseInt(t); const ap=h<12?'AM':'PM'; const h12=h>12?h-12:h; return `${h12}:00 ${ap}`; };
+    document.getElementById('payment-summary').innerHTML = `
+      <div class="total-card-title">Booking Summary</div>
+      <div class="total-line"><span>Trailer</span><span>${trailer.name}</span></div>
+      <div class="total-line"><span>Pickup</span><span>${fmt(p)} at ${fmtT(pt)}</span></div>
+      <div class="total-line"><span>Return</span><span>${fmt(r)} at ${fmtT(rt)}</span></div>
+      ${document.getElementById('total-content').innerHTML}
+    `;
+  }
+
+  // ── Confirmation ──
+  function buildConfirmation() {
+    const p = document.getElementById('pickup-date').value;
+    const r = document.getElementById('return-date').value;
+    const pt = document.getElementById('pickup-time').value;
+    const rt = document.getElementById('return-time').value;
+    const fmt = d => new Date(d+'T00:00:00').toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+    const fmtT = t => { const h=parseInt(t); const ap=h<12?'AM':'PM'; const h12=h>12?h-12:h; return `${h12}:00 ${ap} PT`; };
+    document.getElementById('conf-details').innerHTML = `
+      <div class="conf-line"><span class="conf-label">Trailer</span><span class="conf-value">${trailer.name}</span></div>
+      <div class="conf-line"><span class="conf-label">Name</span><span class="conf-value">${document.getElementById('name').value}</span></div>
+      <div class="conf-line"><span class="conf-label">Pickup</span><span class="conf-value">${fmt(p)}</span></div>
+      <div class="conf-line"><span class="conf-label">Pickup Time</span><span class="conf-value">${fmtT(pt)}</span></div>
+      <div class="conf-line"><span class="conf-label">Return</span><span class="conf-value">${fmt(r)}</span></div>
+      <div class="conf-line"><span class="conf-label">Return Time</span><span class="conf-value">${fmtT(rt)}</span></div>
+      <div class="conf-line"><span class="conf-label">Location</span><span class="conf-value">11616 NE 79th St, Vancouver WA</span></div>
+      <div class="conf-line"><span class="conf-label">Total</span><span class="conf-value" style="color:var(--red);font-family:var(--font-display);font-size:18px;font-weight:800">$${(window._bookingTotal||0).toLocaleString()}</span></div>
+    `;
+  }
+
+  // ── Validation ──
+  function clearErrors() {
+    document.querySelectorAll('.field-error').forEach(e=>e.textContent='');
+    document.querySelectorAll('.error').forEach(e=>e.classList.remove('error'));
+  }
+  function setError(id, msg) {
+    document.getElementById('err-'+id).textContent = msg;
+    document.getElementById(id).classList.add('error');
+  }
+
+  function validateStep1() {
+    clearErrors(); let ok = true;
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    if (!name) { setError('name','Name is required'); ok=false; }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setError('email','Valid email required'); ok=false; }
+    if (!phone || phone.replace(/\D/g,'').length < 10) { setError('phone','Valid phone number required'); ok=false; }
+    return ok;
+  }
+  function validateStep2() {
+    clearErrors(); let ok = true;
+    if (!document.getElementById('pickup-date').value) { setError('pickup','Pickup date required'); ok=false; }
+    if (!document.getElementById('return-date').value) { setError('return','Return date required'); ok=false; }
+    return ok;
+  }
+
+  // ── Step navigation ──
+  let currentStep = 1;
+  function goStep(n) {
+    if (n > currentStep) {
+      if (currentStep===1 && !validateStep1()) return;
+      if (currentStep===2 && !validateStep2()) return;
+    }
+    if (n===3) buildPaymentSummary();
+    if (n===4) buildConfirmation();
+
+    document.getElementById('step-'+currentStep).classList.remove('active');
+    document.getElementById('step-'+n).classList.add('active');
+
+    // Update progress
+    for (let i=1; i<=4; i++) {
+      const circle = document.getElementById('circle-'+i);
+      const label = document.getElementById('label-'+i);
+      circle.classList.remove('active','done');
+      label.classList.remove('active','done');
+      if (i < n) { circle.classList.add('done'); label.classList.add('done'); }
+      else if (i === n) { circle.classList.add('active'); label.classList.add('active'); }
+      if (i < 4) {
+        const line = document.getElementById('line-'+i);
+        line.classList.toggle('done', i < n);
+      }
+    }
+    currentStep = n;
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+</script>
+</body>
+</html>
