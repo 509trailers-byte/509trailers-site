@@ -90,6 +90,19 @@
     .footer-inner{flex-direction:column}
     .policy-card{padding:1.5rem}
   }
+
+  /* TRAILERS DROPDOWN */
+  .nav-dropdown{position:relative}
+  .nav-dropdown-toggle{font-size:14px;font-weight:500;color:var(--gray-200);text-decoration:none;letter-spacing:0.03em;transition:color 0.2s;cursor:pointer;display:flex;align-items:center;gap:4px;background:none;border:none;padding:0;font-family:var(--font-body)}
+  .nav-dropdown-toggle:hover{color:var(--white)}
+  .nav-dropdown-toggle::after{content:'▾';font-size:10px;transition:transform 0.2s}
+  .nav-dropdown:hover .nav-dropdown-toggle::after{transform:rotate(180deg)}
+  .nav-dropdown-menu{position:absolute;top:calc(100% + 12px);left:0;background:rgba(14,14,14,0.98);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:0.5rem 0;min-width:200px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity 0.2s,transform 0.2s,visibility 0.2s;z-index:200;backdrop-filter:blur(12px)}
+  .nav-dropdown:hover .nav-dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
+  .nav-dropdown-menu a{display:block;padding:0.6rem 1rem;font-size:13px;font-weight:500;color:var(--gray-200);text-decoration:none;letter-spacing:0.02em;transition:color 0.15s,background 0.15s}
+  .nav-dropdown-menu a:hover{color:var(--white);background:rgba(255,255,255,0.04)}
+  .nav-dropdown-menu .dropdown-divider{height:1px;background:rgba(255,255,255,0.06);margin:0.35rem 0}
+  .nav-dropdown-menu .dropdown-all{font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--red) !important;padding-top:0.75rem !important}
 </style>
 </head>
 <body>
@@ -98,7 +111,17 @@
   <a href="index.html" class="nav-logo">509 <span>TRAILERS</span></a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
-    <li><a href="index.html#trailers">Trailers</a></li>
+    <li class="nav-dropdown">
+      <button class="nav-dropdown-toggle">Trailers</button>
+      <div class="nav-dropdown-menu">
+        <a href="car-hauler.html">20ft Car Hauler</a>
+        <a href="dump-trailer.html">14ft Dump Trailer</a>
+        <a href="deck-over.html">22ft Deck Over Tilt</a>
+        <a href="enclosed.html">24ft Enclosed</a>
+        <div class="dropdown-divider"></div>
+        <a href="index.html#trailers" class="dropdown-all">View All Trailers</a>
+      </div>
+    </li>
     <li><a href="services.html">Junk Removal</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="faq.html">FAQ</a></li>
@@ -281,10 +304,10 @@
     <div class="footer-links">
       <h4>Our Fleet</h4>
       <ul>
-        <li><a href="index.html#car-hauler">20ft Car Hauler</a></li>
-        <li><a href="index.html#dump-trailer">14ft Dump Trailer</a></li>
+        <li><a href="car-hauler.html">20ft Car Hauler</a></li>
+        <li><a href="dump-trailer.html">14ft Dump Trailer</a></li>
         <li><a href="index.html#enclosed">24ft Enclosed Trailer</a></li>
-        <li><a href="index.html#deck-over">22ft Deck Over Tilt</a></li>
+        <li><a href="deck-over.html">22ft Deck Over Tilt</a></li>
         <li><a href="services.html">Junk Removal</a></li>
       </ul>
     </div>
