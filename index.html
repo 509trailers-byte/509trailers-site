@@ -223,6 +223,19 @@
   .hero-sub{font-size:16px;color:var(--gray-200);line-height:1.6;max-width:540px;margin:0 auto 0.6rem}
   .starting-at{font-size:13px;color:var(--gray-400);margin-bottom:2rem;letter-spacing:0.03em}
   .starting-at strong{color:var(--red);font-family:var(--font-display);font-size:16px}
+
+  /* TRAILERS DROPDOWN */
+  .nav-dropdown{position:relative}
+  .nav-dropdown-toggle{font-size:14px;font-weight:500;color:var(--gray-200);text-decoration:none;letter-spacing:0.03em;transition:color 0.2s;cursor:pointer;display:flex;align-items:center;gap:4px;background:none;border:none;padding:0;font-family:var(--font-body)}
+  .nav-dropdown-toggle:hover{color:var(--white)}
+  .nav-dropdown-toggle::after{content:'▾';font-size:10px;transition:transform 0.2s}
+  .nav-dropdown:hover .nav-dropdown-toggle::after{transform:rotate(180deg)}
+  .nav-dropdown-menu{position:absolute;top:calc(100% + 12px);left:0;background:rgba(14,14,14,0.98);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:0.5rem 0;min-width:200px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity 0.2s,transform 0.2s,visibility 0.2s;z-index:200;backdrop-filter:blur(12px)}
+  .nav-dropdown:hover .nav-dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
+  .nav-dropdown-menu a{display:block;padding:0.6rem 1rem;font-size:13px;font-weight:500;color:var(--gray-200);text-decoration:none;letter-spacing:0.02em;transition:color 0.15s,background 0.15s}
+  .nav-dropdown-menu a:hover{color:var(--white);background:rgba(255,255,255,0.04)}
+  .nav-dropdown-menu .dropdown-divider{height:1px;background:rgba(255,255,255,0.06);margin:0.35rem 0}
+  .nav-dropdown-menu .dropdown-all{font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--red) !important;padding-top:0.75rem !important}
 </style>
 </head>
 <body>
@@ -231,7 +244,17 @@
   <a href="index.html" class="nav-logo">509 <span>TRAILERS</span></a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
-    <li><a href="#trailers">Trailers</a></li>
+    <li class="nav-dropdown">
+      <button class="nav-dropdown-toggle">Trailers</button>
+      <div class="nav-dropdown-menu">
+        <a href="car-hauler.html">20ft Car Hauler</a>
+        <a href="dump-trailer.html">14ft Dump Trailer</a>
+        <a href="deck-over.html">22ft Deck Over Tilt</a>
+        <a href="enclosed.html">24ft Enclosed</a>
+        <div class="dropdown-divider"></div>
+        <a href="index.html#trailers" class="dropdown-all">View All Trailers</a>
+      </div>
+    </li>
     <li><a href="services.html">Junk Removal</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="faq.html">FAQ</a></li>
@@ -363,7 +386,7 @@
             <div class="price-divider"></div>
             <div><div class="price-amount">$550</div><div class="price-period">Per Week</div></div>
           </div>
-          <a href="book.html?trailer=car-hauler" class="btn-book">Book Now</a>
+          <a href="car-hauler.html#book" class="btn-book">Book Now</a>
         </div>
       </div>
 
@@ -423,11 +446,76 @@
             </div>
           </div>
           <div class="trailer-pricing">
-            <div><div class="price-amount">$125</div><div class="price-period">Per Day</div></div>
+            <div><div class="price-amount">$120</div><div class="price-period">Per Day</div></div>
             <div class="price-divider"></div>
             <div><div class="price-amount">$650</div><div class="price-period">Per Week</div></div>
           </div>
-          <a href="book.html?trailer=dump-trailer" class="btn-book">Book Now</a>
+          <a href="dump-trailer.html#book" class="btn-book">Book Now</a>
+        </div>
+      </div>
+
+      <!-- DECK OVER TILT -->
+      <div class="trailer-card" id="deck-over">
+        <div class="gallery" id="gallery-deckover">
+          <div class="gallery-track" id="track-deckover">
+            <img src="deck-over-1.jpg" alt="22ft Deck Over Tilt" class="gallery-img">
+            <img src="deck-over-2.jpg" alt="22ft Deck Over Tilt" class="gallery-img">
+            <img src="deck-over-3.jpg" alt="22ft Deck Over Tilt" class="gallery-img">
+          </div>
+          <button class="gallery-btn gallery-prev" onclick="slide('deckover',-1)">&#8249;</button>
+          <button class="gallery-btn gallery-next" onclick="slide('deckover',1)">&#8250;</button>
+          <div class="gallery-dots" id="dots-deckover">
+            <span class="dot active" onclick="goTo('deckover',0)"></span>
+            <span class="dot" onclick="goTo('deckover',1)"></span>
+            <span class="dot" onclick="goTo('deckover',2)"></span>
+          </div>
+        </div>
+        <div class="trailer-body">
+          <div class="trailer-status status-available">Available Now</div>
+          <div class="trailer-name">22ft Deck Over Tilt</div>
+          <div class="trailer-tags">
+            <span class="spec-tag">8.5x22ft Deck</span>
+            <span class="spec-tag">14,000 lb GVWR</span>
+            <span class="spec-tag">Hydraulic Tilt</span>
+            <span class="spec-tag">2026 Big Tex 140T</span>
+          </div>
+          <p class="trailer-desc">2026 Big Tex hydraulic deck over tilt — wide open deck for heavy equipment, machinery, and oversized loads. Full-width tilt makes loading effortless.</p>
+          <div class="trailer-highlights">
+            <div class="highlight-item"><div class="highlight-val">9,200<span>lb</span></div><div class="highlight-label">Max Payload</div></div>
+            <div class="highlight-item"><div class="highlight-val">8.5<span>ft</span></div><div class="highlight-label">Deck Width</div></div>
+            <div class="highlight-item"><div class="highlight-val">22<span>ft</span></div><div class="highlight-label">Deck Length</div></div>
+          </div>
+          <div class="specs-block">
+            <div class="specs-block-title">Specifications</div>
+            <ul class="specs-list">
+              <li>GVWR: 14,000 lbs</li>
+              <li>Max payload: 9,200 lbs</li>
+              <li>Deck: 8.5ft × 22ft</li>
+              <li>Hydraulic deck over tilt</li>
+              <li>2026 Big Tex 140T</li>
+              <li>Requires 2 5/16" ball &amp; 7-way plug</li>
+            </ul>
+          </div>
+          <div class="included-wrap">
+            <button class="included-toggle" onclick="toggleIncluded(this)">What's Included <span class="included-arrow">↓</span></button>
+            <div class="included-panel">
+              <ul class="included-list">
+                <li>12,000 lb winch</li>
+                <li>Cargo straps (6)</li>
+                <li>Tire lasso straps (4)</li>
+                <li>J-hooks</li>
+                <li>Shackles</li>
+                <li>Snatch block</li>
+                <li>Chains &amp; binders (on request)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="trailer-pricing">
+            <div><div class="price-amount">$135</div><div class="price-period">Per Day</div></div>
+            <div class="price-divider"></div>
+            <div><div class="price-amount">$750</div><div class="price-period">Per Week</div></div>
+          </div>
+          <a href="deck-over.html#book" class="btn-book">Book Now</a>
         </div>
       </div>
 
@@ -493,76 +581,11 @@
             </div>
           </div>
           <div class="trailer-pricing">
-            <div><div class="price-amount">$150</div><div class="price-period">Per Day</div></div>
+            <div><div class="price-amount">$140</div><div class="price-period">Per Day</div></div>
             <div class="price-divider"></div>
-            <div><div class="price-amount">$800</div><div class="price-period">Per Week</div></div>
+            <div><div class="price-amount">$780</div><div class="price-period">Per Week</div></div>
           </div>
-          <a href="book.html?trailer=enclosed" class="btn-book">Book Now</a>
-        </div>
-      </div>
-
-      <!-- DECK OVER TILT -->
-      <div class="trailer-card" id="deck-over">
-        <div class="gallery" id="gallery-deckover">
-          <div class="gallery-track" id="track-deckover">
-            <img src="deck-over-1.jpg" alt="22ft Deck Over Tilt" class="gallery-img">
-            <img src="deck-over-2.jpg" alt="22ft Deck Over Tilt" class="gallery-img">
-            <img src="deck-over-3.jpg" alt="22ft Deck Over Tilt" class="gallery-img">
-          </div>
-          <button class="gallery-btn gallery-prev" onclick="slide('deckover',-1)">&#8249;</button>
-          <button class="gallery-btn gallery-next" onclick="slide('deckover',1)">&#8250;</button>
-          <div class="gallery-dots" id="dots-deckover">
-            <span class="dot active" onclick="goTo('deckover',0)"></span>
-            <span class="dot" onclick="goTo('deckover',1)"></span>
-            <span class="dot" onclick="goTo('deckover',2)"></span>
-          </div>
-        </div>
-        <div class="trailer-body">
-          <div class="trailer-status status-available">Available Now</div>
-          <div class="trailer-name">22ft Deck Over Tilt</div>
-          <div class="trailer-tags">
-            <span class="spec-tag">8.5x22ft Deck</span>
-            <span class="spec-tag">14,000 lb GVWR</span>
-            <span class="spec-tag">Hydraulic Tilt</span>
-            <span class="spec-tag">2026 Big Tex 140T</span>
-          </div>
-          <p class="trailer-desc">2026 Big Tex hydraulic deck over tilt — wide open deck for heavy equipment, machinery, and oversized loads. Full-width tilt makes loading effortless.</p>
-          <div class="trailer-highlights">
-            <div class="highlight-item"><div class="highlight-val">9,200<span>lb</span></div><div class="highlight-label">Max Payload</div></div>
-            <div class="highlight-item"><div class="highlight-val">8.5<span>ft</span></div><div class="highlight-label">Deck Width</div></div>
-            <div class="highlight-item"><div class="highlight-val">22<span>ft</span></div><div class="highlight-label">Deck Length</div></div>
-          </div>
-          <div class="specs-block">
-            <div class="specs-block-title">Specifications</div>
-            <ul class="specs-list">
-              <li>GVWR: 14,000 lbs</li>
-              <li>Max payload: 9,200 lbs</li>
-              <li>Deck: 8.5ft × 22ft</li>
-              <li>Hydraulic deck over tilt</li>
-              <li>2026 Big Tex 140T</li>
-              <li>Requires 2 5/16" ball &amp; 7-way plug</li>
-            </ul>
-          </div>
-          <div class="included-wrap">
-            <button class="included-toggle" onclick="toggleIncluded(this)">What's Included <span class="included-arrow">↓</span></button>
-            <div class="included-panel">
-              <ul class="included-list">
-                <li>12,000 lb winch</li>
-                <li>Cargo straps (6)</li>
-                <li>Tire lasso straps (4)</li>
-                <li>J-hooks</li>
-                <li>Shackles</li>
-                <li>Snatch block</li>
-                <li>Chains &amp; binders (on request)</li>
-              </ul>
-            </div>
-          </div>
-          <div class="trailer-pricing">
-            <div><div class="price-amount">$145</div><div class="price-period">Per Day</div></div>
-            <div class="price-divider"></div>
-            <div><div class="price-amount">$800</div><div class="price-period">Per Week</div></div>
-          </div>
-          <a href="book.html?trailer=deck-over" class="btn-book">Book Now</a>
+          <a href="enclosed.html#book" class="btn-book">Book Now</a>
         </div>
       </div>
 
