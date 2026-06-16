@@ -3,46 +3,609 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Testimonials — 509 Trailer Rentals</title>
+<meta name="description" content="Real reviews from real customers. 509 Trailer Rentals in Vancouver, WA — 50+ five-star Google reviews.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{--red:#D72B2B;--red-light:#F03A3A;--black:#0E0E0E;--gray-900:#1A1A1A;--gray-400:#888888;--gray-200:#CCCCCC;--white:#FFFFFF;--font-display:'Barlow Condensed',sans-serif;--font-body:'Barlow',sans-serif;}
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:var(--font-body);background:var(--black);color:var(--white)}
+  :root{--red:#D72B2B;--red-dark:#A81E1E;--red-light:#F03A3A;--black:#0E0E0E;--gray-900:#1A1A1A;--gray-800:#242424;--gray-400:#888;--gray-200:#CCC;--white:#FFF;--font-display:'Barlow Condensed',sans-serif;--font-body:'Barlow',sans-serif;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font-body);background:var(--black);color:var(--white);overflow-x:hidden}
   nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px;background:rgba(14,14,14,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,0.06)}
-  .nav-logo{font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--white);text-decoration:none}
+  .nav-logo{font-family:var(--font-display);font-size:22px;font-weight:800;letter-spacing:0.02em;color:var(--white);text-decoration:none}
   .nav-logo span{color:var(--red)}
-  .nav-cta{background:var(--red);color:var(--white);font-family:var(--font-display);font-size:15px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:8px 20px;border-radius:4px;text-decoration:none}
-  .placeholder{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:100px 2rem}
-  .placeholder-inner{max-width:500px}
+  .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+  .nav-links a{font-size:14px;font-weight:500;color:var(--gray-200);text-decoration:none;letter-spacing:0.03em;transition:color 0.2s}
+  .nav-links a:hover{color:var(--white)}
+  .nav-right{display:flex;align-items:center;gap:1.25rem}
+  .nav-phone{font-family:var(--font-display);font-size:17px;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:0.04em;display:flex;align-items:center;gap:6px}
+  .nav-phone::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:#2ECC71;box-shadow:0 0 0 2px rgba(46,204,113,0.25)}
+  .nav-cta{background:var(--red);color:var(--white);font-family:var(--font-display);font-size:15px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:8px 20px;border-radius:4px;text-decoration:none;transition:background 0.2s}
+  .nav-cta:hover{background:var(--red-light)}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+  .hamburger span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px}
+  .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--black);border-bottom:1px solid rgba(255,255,255,0.08);padding:1.5rem 2rem;z-index:99;flex-direction:column;gap:1.25rem}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{font-size:16px;color:var(--gray-200);text-decoration:none;font-weight:500}
+  .mobile-menu a.btn-cta{text-align:center;display:block;padding:12px;background:var(--red);color:var(--white);font-family:var(--font-display);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;border-radius:4px}
+  .nav-dropdown{position:relative}
+  .nav-dropdown-toggle{font-size:14px;font-weight:500;color:var(--gray-200);cursor:pointer;display:flex;align-items:center;gap:4px;background:none;border:none;padding:0;font-family:var(--font-body);letter-spacing:0.03em;transition:color 0.2s}
+  .nav-dropdown-toggle:hover{color:var(--white)}
+  .nav-dropdown-toggle::after{content:'▾';font-size:10px;transition:transform 0.2s}
+  .nav-dropdown:hover .nav-dropdown-toggle::after{transform:rotate(180deg)}
+  .nav-dropdown-menu{position:absolute;top:calc(100% + 12px);left:0;background:rgba(14,14,14,0.98);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:0.5rem 0;min-width:200px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity 0.2s,transform 0.2s,visibility 0.2s;z-index:200;backdrop-filter:blur(12px)}
+  .nav-dropdown:hover .nav-dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
+  .nav-dropdown-menu a{display:block;padding:0.6rem 1rem;font-size:13px;font-weight:500;color:var(--gray-200);text-decoration:none;transition:color 0.15s,background 0.15s}
+  .nav-dropdown-menu a:hover{color:var(--white);background:rgba(255,255,255,0.04)}
+  .nav-dropdown-menu .dropdown-divider{height:1px;background:rgba(255,255,255,0.06);margin:0.35rem 0}
+  .nav-dropdown-menu .dropdown-all{font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--red) !important;padding-top:0.75rem !important}
+
+  /* PAGE HERO */
+  .page-hero{padding:130px 2rem 70px;text-align:center;position:relative;overflow:hidden;background:var(--gray-900);border-bottom:1px solid rgba(255,255,255,0.06)}
+  .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 100%,rgba(215,43,43,0.1) 0%,transparent 70%)}
+  .page-hero-inner{position:relative;z-index:2;max-width:700px;margin:0 auto}
   .section-label{font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--red);margin-bottom:0.75rem}
-  h1{font-family:var(--font-display);font-size:clamp(40px,7vw,72px);font-weight:800;text-transform:uppercase;line-height:0.95;margin-bottom:1.25rem}
-  p{font-size:16px;color:var(--gray-400);line-height:1.6;margin-bottom:2rem}
-  .btn{display:inline-flex;background:var(--red);color:var(--white);font-family:var(--font-display);font-size:16px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:12px 28px;border-radius:4px;text-decoration:none}
+  .page-hero h1{font-family:var(--font-display);font-size:clamp(48px,8vw,80px);font-weight:800;text-transform:uppercase;letter-spacing:0.01em;line-height:0.95;margin-bottom:1.25rem}
+  .page-hero h1 em{font-style:normal;color:var(--red)}
+  .page-hero p{font-size:16px;color:var(--gray-200);line-height:1.7;max-width:500px;margin:0 auto}
+
+  /* STATS */
+
+  /* UPDATE NOTE */
+  .update-note{max-width:900px;margin:2.5rem auto 0;padding:0 2rem;font-size:12px;color:var(--gray-400);text-align:right}
+
+  /* CAROUSEL */
+  .carousel-wrap{max-width:1200px;margin:0 auto;padding:3rem 2rem 80px;position:relative}
+  .carousel-viewport{overflow:hidden;border-radius:4px}
+  .carousel-track{display:flex;transition:transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94);will-change:transform}
+  .review-card{flex:0 0 calc(33.333% - 1rem);width:calc(33.333% - 1rem);margin-right:1.5rem;background:var(--gray-900);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:1.5rem;transition:border-color 0.2s;height:auto;align-self:stretch}
+  .review-card:hover{border-color:rgba(215,43,43,0.3)}
+  .review-header{display:flex;align-items:flex-start;justify-content:space-between;gap:0.75rem;margin-bottom:0.75rem}
+  .review-stars{color:#F5C518;font-size:13px;letter-spacing:2px;flex-shrink:0}
+  .review-time{font-size:11px;color:var(--gray-400);flex-shrink:0;margin-top:2px}
+  .review-text{font-size:14px;color:#BBBBBB;line-height:1.7;margin-bottom:0.85rem;font-style:italic}
+  .review-author{font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--white);text-transform:uppercase;letter-spacing:0.04em}
+  .review-badge{font-size:10px;color:var(--gray-400);font-weight:400;text-transform:none;letter-spacing:0;display:block;margin-top:2px}
+  .review-source{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--gray-400);margin-top:0.5rem}
+  .review-source::before{content:'G';display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;background:#4285F4;color:white;font-weight:700;border-radius:2px;font-size:9px;font-family:sans-serif}
+  /* Controls */
+  .carousel-controls{display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-top:2rem}
+  .carousel-btn{width:44px;height:44px;border-radius:50%;background:var(--gray-900);border:1px solid rgba(255,255,255,0.12);color:var(--white);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s,border-color 0.2s;flex-shrink:0}
+  .carousel-btn:hover{background:var(--red);border-color:var(--red)}
+  .carousel-dots{display:flex;gap:6px;align-items:center}
+  .carousel-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.2);cursor:pointer;transition:background 0.2s,transform 0.2s;border:none;padding:0}
+  .carousel-dot.active{background:var(--red);transform:scale(1.3)}
+  .carousel-counter{font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--gray-400);letter-spacing:0.06em;min-width:52px;text-align:center}
+  .carousel-counter span{color:var(--white)}
+  @media(max-width:900px){.review-card{flex:0 0 calc(50% - 0.75rem);width:calc(50% - 0.75rem)}}
+  @media(max-width:560px){.review-card{flex:0 0 100%;width:100%;margin-right:1.5rem}}
+
+  /* CTA */
+  .testimonials-cta{background:var(--gray-900);border-top:1px solid rgba(255,255,255,0.06);padding:60px 2rem;text-align:center}
+  .testimonials-cta h2{font-family:var(--font-display);font-size:clamp(28px,4vw,40px);font-weight:800;text-transform:uppercase;letter-spacing:0.02em;margin-bottom:0.5rem}
+  .testimonials-cta p{font-size:15px;color:#BBBBBB;margin-bottom:1.75rem}
+  .cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:var(--white);font-family:var(--font-display);font-size:17px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:14px 32px;border-radius:4px;text-decoration:none;transition:background 0.2s}
+  .btn-primary:hover{background:var(--red-light)}
+  .btn-secondary{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--white);font-family:var(--font-display);font-size:17px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:14px 32px;border-radius:4px;border:1px solid rgba(255,255,255,0.2);text-decoration:none;transition:border-color 0.2s}
+  .btn-secondary:hover{border-color:rgba(255,255,255,0.5)}
+
+  footer{background:var(--gray-900);border-top:1px solid rgba(255,255,255,0.06);padding:3rem 2rem}
+  .footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:2rem}
+  .footer-brand .nav-logo{font-size:24px;display:block;margin-bottom:0.5rem}
+  .footer-brand p{font-size:13px;color:var(--gray-400);line-height:1.6;max-width:260px}
+  .footer-links h4{font-family:var(--font-display);font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-400);margin-bottom:0.75rem}
+  .footer-links ul{list-style:none}
+  .footer-links li{margin-bottom:0.5rem}
+  .footer-links a{font-size:14px;color:var(--gray-200);text-decoration:none;transition:color 0.2s}
+  .footer-links a:hover{color:var(--white)}
+  .footer-bottom{max-width:1200px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem}
+  .footer-bottom p{font-size:13px;color:var(--gray-400)}
+
+  @media(max-width:900px){.reviews-grid{columns:2}}
+  @media(max-width:768px){
+    .nav-links,.nav-phone{display:none}.nav-cta{display:none}.hamburger{display:flex}
+    .reviews-grid{columns:1}
+    .stats-strip{grid-template-columns:1fr 1fr}
+    .footer-inner{flex-direction:column}
+  }
 </style>
 </head>
 <body>
+
 <nav>
   <a href="index.html" class="nav-logo">509 <span>TRAILERS</span></a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
-    <li><a href="index.html#trailers">Trailers</a></li>
-    <li><a href="services.html">Services</a></li>
+    <li class="nav-dropdown">
+      <button class="nav-dropdown-toggle">Trailers</button>
+      <div class="nav-dropdown-menu">
+        <a href="car-hauler.html">20ft Car Hauler</a>
+        <a href="dump-trailer.html">14ft Dump Trailer</a>
+        <a href="deck-over.html">22ft Deck Over Tilt</a>
+        <a href="enclosed.html">24ft Enclosed</a>
+        <div class="dropdown-divider"></div>
+        <a href="index.html#trailers" class="dropdown-all">View All Trailers</a>
+      </div>
+    </li>
+    <li><a href="services.html">Junk Removal</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="faq.html">FAQ</a></li>
   </ul>
-  <div style="display:flex;align-items:center;gap:1.25rem">
-    <a href="tel:3605620477" style="font-family:var(--font-display);font-size:17px;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:0.04em;display:flex;align-items:center;gap:6px">(360) 562-0477</a>
-    <a href="book.html" style="background:var(--red);color:var(--white);font-family:var(--font-display);font-size:15px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:8px 20px;border-radius:4px;text-decoration:none">Book Now</a>
+  <div class="nav-right">
+    <a href="tel:3605620477" class="nav-phone">(360) 562-0477</a>
+    <a href="index.html#trailers" class="nav-cta">Book Now</a>
   </div>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
 </nav>
-<div class="placeholder">
-  <div class="placeholder-inner">
-    <div class="section-label">Coming Soon</div>
-    <h1>Page Under<br>Construction</h1>
-    <p>This page is being built. Check back soon or head back to the homepage.</p>
-    <a href="index.html" class="btn">Back to Home</a>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="toggleMenu()">Home</a>
+  <a href="index.html#trailers" onclick="toggleMenu()">All Trailers</a>
+  <a href="services.html" onclick="toggleMenu()">Junk Removal</a>
+  <a href="about.html" onclick="toggleMenu()">About</a>
+  <a href="faq.html" onclick="toggleMenu()">FAQ</a>
+  <a href="policies.html" onclick="toggleMenu()">Policies</a>
+  <a href="tel:3605620477" onclick="toggleMenu()">(360) 562-0477</a>
+  <a href="index.html#trailers" class="btn-cta" onclick="toggleMenu()">Book Now</a>
+</div>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="section-label">What People Are Saying</div>
+    <h1>Don't Just Take<br><em>Our Word For It.</em></h1>
+    <p>Over 50+ reviews and counting. Hear what our customers have to say about us.</p>
   </div>
 </div>
+
+
+<!-- REVIEWS -->
+<div class="carousel-wrap">
+  <div class="carousel-viewport">
+    <div class="carousel-track" id="carouselTrack">
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">2 weeks ago</div></div>
+      <p class="review-text">"Easy pickup/drop off. Great communication and fair price."</p>
+      <div class="review-author">Paul Q.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">3 weeks ago</div></div>
+      <p class="review-text">"Rented a car trailer from 509 Trailers and had a great experience from start to finish. Josh was professional, honest, and the whole process was seamless."</p>
+      <div class="review-author">Jonnnyd23</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">4 weeks ago</div></div>
+      <p class="review-text">"Very fast and easy rental."</p>
+      <div class="review-author">Jessica D.</div>
+      <div class="review-badge">Local Guide · 123 reviews</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">4 weeks ago</div></div>
+      <p class="review-text">"Had the best experience renting a trailer! Trailer came with all the necessities to tow a car. Even had some race ramps for my lowered car. Super easy check-in and checkout process. Highly recommend!!"</p>
+      <div class="review-author">Max F.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">4 weeks ago</div></div>
+      <p class="review-text">"Rented a trailer for my track day at the Ridge Motorsport Park (3 hour drive) and everything went exceptionally well. The trailer was easy to load, reliable on the road, and return was a breeze."</p>
+      <div class="review-author">MotionFactory47</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">5 weeks ago</div></div>
+      <p class="review-text">"Very simple process. Needed a dump trailer and within moments I had a booking reserved the very next day. Contactless pickup made the whole experience effortless."</p>
+      <div class="review-author">Alex V.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">8 weeks ago</div></div>
+      <p class="review-text">"The process was simple and the customer service was excellent. I will use them again!"</p>
+      <div class="review-author">Andy L.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">8 weeks ago</div></div>
+      <p class="review-text">"Great experience and excellent customer service. Will be renting from again."</p>
+      <div class="review-author">Nathan P.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">8 weeks ago</div></div>
+      <p class="review-text">"Top tier service. I have rented a lot of trailers. But this is by far the best. 10/10 recommend. The online process and responsive service made all the difference."</p>
+      <div class="review-author">Christopher C.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">8 weeks ago</div></div>
+      <p class="review-text">"Great equipment! Great price and outstanding service! Very easy to work with, with contactless pickup and return! Josh is great to work with! I wouldn't hesitate to do business with 509 again!"</p>
+      <div class="review-author">Mat C.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">9 weeks ago</div></div>
+      <p class="review-text">"Rented a car hauler flat bed trailer. The process was done online — simple and efficient. When we had questions, live support was there. Easy pickup and drop-off."</p>
+      <div class="review-author">Carol O.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">10 weeks ago</div></div>
+      <p class="review-text">"Needed a truck and a trailer last minute and he came out personally to help us out within the hour. Incredibly helpful and professional — couldn't recommend more."</p>
+      <div class="review-author">Toni F.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">10 weeks ago</div></div>
+      <p class="review-text">"Josh was great to deal with! Everything was as he described and all equipment was in great condition. Trailer with race ramps worked perfectly."</p>
+      <div class="review-author">John G.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">11 weeks ago</div></div>
+      <p class="review-text">"Easy and fast service. From Vancouver Washington to Seattle and back. No issues. Definitely going to use this service again."</p>
+      <div class="review-author">Jesus E.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">11 weeks ago</div></div>
+      <p class="review-text">"Josh is very helpful and responsive. Makes it easy."</p>
+      <div class="review-author">Joel S.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">11 weeks ago</div></div>
+      <p class="review-text">"Very friendly and helpful! Easy to rent, very nice trailer and accessories! Will definitely rent again!"</p>
+      <div class="review-author">Justin R.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">12 weeks ago</div></div>
+      <p class="review-text">"Everything worked as it should. Trailer was clean and ready when I needed it. Keeps me from buying and maintaining a trailer which is a plus."</p>
+      <div class="review-author">Stephen W.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">12 weeks ago</div></div>
+      <p class="review-text">"Great experience. They were super accommodating of what I needed. Will definitely rent from them again."</p>
+      <div class="review-author">Dillon M.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">12 weeks ago</div></div>
+      <p class="review-text">"Nice trailer and very clear on their process!"</p>
+      <div class="review-author">Levi N.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">12 weeks ago</div></div>
+      <p class="review-text">"Josh was an incredible person to rent a trailer from! I had a terrible day trying to find a trailer and I came across 509 Trailers. The contactless pickup turned my whole day around."</p>
+      <div class="review-author">Destiny K.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">14 weeks ago</div></div>
+      <p class="review-text">"My Tesla died when I got home — the car hauler trailer came to the rescue. Josh's race ramp recommendation got my car loaded perfectly. Fantastic service."</p>
+      <div class="review-author">Trapsthetics</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">15 weeks ago</div></div>
+      <p class="review-text">"I had an amazing experience renting from this trailer company. The whole process was smooth, professional, and stress-free."</p>
+      <div class="review-author">Andrei L.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">15 weeks ago</div></div>
+      <p class="review-text">"Incredible communication and good equipment. Very fair price. Will use again if I need."</p>
+      <div class="review-author">fireball4thewin</div>
+      <div class="review-badge">Local Guide · 17 reviews</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">15 weeks ago</div></div>
+      <p class="review-text">"BEST way to rent a trailer. Reserve online. Pickup was contactless. Just yourself and your phone. Follow the app. Take pics. Hook up and go. Trailer is equipped with everything needed. Tows great! Drop off super easy. HIGHLY RECOMMEND."</p>
+      <div class="review-author">Joe P.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">17 weeks ago</div></div>
+      <p class="review-text">"Trailer was as advertised. Like new with provided equipment in great shape. Rental process is incredibly straightforward. I have rented from others over the years and they're hammered — this guy cares about his stuff and it shows. You will not be disappointed."</p>
+      <div class="review-author">Maxwell R.</div>
+      <div class="review-badge">Local Guide · 38 reviews</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">18 weeks ago</div></div>
+      <p class="review-text">"Josh was super helpful with everything. The trailer exceeded my expectations. The whole experience is easy. The trailer had everything I needed and worked perfectly. I will be using them again for sure."</p>
+      <div class="review-author">Allen P.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">21 weeks ago</div></div>
+      <p class="review-text">"Effective, efficient and easily done! Could not recommend 509 trailers and their services more."</p>
+      <div class="review-author">Flynn D.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">21 weeks ago</div></div>
+      <p class="review-text">"Awesome service, very respectful and everything went super smoothly."</p>
+      <div class="review-author">Pavel A.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">21 weeks ago</div></div>
+      <p class="review-text">"Josh was gracious enough to rent me the trailer on a Sunday. He was very kind and went over everything with me. Outstanding customer service and I encourage everyone to go through Josh for your trailer needs."</p>
+      <div class="review-author">David E.</div>
+      <div class="review-badge">Local Guide · 16 reviews</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">22 weeks ago</div></div>
+      <p class="review-text">"I would recommend renting a trailer from Josh — it's contactless and very easy to fill out information. He was able to accommodate my needs quickly."</p>
+      <div class="review-author">Riley S.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">23 weeks ago</div></div>
+      <p class="review-text">"Need a trailer to pick up a van — 509 Trailers made it easy and convenient! And affordable! I recommend using them to anyone who needs a trailer!!"</p>
+      <div class="review-author">Manny</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">24 weeks ago</div></div>
+      <p class="review-text">"Beautiful great services."</p>
+      <div class="review-author">Proline Performance</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">26 weeks ago</div></div>
+      <p class="review-text">"Super great experience! Great communication and the equipment was top notch. Highly recommend to anyone, you will not be let down!"</p>
+      <div class="review-author">Joseph G.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">29 weeks ago</div></div>
+      <p class="review-text">"Josh was easy to deal with. Trailer had everything he said it had. Used two tie downs up front and two axle straps in back — worked perfectly."</p>
+      <div class="review-author">Ed C.</div>
+      <div class="review-badge">Local Guide · 17 reviews</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">29 weeks ago</div></div>
+      <p class="review-text">"Great communication and availability. Great experience — would recommend using this rental company."</p>
+      <div class="review-author">John S.</div>
+      <div class="review-badge">Local Guide · 24 reviews</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">29 weeks ago</div></div>
+      <p class="review-text">"10/10 experience — winch helped a lot pulling my car onto the trailer."</p>
+      <div class="review-author">Eric G.</div>
+      <div class="review-badge">Local Guide · 34 reviews</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">30 weeks ago</div></div>
+      <p class="review-text">"Picked up a trailer for a small project and it was super convenient. Everything worked as expected and the process was quick."</p>
+      <div class="review-author">Aspyn C.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">30 weeks ago</div></div>
+      <p class="review-text">"Needed a trailer for a weekend project and 509 Trailer Rentals came through. The trailer worked perfectly and picking it up was easy."</p>
+      <div class="review-author">Viktor M.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">33 weeks ago</div></div>
+      <p class="review-text">"Grateful for 509. I was able to get my clapped BMW finally out of my ex girlfriend's grandma's ex boyfriend's garage. 10/10 — saved me extra costs too."</p>
+      <div class="review-author">BI TR</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">33 weeks ago</div></div>
+      <p class="review-text">"Very great communication. Easy pick up and drop off. Made my hauling process efficient and smooth."</p>
+      <div class="review-author">Jordyn A.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">33 weeks ago</div></div>
+      <p class="review-text">"Trailers were all clean and had everything needed to load my projects. Customer service was excellent. It was hassle free. I recommend this company to anyone searching for a rental trailer."</p>
+      <div class="review-author">Daniel</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">34 weeks ago</div></div>
+      <p class="review-text">"Trailer came with everything needed to tow my car. The winch was fantastic and made my life easier. Definitely recommend Josh at 509 to anyone needing a trailer ready to go."</p>
+      <div class="review-author">Mr. Nobody</div>
+      <div class="review-badge">Local Guide · 8 reviews</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">34 weeks ago</div></div>
+      <p class="review-text">"Best in the game."</p>
+      <div class="review-author">Gibson K.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">35 weeks ago</div></div>
+      <p class="review-text">"Had an awesome experience with 509 Trailer Rentals! The trailers are clean, reliable, and ready to go. The rental process is smooth and hassle-free."</p>
+      <div class="review-author">Evan</div>
+      <div class="review-badge">Local Guide · 23 reviews</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header"><div class="review-stars">★★★★★</div><div class="review-time">35 weeks ago</div></div>
+      <p class="review-text">"Needed a trailer same day for my car and I was able to find one instantly. They were able to get me a good weekly rate."</p>
+      <div class="review-author">Oliver W.</div>
+      <div class="review-source">Google</div>
+    </div>
+
+    </div>
+  </div>
+  <div class="carousel-controls">
+    <button class="carousel-btn" onclick="carousel(-1)">&#8249;</button>
+    <div class="carousel-dots" id="carouselDots"></div>
+    <div class="carousel-counter"><span id="carouselCurrent">1</span> / <span id="carouselTotal">0</span></div>
+    <button class="carousel-btn" onclick="carousel(1)">&#8250;</button>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="testimonials-cta">
+  <h2>Ready to Join Them?</h2>
+  <p>Book online in minutes — 24/7, no phone call required.</p>
+  <div class="cta-actions">
+    <a href="index.html#trailers" class="btn-primary">View Trailers</a>
+    <a href="https://share.google/PoIsy23Xxg1swpvlI" target="_blank" class="btn-secondary">⭐ View on Google</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">509 <span style="color:var(--red)">TRAILERS</span></a>
+      <p>Contactless trailer rentals in Vancouver, WA. Book online, pick up the same day.</p>
+      <p style="margin-top:0.75rem;font-size:13px">11616 NE 79th St<br>Vancouver, WA 98662</p>
+    </div>
+    <div class="footer-links">
+      <h4>Our Fleet</h4>
+      <ul>
+        <li><a href="car-hauler.html">20ft Car Hauler</a></li>
+        <li><a href="dump-trailer.html">14ft Dump Trailer</a></li>
+        <li><a href="deck-over.html">22ft Deck Over Tilt</a></li>
+        <li><a href="enclosed.html">24ft Enclosed Trailer</a></li>
+        <li><a href="services.html">Junk Removal</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="policies.html">Rental Policies</a></li>
+        <li><a href="index.html#contact-us">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 509 Trailer Rentals LLC. All rights reserved.</p>
+    <p>Vancouver, WA</p>
+  </div>
+</footer>
+
+<script>
+
+  // ── CAROUSEL ──
+  var track = document.getElementById('carouselTrack');
+  var dotsEl = document.getElementById('carouselDots');
+  var currentEl = document.getElementById('carouselCurrent');
+  var totalEl = document.getElementById('carouselTotal');
+  var cards = track.querySelectorAll('.review-card');
+  var perView = window.innerWidth <= 560 ? 1 : window.innerWidth <= 900 ? 2 : 3;
+  var total = Math.ceil(cards.length / perView);
+  var current = 0;
+  var autoTimer;
+
+  function buildDots() {
+    dotsEl.innerHTML = '';
+    for (var i = 0; i < total; i++) {
+      var d = document.createElement('button');
+      d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('data-i', i);
+      d.addEventListener('click', function() { goTo(parseInt(this.getAttribute('data-i'))); });
+      dotsEl.appendChild(d);
+    }
+    totalEl.textContent = total;
+  }
+
+  function goTo(n) {
+    current = Math.max(0, Math.min(n, total - 1));
+    var cardW = cards[0].offsetWidth + 24;
+    track.style.transform = 'translateX(-' + (current * perView * cardW) + 'px)';
+    document.querySelectorAll('.carousel-dot').forEach(function(d, i) { d.classList.toggle('active', i === current); });
+    currentEl.textContent = current + 1;
+    resetAuto();
+  }
+
+  function carousel(dir) { goTo(current + dir); }
+
+  function resetAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(function() { goTo(current + 1 < total ? current + 1 : 0); }, 5000);
+  }
+
+  // Touch swipe
+  var startX = 0;
+  track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, {passive:true});
+  track.addEventListener('touchend', function(e) {
+    var diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) carousel(diff > 0 ? 1 : -1);
+  });
+
+  window.addEventListener('resize', function() {
+    var newPer = window.innerWidth <= 560 ? 1 : window.innerWidth <= 900 ? 2 : 3;
+    if (newPer !== perView) { perView = newPer; total = Math.ceil(cards.length / perView); current = 0; buildDots(); goTo(0); }
+  });
+
+  buildDots();
+  resetAuto();
+  function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+  document.addEventListener('click',function(e){
+    const menu=document.getElementById('mobileMenu');
+    const hamburger=document.querySelector('.hamburger');
+    if(!menu.contains(e.target)&&!hamburger.contains(e.target))menu.classList.remove('open');
+  });
+</script>
 </body>
 </html>
