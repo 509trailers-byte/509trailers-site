@@ -240,23 +240,27 @@
 <script>
 
   // ── AVAILABILITY TOGGLE ──
-  // To mark as booked: set available to false, set bookedUntil e.g. 'June 19'
-  // To mark as available again: set available to true, bookedUntil to null
-  const TRAILER_STATUS = {
-    available: False,
-    bookedUntil: June 20th
+  // To mark as booked: change available to false, set bookedUntil e.g. 'June 20'
+  // To mark available again: change available to true, set bookedUntil to null
+  var TRAILER_STATUS = {
+    available: false,
+    bookedUntil: 'June 20'
   };
-  (function() {
-    const badge = document.querySelector('.status-badge');
+  document.addEventListener('DOMContentLoaded', function() {
+    var badge = document.querySelector('.status-badge');
     if (!badge) return;
     if (TRAILER_STATUS.available) {
-      badge.innerHTML = 'Available Now';
-      badge.style.cssText += 'background:rgba(46,204,113,0.12);color:#2ECC71;border:1px solid rgba(46,204,113,0.25);';
+      badge.textContent = 'Available Now';
+      badge.style.background = 'rgba(46,204,113,0.12)';
+      badge.style.color = '#2ECC71';
+      badge.style.border = '1px solid rgba(46,204,113,0.25)';
     } else {
-      badge.innerHTML = TRAILER_STATUS.bookedUntil ? 'Booked Until ' + TRAILER_STATUS.bookedUntil : 'Currently Booked';
-      badge.style.cssText += 'background:rgba(215,43,43,0.12);color:#FF6B6B;border:1px solid rgba(215,43,43,0.25);';
+      badge.textContent = TRAILER_STATUS.bookedUntil ? 'Booked Until ' + TRAILER_STATUS.bookedUntil : 'Currently Booked';
+      badge.style.background = 'rgba(215,43,43,0.12)';
+      badge.style.color = '#FF6B6B';
+      badge.style.border = '1px solid rgba(215,43,43,0.25)';
     }
-  })();
+  });
 
 function switchPhoto(src){document.getElementById('main-photo').src=src;}
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
