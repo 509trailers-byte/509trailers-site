@@ -59,11 +59,11 @@
   .btn-secondary{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--white);font-family:var(--font-display);font-size:17px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:14px 32px;border-radius:4px;border:1px solid rgba(255,255,255,0.2);text-decoration:none;transition:border-color 0.2s}
   .btn-secondary:hover{border-color:rgba(255,255,255,0.5)}
   .gallery-strip{display:flex;gap:4px;max-width:1100px;margin:0 auto;padding:0 2rem;transform:translateY(-30px)}
-  .gallery-main{flex:2;height:380px;overflow:hidden;border-radius:4px}
-  .gallery-main img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s}
+  .gallery-main{flex:2;height:380px;overflow:hidden;border-radius:4px;background:var(--gray-800)}
+  .gallery-main img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 0.3s;display:block}
   .gallery-thumbs{flex:1;display:flex;flex-direction:column;gap:4px}
-  .gallery-thumb{flex:1;overflow:hidden;border-radius:4px;cursor:pointer}
-  .gallery-thumb img{width:100%;height:100%;object-fit:cover;opacity:0.7;transition:opacity 0.2s}
+  .gallery-thumb{flex:1;overflow:hidden;border-radius:4px;cursor:pointer;background:var(--gray-800)}
+  .gallery-thumb img{width:100%;height:100%;object-fit:cover;object-position:center;opacity:0.7;transition:opacity 0.2s;display:block}
   .gallery-thumb:hover img{opacity:1}
   .trailer-content{max-width:1100px;margin:0 auto;padding:0 2rem 80px;display:grid;grid-template-columns:1fr 320px;gap:3rem;align-items:start}
   .section-label{font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--red);margin-bottom:0.75rem}
@@ -110,8 +110,8 @@
   @media(max-width:768px){
     .nav-links,.nav-phone{display:none}.nav-cta{display:none}.hamburger{display:flex}
     .gallery-strip{flex-direction:column;transform:translateY(0);padding:1rem}
-    .gallery-main{height:260px}
-    .gallery-thumbs{flex-direction:row;height:90px}
+    .gallery-main{height:240px}
+    .gallery-thumbs{flex-direction:row;height:80px}
     .trailer-content{grid-template-columns:1fr}
     .sidebar{position:static}
     .footer-inner{flex-direction:column}
