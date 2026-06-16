@@ -1,11 +1,10 @@
-// ─────────────────────────────────────────
+// ─────────────────────────────────────────────────────
 // 509 TRAILER RENTALS — AVAILABILITY CONFIG
-// Update this file to change status on ALL pages at once
+// Edit FLEET_STATUS below to update badges site-wide.
 //
-// available: true  = shows green "Available Now"
-// available: false = shows red "Booked Until [date]"
-// bookedUntil: null or 'June 20' etc.
-// ─────────────────────────────────────────
+// available: true  → green "Available Now"
+// available: false → red "Booked Until [date]"
+// ─────────────────────────────────────────────────────
 
 var FLEET_STATUS = {
   'car-hauler':   { available: true,  bookedUntil: null },
@@ -17,33 +16,39 @@ var FLEET_STATUS = {
 document.addEventListener('DOMContentLoaded', function() {
 
   // ── INDIVIDUAL TRAILER PAGES ──
-  // Reads slug from <body data-trailer="...">
   var slug = document.body.getAttribute('data-trailer');
   if (slug && FLEET_STATUS[slug]) {
     var badge = document.querySelector('.status-badge');
-    if (badge) updateBadge(badge, FLEET_STATUS[slug]);
+    if (badge) applyStatus(badge, FLEET_STATUS[slug], 'badge');
   }
 
-  // ── MAIN PAGE FLEET CARDS ──
+  // ── MAIN PAGE CARDS ──
   Object.keys(FLEET_STATUS).forEach(function(key) {
     var card = document.getElementById(key);
     if (!card) return;
     var badge = card.querySelector('.trailer-status');
-    if (badge) updateBadge(badge, FLEET_STATUS[key]);
+    if (badge) applyStatus(badge, FLEET_STATUS[key], 'card');
   });
 
-  function updateBadge(badge, status) {
+  function applyStatus(el, status, type) {
     if (status.available) {
-      badge.textContent = 'Available Now';
-      badge.className = badge.className.replace('status-coming', '').trim();
-      if (!badge.className.includes('status-available')) badge.className += ' status-available';
-      badge.removeAttribute('style');
+      el.textContent = 'Available Now';
+      if (type === 'badge') el.classList.remove('booked');
+      if (type === 'card') {
+        el.className = 'trailer-status status-available';
+        el.removeAttribute('style');
+      }
     } else {
-      badge.textContent = status.bookedUntil ? 'Booked Until ' + status.bookedUntil : 'Currently Booked';
-      badge.className = badge.className.replace('status-available', '').replace('status-coming', '').trim();
-      badge.style.background = 'rgba(215,43,43,0.12)';
-      badge.style.color = '#FF6B6B';
-      badge.style.border = '1px solid rgba(215,43,43,0.25)';
+      el.textContent = status.bookedUntil
+        ? 'Booked Until ' + status.bookedUntil
+        : 'Currently Booked';
+      if (type === 'badge') el.classList.add('booked');
+      if (type === 'card') {
+        el.className = 'trailer-status';
+        el.style.background = 'rgba(215,43,43,0.12)';
+        el.style.color = '#FF6B6B';
+        el.style.border = '1px solid rgba(215,43,43,0.25)';
+      }
     }
   }
 
