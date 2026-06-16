@@ -35,11 +35,12 @@ document.addEventListener('DOMContentLoaded', function() {
   function updateBadge(badge, status) {
     if (status.available) {
       badge.textContent = 'Available Now';
-      badge.style.background = 'rgba(46,204,113,0.12)';
-      badge.style.color = '#2ECC71';
-      badge.style.border = '1px solid rgba(46,204,113,0.25)';
+      badge.className = badge.className.replace('status-coming', '').trim();
+      if (!badge.className.includes('status-available')) badge.className += ' status-available';
+      badge.removeAttribute('style');
     } else {
       badge.textContent = status.bookedUntil ? 'Booked Until ' + status.bookedUntil : 'Currently Booked';
+      badge.className = badge.className.replace('status-available', '').replace('status-coming', '').trim();
       badge.style.background = 'rgba(215,43,43,0.12)';
       badge.style.color = '#FF6B6B';
       badge.style.border = '1px solid rgba(215,43,43,0.25)';
