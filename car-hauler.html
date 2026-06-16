@@ -59,9 +59,9 @@
   .btn-secondary{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--white);font-family:var(--font-display);font-size:17px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:14px 32px;border-radius:4px;border:1px solid rgba(255,255,255,0.2);text-decoration:none;transition:border-color 0.2s}
   .btn-secondary:hover{border-color:rgba(255,255,255,0.5)}
   .gallery-strip{display:flex;gap:4px;max-width:1100px;margin:0 auto;padding:0 2rem;transform:translateY(-30px)}
-  .gallery-main{flex:2;height:380px;overflow:hidden;border-radius:4px;background:var(--gray-800)}
+  .gallery-main{flex:1;height:380px;overflow:hidden;border-radius:4px;background:var(--gray-800)}
   .gallery-main img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 0.3s;display:block}
-  .gallery-thumbs{flex:1;display:flex;flex-direction:column;gap:4px}
+  .gallery-thumbs{width:200px;flex-shrink:0;display:flex;flex-direction:column;gap:4px;height:380px}
   .gallery-thumb{flex:1;overflow:hidden;border-radius:4px;cursor:pointer;background:var(--gray-800)}
   .gallery-thumb img{width:100%;height:100%;object-fit:cover;object-position:center;opacity:0.7;transition:opacity 0.2s;display:block}
   .gallery-thumb:hover img{opacity:1}
@@ -111,7 +111,7 @@
     .nav-links,.nav-phone{display:none}.nav-cta{display:none}.hamburger{display:flex}
     .gallery-strip{flex-direction:column;transform:translateY(0);padding:1rem}
     .gallery-main{height:240px}
-    .gallery-thumbs{flex-direction:row;height:80px}
+    .gallery-thumbs{flex-direction:row;height:80px;width:100%}
     .trailer-content{grid-template-columns:1fr}
     .sidebar{position:static}
     .footer-inner{flex-direction:column}
@@ -128,10 +128,10 @@
     <li class="nav-dropdown">
       <button class="nav-dropdown-toggle">Trailers</button>
       <div class="nav-dropdown-menu">
-        <a href="index.html#car-hauler">20ft Car Hauler</a>
-        <a href="index.html#dump-trailer">14ft Dump Trailer</a>
-        <a href="index.html#deck-over">22ft Deck Over Tilt</a>
-        <a href="index.html#enclosed">24ft Enclosed</a>
+        <a href="car-hauler.html">20ft Car Hauler</a>
+        <a href="dump-trailer.html">14ft Dump Trailer</a>
+        <a href="deck-over.html">22ft Deck Over Tilt</a>
+        <a href="enclosed.html">24ft Enclosed</a>
         <div class="dropdown-divider"></div>
         <a href="index.html#trailers" class="dropdown-all">View All Trailers</a>
       </div>
@@ -238,6 +238,26 @@
 </footer>
 
 <script>
+
+  // ── AVAILABILITY TOGGLE ──
+  // To mark as booked: set available to false, set bookedUntil e.g. 'June 19'
+  // To mark as available again: set available to true, bookedUntil to null
+  const TRAILER_STATUS = {
+    available: true,
+    bookedUntil: null
+  };
+  (function() {
+    const badge = document.querySelector('.status-badge');
+    if (!badge) return;
+    if (TRAILER_STATUS.available) {
+      badge.innerHTML = 'Available Now';
+      badge.style.cssText += 'background:rgba(46,204,113,0.12);color:#2ECC71;border:1px solid rgba(46,204,113,0.25);';
+    } else {
+      badge.innerHTML = TRAILER_STATUS.bookedUntil ? 'Booked Until ' + TRAILER_STATUS.bookedUntil : 'Currently Booked';
+      badge.style.cssText += 'background:rgba(215,43,43,0.12);color:#FF6B6B;border:1px solid rgba(215,43,43,0.25);';
+    }
+  })();
+
 function switchPhoto(src){document.getElementById('main-photo').src=src;}
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
 document.addEventListener('click',function(e){
