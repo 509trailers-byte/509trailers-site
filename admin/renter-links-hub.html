@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking Confirmed — 509 Trailer Rentals</title>
+<meta name="description" content="Your trailer rental is confirmed. Here's what happens next.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--red:#D72B2B;--red-dark:#A81E1E;--red-light:#F03A3A;--black:#0E0E0E;--gray-900:#1A1A1A;--gray-800:#242424;--gray-400:#888;--gray-200:#CCC;--white:#FFF;--font-display:'Barlow Condensed',sans-serif;--font-body:'Barlow',sans-serif;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font-body);background:var(--black);color:var(--white);overflow-x:hidden}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px;background:rgba(14,14,14,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,0.06)}
+  .nav-logo{font-family:var(--font-display);font-size:22px;font-weight:800;letter-spacing:0.02em;color:var(--white);text-decoration:none}
+  .nav-logo span{color:var(--red)}
+  .nav-phone{font-family:var(--font-display);font-size:17px;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:0.04em;display:flex;align-items:center;gap:6px}
+  .nav-phone::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:#2ECC71;box-shadow:0 0 0 2px rgba(46,204,113,0.25)}
+
+  .hero{padding:140px 2rem 60px;text-align:center;position:relative;overflow:hidden;background:var(--gray-900);border-bottom:1px solid rgba(255,255,255,0.06)}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 100%,rgba(46,204,113,0.1) 0%,transparent 70%)}
+  .hero-inner{position:relative;z-index:2;max-width:600px;margin:0 auto}
+  .check-icon{width:64px;height:64px;border-radius:50%;background:rgba(46,204,113,0.12);border:1px solid rgba(46,204,113,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:32px}
+  .hero h1{font-family:var(--font-display);font-size:clamp(36px,6vw,56px);font-weight:800;text-transform:uppercase;letter-spacing:0.01em;line-height:1;margin-bottom:1rem}
+  .hero h1 em{font-style:normal;color:#2ECC71}
+  .hero p{font-size:16px;color:var(--gray-200);line-height:1.7}
+
+  .wrap{max-width:700px;margin:0 auto;padding:60px 2rem 80px}
+  .section-label{font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--red);margin-bottom:0.75rem}
+  .steps{display:flex;flex-direction:column;gap:0;margin-bottom:3rem}
+  .step{display:flex;gap:1.5rem;padding:1.5rem 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+  .step:last-child{border-bottom:none}
+  .step-num{font-family:var(--font-display);font-size:36px;font-weight:800;color:rgba(215,43,43,0.45);line-height:1;flex-shrink:0;width:40px}
+  .step-content h3{font-family:var(--font-display);font-size:19px;font-weight:700;text-transform:uppercase;letter-spacing:0.03em;color:var(--white);margin-bottom:0.4rem}
+  .step-content p{font-size:14px;color:#BBBBBB;line-height:1.7}
+
+  .links-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:3rem}
+  .link-card{background:var(--gray-900);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:1.25rem;text-decoration:none;transition:border-color 0.2s}
+  .link-card:hover{border-color:rgba(215,43,43,0.3)}
+  .link-card-title{font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--white);text-transform:uppercase;letter-spacing:0.03em;margin-bottom:0.3rem}
+  .link-card-desc{font-size:13px;color:var(--gray-400)}
+
+  .help-box{background:rgba(215,43,43,0.06);border-left:3px solid var(--red);border-radius:0 4px 4px 0;padding:1.5rem 1.75rem;text-align:center}
+  .help-box p{font-size:14px;color:#BBBBBB;margin-bottom:1rem}
+  .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:var(--white);font-family:var(--font-display);font-size:16px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:12px 28px;border-radius:4px;text-decoration:none;transition:background 0.2s}
+  .btn-primary:hover{background:var(--red-light)}
+
+  @media(max-width:600px){
+    .links-grid{grid-template-columns:1fr}
+    .nav-phone{font-size:14px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">509 <span>TRAILERS</span></a>
+  <a href="tel:3605620477" class="nav-phone">(360) 562-0477</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="check-icon">✓</div>
+    <h1>Booking<br><em>Confirmed.</em></h1>
+    <p>Thanks for booking with 509 Trailer Rentals. Here's exactly what happens next.</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="section-label">What Happens Next</div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <h3>Confirmation Text & Email</h3>
+        <p>You'll receive a confirmation by text and email with your booking details — trailer, dates, and total.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <h3>Sign Your Rental Agreement</h3>
+        <p>A link to your digital rental agreement will be texted to you shortly. It takes about a minute to review and sign from your phone.</p>
+        <a href="rental-agreement.html" class="btn-primary" style="margin-top:0.75rem;font-size:14px;padding:10px 22px">Sign Now</a>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <h3>Get Your Lock Code</h3>
+        <p>Before your pickup time, you'll receive a unique lock code by text. This is what gets you into the lot — no one needs to meet you there.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-content">
+        <h3>Pick Up & Go</h3>
+        <p>Head to 11616 NE 79th St, Vancouver, WA. Enter your code, complete a quick photo inspection on your phone, hook up, and hit the road.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Helpful Links</div>
+  <div class="links-grid">
+    <a href="rental-agreement.html" class="link-card">
+      <div class="link-card-title">Sign Rental Agreement</div>
+      <div class="link-card-desc">Takes about a minute</div>
+    </a>
+    <a href="faq.html#rental-agreement" class="link-card">
+      <div class="link-card-title">How It Works</div>
+      <div class="link-card-desc">Agreement walkthrough</div>
+    </a>
+    <a href="policies.html" class="link-card">
+      <div class="link-card-title">Rental Policies</div>
+      <div class="link-card-desc">Late returns, damage & more</div>
+    </a>
+    <a href="https://maps.google.com/?q=11616+NE+79th+St+Vancouver+WA+98662" target="_blank" class="link-card">
+      <div class="link-card-title">Pickup Location</div>
+      <div class="link-card-desc">Padden Storage, Vancouver WA</div>
+    </a>
+  </div>
+
+  <div class="help-box">
+    <p>Questions about your booking? We're real people and we'll actually respond.</p>
+    <a href="tel:3605620477" class="btn-primary">(360) 562-0477</a>
+  </div>
+
+</div>
+
+<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6924f09420fcaa34a449383d"></script>
+<script>
+  window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
