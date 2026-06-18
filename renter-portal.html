@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Renter Portal — 509 Trailer Rentals</title>
+<meta name="description" content="Rental agreement, check-out, and check-in forms.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--red:#D72B2B;--red-dark:#A81E1E;--red-light:#F03A3A;--black:#0E0E0E;--gray-900:#1A1A1A;--gray-800:#242424;--gray-400:#888;--gray-200:#CCC;--white:#FFF;--font-display:'Barlow Condensed',sans-serif;--font-body:'Barlow',sans-serif;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font-body);background:var(--black);color:var(--white);overflow-x:hidden}
+
+  nav{position:sticky;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px;background:rgba(14,14,14,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,0.06)}
+  .nav-logo{font-family:var(--font-display);font-size:22px;font-weight:800;letter-spacing:0.02em;color:var(--white);text-decoration:none}
+  .nav-logo span{color:var(--red)}
+  .nav-phone{font-family:var(--font-display);font-size:17px;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:0.04em;display:flex;align-items:center;gap:6px}
+  .nav-phone::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:#2ECC71;box-shadow:0 0 0 2px rgba(46,204,113,0.25)}
+
+  .hero{padding:60px 2rem 45px;text-align:center;position:relative;overflow:hidden;background:var(--gray-900);border-bottom:1px solid rgba(255,255,255,0.06)}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 100%,rgba(46,204,113,0.1) 0%,transparent 70%)}
+  .hero-inner{position:relative;z-index:2;max-width:600px;margin:0 auto}
+  .check-icon{width:56px;height:56px;border-radius:50%;background:rgba(46,204,113,0.12);border:1px solid rgba(46,204,113,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-size:28px}
+  .hero h1{font-family:var(--font-display);font-size:clamp(32px,5.5vw,48px);font-weight:800;text-transform:uppercase;letter-spacing:0.01em;line-height:1;margin-bottom:0.85rem}
+  .hero h1 em{font-style:normal;color:#2ECC71}
+  .hero p{font-size:15px;color:var(--gray-200);line-height:1.7}
+
+  .wrap{max-width:720px;margin:0 auto;padding:3rem 1.25rem 80px}
+
+  .portal-card{background:var(--gray-900);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:2rem;margin-bottom:1.5rem;text-align:center}
+  .portal-card-num{font-family:var(--font-display);font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--red);margin-bottom:0.5rem}
+  .portal-card-title{font-family:var(--font-display);font-size:24px;font-weight:800;text-transform:uppercase;letter-spacing:0.02em;color:var(--white);margin-bottom:0.75rem}
+  .portal-card-body{font-size:14px;color:#BBBBBB;line-height:1.75;margin-bottom:1.5rem;text-align:left}
+  .portal-card-body strong{color:var(--white);font-weight:600}
+
+  .btn-redirect{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:var(--white);font-family:var(--font-display);font-size:16px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:13px 28px;border-radius:4px;text-decoration:none;transition:background 0.2s}
+  .btn-redirect:hover{background:var(--red-light)}
+  .btn-redirect-secondary{background:transparent;border:1px solid rgba(255,255,255,0.2);color:var(--white)}
+  .btn-redirect-secondary:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.4)}
+
+  .help-box{background:rgba(215,43,43,0.06);border-left:3px solid var(--red);border-radius:0 4px 4px 0;padding:1.5rem 1.75rem;text-align:center;margin-top:1rem}
+  .help-box p{font-size:14px;color:#BBBBBB;margin-bottom:1rem}
+
+  @media(max-width:600px){
+    .nav-phone span{display:none}
+    .portal-card{padding:1.5rem}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">509 <span>TRAILERS</span></a>
+  <a href="tel:3605620477" class="nav-phone"><span>Need help? </span>(360) 562-0477</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="check-icon">✓</div>
+    <h1>Booking<br><em>Confirmed.</em></h1>
+    <p>Thanks for renting with 509 Trailer Rentals. Below is everything you'll need from booking to drop-off — take care of each step when it applies to you.</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- STEP 1: RENTAL AGREEMENT -->
+  <div class="portal-card">
+    <div class="portal-card-num">Step 01 — Do This Now</div>
+    <div class="portal-card-title">Finalize Your Rental Agreement</div>
+    <div class="portal-card-body">
+      Before your lock code can be sent, we need a signed rental agreement on file. It covers the basics — who's responsible for the trailer, what's expected at pickup and drop-off, and what happens in the event of damage or a late return. <strong>It only takes about a minute</strong> to read through and sign digitally from your phone or computer. Once it's submitted, you're all set for pickup day.
+    </div>
+    <a href="https://connect.509trailers.com/widget/form/wc95Dtxn0UeHyNNdRs6o" target="_blank" class="btn-redirect">Sign Rental Agreement</a>
+  </div>
+
+  <!-- STEP 2: CHECK-OUT FORM -->
+  <div class="portal-card">
+    <div class="portal-card-num">Step 02 — At Pickup</div>
+    <div class="portal-card-title">Pickup Check-Out Form</div>
+    <div class="portal-card-body">
+      When you arrive to pick up your trailer, complete this quick walk-around check-out form before you hook up and head out. It documents the trailer's condition at pickup — tires, lights, body panels, and included accessories — which protects you in case anything comes up during the rental. <strong>Takes just a couple minutes</strong> right there in the lot.
+    </div>
+    <a href="https://connect.509trailers.com/widget/form/fKcwxtyYdUzeiyrRgnZY" target="_blank" class="btn-redirect btn-redirect-secondary">Open Check-Out Form</a>
+  </div>
+
+  <!-- STEP 3: CHECK-IN FORM -->
+  <div class="portal-card">
+    <div class="portal-card-num">Step 03 — At Drop-Off</div>
+    <div class="portal-card-title">Drop-Off Check-In Form</div>
+    <div class="portal-card-body">
+      Once you're done with the trailer, bring it back to the same lot and complete this check-in form before you lock up. It's the final step that closes out your rental — confirming the trailer's condition on return and wrapping everything up cleanly on both ends. <strong>Don't forget to lock up and leave the key in the lockbox</strong> once you've submitted this.
+    </div>
+    <a href="https://connect.509trailers.com/widget/form/MqFUTD7iUbySHYUi5V7S" target="_blank" class="btn-redirect btn-redirect-secondary">Open Check-In Form</a>
+  </div>
+
+  <div class="help-box">
+    <p>Questions about your booking, or something not loading right? We're real people and we'll actually respond.</p>
+    <a href="tel:3605620477" class="btn-redirect">(360) 562-0477</a>
+  </div>
+
+</div>
+
+<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6924f09420fcaa34a449383d"></script>
+<script>
+  window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
