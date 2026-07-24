@@ -780,7 +780,7 @@
 </footer>
 
 <script>
-  const galleryState={car:0,dump:0,enclosed:0,deckover:0};
+  const galleryState={car:0,dump:0,enclosed:0,deckover:0,carv2:0};
   function goTo(id,index){
     galleryState[id]=index;
     document.getElementById('track-'+id).style.transform='translateX(-'+(index*100)+'%)';
@@ -790,7 +790,7 @@
     const total=document.querySelectorAll('#track-'+id+' .gallery-img').length;
     goTo(id,(galleryState[id]+dir+total)%total);
   }
-  ['car','dump','enclosed','deckover'].forEach(id=>{
+  ['car','carv2','dump','enclosed','deckover'].forEach(id=>{
     const el=document.getElementById('gallery-'+id);
     let startX=0;
     el.addEventListener('touchstart',e=>{startX=e.touches[0].clientX},{passive:true});
