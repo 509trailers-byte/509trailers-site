@@ -13,7 +13,14 @@
   html{scroll-behavior:smooth}
   body{font-family:var(--font-body);background:var(--black);color:var(--white);overflow-x:hidden}
 
-  /* NAV */
+  /* NOTICE BANNER */
+  .notice-banner{background:#7C3A00;border-bottom:1px solid rgba(255,150,0,0.3);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;position:fixed;top:64px;left:0;right:0;z-index:99}
+  .notice-banner.hidden{display:none}
+  .notice-text{font-size:15px;color:#FFD580;line-height:1.5;flex:1;text-align:center}
+  .notice-text strong{color:#FFF;font-weight:600}
+  .notice-close{background:none;border:none;color:#FFD580;font-size:22px;cursor:pointer;flex-shrink:0;line-height:1;padding:0 4px}
+  .notice-close:hover{color:#FFF}
+  @media(max-width:768px){.notice-text{font-size:13px;text-align:left}}
   nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px;background:rgba(14,14,14,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,0.06)}
   .nav-logo{font-family:var(--font-display);font-size:22px;font-weight:800;letter-spacing:0.02em;color:var(--white);text-decoration:none}
   .nav-logo span{color:var(--red)}
@@ -33,7 +40,7 @@
   .mobile-menu a.btn-primary{text-align:center;display:block;padding:12px}
 
   /* HERO */
-  .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:100px 2rem 60px;text-align:center}
+  .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:148px 2rem 60px;text-align:center}
   .hero-bg{position:absolute;inset:0;background-image:url('car-hauler-2.jpg');background-size:cover;background-position:center}
   .hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(14,14,14,0.75) 0%,rgba(14,14,14,0.65) 50%,rgba(14,14,14,0.85) 100%),radial-gradient(ellipse 80% 60% at 50% 50%,rgba(215,43,43,0.15) 0%,transparent 70%)}
   .hero-inner{position:relative;z-index:2;width:100%;max-width:900px;margin:0 auto}
@@ -279,6 +286,13 @@
   </div>
   <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
 </nav>
+
+<div class="notice-banner" id="noticeBanner">
+  <div class="notice-text">
+    <strong>⚠ Heads Up — Pickup is Contact-Assisted Until Further Notice.</strong> All rentals require coordination before pickup. Book in advance and we'll reach out to arrange a time to meet you at the trailer. Questions? Call or text <a href="tel:3605620477" style="color:#FFD580">(360) 562-0477</a>.
+  </div>
+  <button class="notice-close" onclick="document.getElementById('noticeBanner').classList.add('hidden')">✕</button>
+</div>
 
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html" onclick="toggleMenu()">Home</a>
