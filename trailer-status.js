@@ -7,10 +7,10 @@
 // ─────────────────────────────────────────────────────
 
 var FLEET_STATUS = {
-  'car-hauler':   { available: false,  bookedUntil: 'September 21' },
-  'car-hauler-v2':{ available: false,  bookedUntil: 'September 20' },
+  'car-hauler':   { available: true,  bookedUntil: null },
+  'car-hauler-v2':{ available: false,  bookedUntil: 'October 2' },
   'dump-trailer': { available: true,  bookedUntil: null },
-  'deck-over':    { available: false,  bookedUntil: 'September 21' },
+  'deck-over':    { available: true,  bookedUntil: null },
   'enclosed':     { available: false, bookedUntil: 'September 27' }
 };
 
