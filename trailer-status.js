@@ -7,11 +7,11 @@
 // ─────────────────────────────────────────────────────
 
 var FLEET_STATUS = {
-  'car-hauler':   { available: false,  bookedUntil: 'Available - No Winch' },
-  'car-hauler-v2':{ available: true,  bookedUntil: null },
+  'car-hauler':   { available: true,  bookedUntil: null },
+  'car-hauler-v2':{ available: false,  bookedUntil: 'October 24' },
   'dump-trailer': { available: true,  bookedUntil: null },
-  'deck-over':    { available: true,  bookedUntil: null },
-  'enclosed':     { available: true, bookedUntil: null }
+  'deck-over':    { available: false,  bookedUntil: 'October 23' },
+  'enclosed':     { available: false, bookedUntil: 'October 24'  }
 };
 
 document.addEventListener('DOMContentLoaded', function() {
