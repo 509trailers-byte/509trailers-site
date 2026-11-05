@@ -55,6 +55,14 @@
   .policy-list li a:hover{text-decoration:underline}
   .policy-note{margin-top:1rem;padding:0.85rem 1rem;background:rgba(215,43,43,0.06);border-left:3px solid rgba(215,43,43,0.35);border-radius:0 3px 3px 0;font-size:13px;color:#BBBBBB;line-height:1.65}
   .policy-note strong{color:var(--white)}
+  .policy-price{display:inline-block;font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--red);margin:-0.5rem 0 1.25rem}
+  .policy-sub{font-family:var(--font-display);font-size:17px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--white);margin:1.75rem 0 0.6rem}
+  .policy-p{font-size:14.5px;color:#BBBBBB;line-height:1.7;margin-bottom:0.75rem}
+  .policy-p strong{color:var(--white)}
+  .policy-steps{list-style:none;counter-reset:pstep;display:flex;flex-direction:column;gap:0.6rem;margin-bottom:0.75rem}
+  .policy-steps li{counter-increment:pstep;font-size:14.5px;color:#BBBBBB;line-height:1.7;padding-left:1.75rem;position:relative}
+  .policy-steps li::before{content:counter(pstep) '.';position:absolute;left:0;color:var(--red);font-weight:700}
+  #damage-protection{scroll-margin-top:90px}
 
   /* FEE TABLE */
   .fee-table{width:100%;border-collapse:collapse;margin-top:0.85rem;font-size:14px}
@@ -216,6 +224,7 @@
       <li><strong>Maintenance and mechanical failures</strong> through normal use are on us.</li>
       <li>Renters are financially responsible for all damage caused by <strong>negligence, overloading, tire blowouts, accidents, or misuse</strong> of equipment.</li>
       <li>Pre-existing damage is <strong>documented via walk-around inspection photos</strong> at pickup — you won't be charged for something that was already there.</li>
+      <li>Optional <strong>Trailer Damage Protection</strong> ($13/day) can limit your cost for accidental damage to $1,000 per incident. <a href="#damage-protection">See terms.</a></li>
     </ul>
     <div class="policy-note"><strong>Note:</strong> Contact us immediately in the event of any accident or damage at <a href="tel:3605620477" style="color:var(--red)">(360) 562-0477</a>.</div>
   </div>
@@ -227,17 +236,70 @@
       <div class="policy-card-title">Insurance</div>
     </div>
     <ul class="policy-list">
-      <li><strong>Valid auto insurance</strong> that covers towing a trailer is required. Confirm your coverage with your provider before pickup.</li>
-      <li>Optional <strong>damage protection through MBA Insurance</strong> is available to add at booking:</li>
+      <li><strong>Active auto liability insurance</strong> on the vehicle towing the trailer is required for every rental. Confirm with your insurer that your policy covers towing a rented trailer before pickup.</li>
+      <li>Optional <strong>Trailer Damage Protection</strong> is available at checkout for <strong>$13/day</strong>. It covers the trailer only and does not replace your auto insurance. <a href="#damage-protection">See the full terms below.</a></li>
     </ul>
-    <table class="fee-table">
-      <tr><th>Trailer</th><th>Protection Rate</th></tr>
-      <tr><td>20ft Car Hauler</td><td>$13/day</td></tr>
-      <tr><td>14ft Dump Trailer</td><td>$13/day</td></tr>
-      <tr><td>22ft Deck Over Tilt</td><td>$21/day</td></tr>
-      <tr><td>24ft Enclosed Trailer</td><td>$21/day</td></tr>
-    </table>
-    <div class="policy-note">Damage protection does <strong>not</strong> cover negligence, overloading, or intentional misuse.</div>
+  </div>
+
+  <!-- TRAILER DAMAGE PROTECTION -->
+  <div class="policy-card" id="damage-protection">
+    <div class="policy-card-header">
+      <span class="policy-card-icon">🔧</span>
+      <div class="policy-card-title">Trailer Damage Protection</div>
+    </div>
+    <div class="policy-price">$13/day · Optional add-on</div>
+
+    <p class="policy-p">Damage Protection covers the trailer only. It is a damage waiver offered by 509 Trailer Rentals LLC insurance policy. It does not replace your auto insurance.</p>
+
+    <div class="policy-sub">You must have your own auto insurance</div>
+    <p class="policy-p">Every renter must carry active auto liability insurance on the vehicle towing the trailer, whether or not you add Damage Protection.</p>
+    <p class="policy-p">Your auto insurance is responsible for:</p>
+    <ul class="policy-list">
+      <li>Accidents while towing</li>
+      <li>Injuries to you, your passengers or anyone else</li>
+      <li>Damage to other vehicles or property</li>
+      <li>Damage to your tow vehicle</li>
+    </ul>
+    <p class="policy-p" style="margin-top:0.85rem">Before you rent, check with your auto insurer that your policy covers towing a rented trailer. Most policies extend liability coverage to a trailer you’re towing, but coverage varies.</p>
+
+    <div class="policy-sub">What Damage Protection covers</div>
+    <p class="policy-p">If you add Damage Protection and the trailer is accidentally damaged during your rental, the most you’ll pay is <strong>$1,000 per incident</strong>.</p>
+    <p class="policy-p">This includes accidental physical damage to the trailer, such as:</p>
+    <ul class="policy-list">
+      <li>Collisions</li>
+      <li>Backing or jackknife incidents</li>
+      <li>Storm or weather damage</li>
+    </ul>
+
+    <div class="policy-sub">What it does not cover</div>
+    <p class="policy-p">You remain fully responsible for:</p>
+    <ul class="policy-list">
+      <li>Theft of the trailer, or failure to return it</li>
+      <li>Damage to your tow vehicle</li>
+      <li>Damage to your cargo or anything you’re hauling</li>
+      <li>Injuries to anyone, or damage to other people’s property</li>
+      <li>Tires, rims and normal wear and tear</li>
+      <li>Overloading past the trailer’s rated capacity</li>
+      <li>Improper hitching, or the wrong hitch or ball size</li>
+      <li>Intentional or reckless damage, or use while under the influence</li>
+      <li>Use by anyone not listed on the rental agreement</li>
+      <li>Any use that violates the rental agreement</li>
+      <li>Returning the trailer without the coupler lock installed</li>
+    </ul>
+
+    <div class="policy-sub">Without Damage Protection</div>
+    <p class="policy-p">If you decline Damage Protection, you’re responsible for the full cost of repairing or replacing the trailer, plus loss-of-use fees while it’s out of service.</p>
+
+    <div class="policy-sub">If damage happens</div>
+    <ol class="policy-steps">
+      <li>Make sure everyone is safe, and call 911 if needed.</li>
+      <li>Take photos of the trailer and the scene.</li>
+      <li>Contact 509 Trailer Rentals within 24 hours.</li>
+      <li>If police or another vehicle were involved, get a report number and the other party’s insurance information.</li>
+    </ol>
+    <p class="policy-p">Damage Protection is void if damage isn’t reported within 24 hours or the rental agreement terms are violated.</p>
+
+    <div class="policy-note">Damage Protection is a contractual damage waiver between you and 509 Trailer Rentals LLC. It is not an insurance policy and provides no liability coverage. Questions? Contact us before your rental.</div>
   </div>
 
   <!-- PROHIBITED -->
